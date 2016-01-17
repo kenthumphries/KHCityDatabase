@@ -1,0 +1,10 @@
+framework module TimeZoneDatabase {
+  umbrella header "TimeZoneDatabase.h"
+
+  export *
+  module * { export * }
+}
+
+module TimeZoneDatabase.Swift {
+    header "TimeZoneDatabase-Swift.h"
+}
