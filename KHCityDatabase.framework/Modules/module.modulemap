@@ -1,0 +1,10 @@
+framework module KHCityDatabase {
+  umbrella header "KHCityDatabase.h"
+
+  export *
+  module * { export * }
+}
+
+module KHCityDatabase.Swift {
+    header "KHCityDatabase-Swift.h"
+}
