@@ -8,6 +8,7 @@
 
 import XCTest
 @testable import KHCityDatabaseCreator
+import CoreLocation
 
 class CityFileParserStub : CityFileParser {
 
@@ -267,11 +268,10 @@ class CityFileParserTests: XCTestCase {
     func testCreateAdmin1Mapping_singleLine() {
         
         let contents = "AU.07\tVictoria\tVictoria\t2145234"
-        let expectedMapping : [String: [String : String]] = ["AU" : ["07" : "Victoria"]]
         let parser = stubCityFileParser(admin1FileContents: contents)
         
         let mapping = parser.createAdmin1Mapping()
-        XCTAssertTrue(mappingDictionariesAreEqual(lhs:expectedMapping, rhs: mapping))
+        XCTAssertTrue(mappingDictionariesAreEqual(lhs:admin1MappingVictoria, rhs: mapping))
     }
 
     func testCreateAdmin1Mapping_fiveLines() {
@@ -310,8 +310,7 @@ class CityFileParserTests: XCTestCase {
     func testParseCitiesValues_valid() {
         do {
             let values = self.citiesLineValues()
-            let admin1Mapping = ["AU" : ["07" : "Victoria"]]
-            let parsedValues = try stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1Mapping)
+            let parsedValues = try stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1MappingVictoria)
 
             XCTAssertEqual(parsedValues.cityNameEnglish, "Melbourne")
             XCTAssertEqual(parsedValues.timeZoneEnglish, "Australia/Melbourne")
@@ -328,8 +327,7 @@ class CityFileParserTests: XCTestCase {
     func testParseCitiesValues_noValues() {
         do {
             let values = [String]()
-            let admin1Mapping = ["AU" : ["07" : "Victoria"]]
-            try stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1Mapping)
+            try stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1MappingVictoria)
             XCTFail("Parser must throw error")
         }
         catch CityFileParserError.citiesLineUnexpectedNumberOfFields {
@@ -343,8 +341,7 @@ class CityFileParserTests: XCTestCase {
     func testParseCitiesValues_emptyCountryCode() {
         do {
             let values = self.citiesLineValues(countryCode: "")
-            let admin1Mapping = ["AU" : ["07" : "Victoria"]]
-            try stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1Mapping)
+            try stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1MappingVictoria)
             XCTFail("Parser must throw error")
         }
         catch CityFileParserError.citiesLineEmptyFields {
@@ -358,8 +355,7 @@ class CityFileParserTests: XCTestCase {
     func testParseCitiesValues_unrecognisedCountryCode() {
         do {
             let values = self.citiesLineValues(countryCode: ".?!")
-            let admin1Mapping = ["AU" : ["07" : "Victoria"]]
-            try stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1Mapping)
+            try stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1MappingVictoria)
             XCTFail("Parser must throw error")
         }
         catch CityFileParserError.citiesLineCountryCodeNotRecognised {
@@ -373,8 +369,7 @@ class CityFileParserTests: XCTestCase {
     func testParseCitiesValues_emptyAdmin1Code() {
         do {
             let values = self.citiesLineValues(admin1Code: "")
-            let admin1Mapping = ["AU" : ["07" : "Victoria"]]
-            try stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1Mapping)
+            try stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1MappingVictoria)
             XCTFail("Parser must throw error")
         }
         catch CityFileParserError.citiesLineEmptyFields {
@@ -388,8 +383,7 @@ class CityFileParserTests: XCTestCase {
     func testParseCitiesValues_emptyTimeZone() {
         do {
             let values = self.citiesLineValues(timeZone: "")
-            let admin1Mapping = ["AU" : ["07" : "Victoria"]]
-            try stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1Mapping)
+            try stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1MappingVictoria)
             XCTFail("Parser must throw error")
         }
         catch CityFileParserError.citiesLineEmptyFields {
@@ -403,8 +397,7 @@ class CityFileParserTests: XCTestCase {
     func testParseCitiesValues_emptyCityName() {
         do {
             let values = self.citiesLineValues(cityName: "")
-            let admin1Mapping = ["AU" : ["07" : "Victoria"]]
-            try stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1Mapping)
+            try stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1MappingVictoria)
             XCTFail("Parser must throw error")
         }
         catch CityFileParserError.citiesLineEmptyFields {
@@ -418,8 +411,7 @@ class CityFileParserTests: XCTestCase {
     func testParseCitiesValues_emptyAdmin2Code() {
         do {
             let values = self.citiesLineValues(admin2Code: "")
-            let admin1Mapping = ["AU" : ["07" : "Victoria"]]
-            try stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1Mapping)
+            try stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1MappingVictoria)
             XCTFail("Parser must throw error")
         }
         catch CityFileParserError.citiesLineEmptyFields {
@@ -433,8 +425,35 @@ class CityFileParserTests: XCTestCase {
     func testParseCitiesValues_emptyPopulation() {
         do {
             let values = self.citiesLineValues(population: "")
-            let admin1Mapping = ["AU" : ["07" : "Victoria"]]
-            try stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1Mapping)
+            try stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1MappingVictoria)
+            XCTFail("Parser must throw error")
+        }
+        catch CityFileParserError.citiesLineEmptyFields {
+            // Do nothing test passed
+        }
+        catch {
+            XCTFail("Parser must throw .citiesLineEmptyFields error")
+        }
+    }
+    
+    func testParseCitiesValues_emptyLatitude() {
+        do {
+            let values = self.citiesLineValues(latitude: "")
+            try stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1MappingVictoria)
+            XCTFail("Parser must throw error")
+        }
+        catch CityFileParserError.citiesLineEmptyFields {
+            // Do nothing test passed
+        }
+        catch {
+            XCTFail("Parser must throw .citiesLineEmptyFields error")
+        }
+    }
+
+    func testParseCitiesValues_emptyLongitude() {
+        do {
+            let values = self.citiesLineValues(longitude: "")
+            try stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1MappingVictoria)
             XCTFail("Parser must throw error")
         }
         catch CityFileParserError.citiesLineEmptyFields {
@@ -464,8 +483,7 @@ class CityFileParserTests: XCTestCase {
         do {
             // Use admin1Code that cannot be found in admin1Mapping
             let values = self.citiesLineValues(admin1Code : "04")
-            let admin1Mapping = ["AU" : ["07" : "Victoria"]]
-            try stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1Mapping)
+            try stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1MappingVictoria)
             XCTFail("Parser must throw error")
         }
         catch CityFileParserError.citiesLineAdmin1NameNotFound {
@@ -479,8 +497,7 @@ class CityFileParserTests: XCTestCase {
     func testParseCitiesValues_extraFields() {
         do {
             let values = [".07", ""]
-            let admin1Mapping = ["AU" : ["07" : "Victoria"]]
-            try stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1Mapping)
+            try stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1MappingVictoria)
             XCTFail("Parser must throw error")
         }
         catch CityFileParserError.citiesLineUnexpectedNumberOfFields {
@@ -498,73 +515,96 @@ class CityFileParserTests: XCTestCase {
         let contents = ""
         let parser = stubCityFileParser(citiesFileContents: contents)
         
-        let locations = parser.parseCities()
-        XCTAssertEqual(locations.count, 0)
+        let cities = parser.parseCities()
+        XCTAssertEqual(cities.count, 0)
     }
     
     func testParseCities_singleLine() {
         
-        let contents = self.citiesLineValues().joinWithSeparator("\t")
-        let expectedCity = City(cityNameEnglish: "Melbourne", timeZoneEnglish: "Australia/Melbourne", countryCode: "AU", countryNameEnglish: "Australia", admin1Code: "07", admin1NameEnglish: "Victoria", admin2Code: "24600", population: 123456)
-        
-        let parser = stubCityFileParser(citiesFileContents: contents)
-        let locations = parser.parseCities()
-        XCTAssertEqual([expectedCity], locations)
+        let parser = stubCityFileParser(citiesFileContents: citiesLineMelbourne)
+        let cities = parser.parseCities()
+
+        XCTAssertEqual([cityMelbourne], cities)
     }
     
     func testParseCities_fiveLines() {
         
-        let lineMelbourne = self.citiesLineValues().joinWithSeparator("\t")
-        let lineHobart = self.citiesLineValues(cityName: "Hobart", timeZone: "Australia/Hobart", admin1Code: "06", admin2Code: "12345", population: "30000").joinWithSeparator("\t")
-        let lineBrisbane = self.citiesLineValues(cityName: "Brisbane", timeZone: "Australia/Brisbane", admin1Code: "04", admin2Code: "23456", population: "300000").joinWithSeparator("\t")
-        let lineGlasgow = self.citiesLineValues(cityName: "Glasgow", timeZone: "Europe/London", countryCode: "GB", admin1Code: "SCT", admin2Code: "34567", population: "2000000").joinWithSeparator("\t")
-        let lineCardiff = self.citiesLineValues(cityName: "Cardiff", timeZone: "Europe/London", countryCode: "GB", admin1Code: "WLS", admin2Code: "45678", population: "10000").joinWithSeparator("\t")
-        let contents = [lineMelbourne, lineHobart, lineBrisbane, lineGlasgow, lineCardiff].joinWithSeparator("\n")
+        let contents = [citiesLineMelbourne, citiesLineHobart, citiesLineBrisbane, citiesLineGlasgow, citiesLineCardiff].joinWithSeparator("\n")
         
-        let locationMelbourne = City(cityNameEnglish: "Melbourne", timeZoneEnglish: "Australia/Melbourne", countryCode: "AU", countryNameEnglish: "Australia", admin1Code: "07", admin1NameEnglish: "Victoria", admin2Code: "24600", population: 123456)
-        let locationHobart = City(cityNameEnglish: "Hobart", timeZoneEnglish: "Australia/Hobart", countryCode: "AU", countryNameEnglish: "Australia", admin1Code: "06", admin1NameEnglish: "Tasmania", admin2Code: "12345", population: 30000)
-        let locationBrisbane = City(cityNameEnglish: "Brisbane", timeZoneEnglish: "Australia/Brisbane", countryCode: "AU", countryNameEnglish: "Australia", admin1Code: "04", admin1NameEnglish: "Queensland", admin2Code: "23456", population: 300000)
-        let locationGlasgow = City(cityNameEnglish: "Glasgow", timeZoneEnglish: "Europe/London", countryCode: "GB", countryNameEnglish: "United Kingdom", admin1Code: "SCT", admin1NameEnglish: "Scotland", admin2Code: "34567", population: 2000000)
-        let locationCardiff = City(cityNameEnglish: "Cardiff", timeZoneEnglish: "Europe/London", countryCode: "GB", countryNameEnglish: "United Kingdom", admin1Code: "WLS", admin1NameEnglish: "Wales", admin2Code: "45678", population: 10000)
-
-        let expectedCities = [locationMelbourne, locationHobart, locationBrisbane, locationGlasgow, locationCardiff]
+        let expectedCities = [cityMelbourne, cityHobart, cityBrisbane, cityGlasgow, cityCardiff]
         
         let parser = stubCityFileParser(citiesFileContents: contents)
-        let locations = parser.parseCities()
-        XCTAssertEqual(locations.count, 5)
-        XCTAssertEqual(expectedCities[0], locations[0])
-        XCTAssertEqual(expectedCities[1], locations[1])
-        XCTAssertEqual(expectedCities[2], locations[2])
-        XCTAssertEqual(expectedCities[3], locations[3])
-        XCTAssertEqual(expectedCities[4], locations[4])
+        let cities = parser.parseCities()
+        XCTAssertEqual(cities.count, 5)
+        XCTAssertEqual(expectedCities[0], cities[0])
+        XCTAssertEqual(expectedCities[1], cities[1])
+        XCTAssertEqual(expectedCities[2], cities[2])
+        XCTAssertEqual(expectedCities[3], cities[3])
+        XCTAssertEqual(expectedCities[4], cities[4])
     }
     
     func testParseCities_invalidLine() {
         
-        let lineMelbourne = self.citiesLineValues().joinWithSeparator("\t")
-        let lineHobart = self.citiesLineValues(cityName: "Hobart", timeZone: "Australia/Hobart", admin1Code: "06", admin2Code: "12345", population: "30000").joinWithSeparator("\t")
-        let lineBrisbane = self.citiesLineValues(cityName: "Brisbane", timeZone: "Australia/Brisbane", admin1Code: "04", admin2Code: "23456", population: "300000").joinWithSeparator("\t")
         let lineGlasgow = "Glasgow Wheee!"
-        let lineCardiff = self.citiesLineValues(cityName: "Cardiff", timeZone: "Europe/London", countryCode: "GB", admin1Code: "WLS", admin2Code: "45678", population: "10000").joinWithSeparator("\t")
-        let contents = [lineMelbourne, lineHobart, lineBrisbane, lineGlasgow, lineCardiff].joinWithSeparator("\n")
+        let contents = [citiesLineMelbourne, citiesLineHobart, citiesLineBrisbane, lineGlasgow, citiesLineCardiff].joinWithSeparator("\n")
         
-        let locationMelbourne = City(cityNameEnglish: "Melbourne", timeZoneEnglish: "Australia/Melbourne", countryCode: "AU", countryNameEnglish: "Australia", admin1Code: "07", admin1NameEnglish: "Victoria", admin2Code: "24600", population: 123456)
-        let locationHobart = City(cityNameEnglish: "Hobart", timeZoneEnglish: "Australia/Hobart", countryCode: "AU", countryNameEnglish: "Australia", admin1Code: "06", admin1NameEnglish: "Tasmania", admin2Code: "12345", population: 30000)
-        let locationBrisbane = City(cityNameEnglish: "Brisbane", timeZoneEnglish: "Australia/Brisbane", countryCode: "AU", countryNameEnglish: "Australia", admin1Code: "04", admin1NameEnglish: "Queensland", admin2Code: "23456", population: 300000)
-        let locationCardiff = City(cityNameEnglish: "Cardiff", timeZoneEnglish: "Europe/London", countryCode: "GB", countryNameEnglish: "United Kingdom", admin1Code: "WLS", admin1NameEnglish: "Wales", admin2Code: "45678", population: 10000)
-        
-        let expectedCities = [locationMelbourne, locationHobart, locationBrisbane, locationCardiff]
+        let expectedCities = [cityMelbourne, cityHobart, cityBrisbane, cityCardiff]
         
         let parser = stubCityFileParser(citiesFileContents: contents)
-        let locations = parser.parseCities()
-        XCTAssertEqual(locations.count, 4)
-        XCTAssertEqual(expectedCities[0], locations[0])
-        XCTAssertEqual(expectedCities[1], locations[1])
-        XCTAssertEqual(expectedCities[2], locations[2])
-        XCTAssertEqual(expectedCities[3], locations[3])
+        let cities = parser.parseCities()
+        XCTAssertEqual(cities.count, 4)
+        XCTAssertEqual(expectedCities[0], cities[0])
+        XCTAssertEqual(expectedCities[1], cities[1])
+        XCTAssertEqual(expectedCities[2], cities[2])
+        XCTAssertEqual(expectedCities[3], cities[3])
     }
 
     // MARK: - Utilties
+    
+    var admin1MappingVictoria : [String : [String : String]] {
+        return ["AU" : ["07" : "Victoria"]]
+    }
+    
+    var citiesLineMelbourne : String {
+        return self.citiesLineValues().joinWithSeparator("\t")
+    }
+
+    var cityMelbourne : City {
+        return City(cityNameEnglish: "Melbourne", timeZoneEnglish: "Australia/Melbourne", countryCode: "AU", countryNameEnglish: "Australia", admin1Code: "07", admin1NameEnglish: "Victoria", admin2Code: "24600", population: 123456, latitude: 37.81, longitude: 144.96)
+    }
+    
+    var citiesLineHobart : String {
+        return self.citiesLineValues(cityName: "Hobart", timeZone: "Australia/Hobart", admin1Code: "06", admin2Code: "12345", population: "30000", latitude: "37.81", longitude: "140.96").joinWithSeparator("\t")
+    }
+    
+    var cityHobart : City {
+        return City(cityNameEnglish: "Hobart", timeZoneEnglish: "Australia/Hobart", countryCode: "AU", countryNameEnglish: "Australia", admin1Code: "06", admin1NameEnglish: "Tasmania", admin2Code: "12345", population: 30000, latitude: 37.81, longitude: 140.96)
+    }
+    
+    var citiesLineBrisbane : String {
+        return self.citiesLineValues(cityName: "Brisbane", timeZone: "Australia/Brisbane", admin1Code: "04", admin2Code: "23456", population: "300000", latitude: "37.81", longitude: "148.96").joinWithSeparator("\t")
+    }
+    
+    var cityBrisbane : City {
+        return City(cityNameEnglish: "Brisbane", timeZoneEnglish: "Australia/Brisbane", countryCode: "AU", countryNameEnglish: "Australia", admin1Code: "04", admin1NameEnglish: "Queensland", admin2Code: "23456", population: 300000, latitude: 37.81, longitude: 148.96)
+        
+    }
+    
+    var citiesLineGlasgow : String {
+        return self.citiesLineValues(cityName: "Glasgow", timeZone: "Europe/London", countryCode: "GB", admin1Code: "SCT", admin2Code: "34567", population: "2000000", latitude: "55.85", longitude: "4.26").joinWithSeparator("\t")
+    }
+    
+    var cityGlasgow : City {
+        return City(cityNameEnglish: "Glasgow", timeZoneEnglish: "Europe/London", countryCode: "GB", countryNameEnglish: "United Kingdom", admin1Code: "SCT", admin1NameEnglish: "Scotland", admin2Code: "34567", population: 2000000, latitude: 55.85, longitude: 4.26)
+    }
+    
+    var citiesLineCardiff : String {
+        return self.citiesLineValues(cityName: "Cardiff", timeZone: "Europe/London", countryCode: "GB", admin1Code: "WLS", admin2Code: "45678", population: "10000", latitude: "55.85", longitude: "6.26").joinWithSeparator("\t")
+    }
+
+    var cityCardiff : City {
+        return City(cityNameEnglish: "Cardiff", timeZoneEnglish: "Europe/London", countryCode: "GB", countryNameEnglish: "United Kingdom", admin1Code: "WLS", admin1NameEnglish: "Wales", admin2Code: "45678", population: 10000, latitude: 55.85, longitude: 6.26)
+    }
     
     func citiesLineValues(
         cityName cityName:String? = "Melbourne",
@@ -572,9 +612,11 @@ class CityFileParserTests: XCTestCase {
         countryCode:String? = "AU",
         admin1Code:String? = "07",
         admin2Code:String? = "24600",
-        population:String? = "123456") -> [String] {
+        population:String? = "123456",
+        latitude:String? = "37.81",
+        longitude:String? = "144.96") -> [String] {
             
-            return ["", cityName!, "", "", "", "", "", "", countryCode!, "", admin1Code!, admin2Code!, "", "", population!, "", "", timeZone!, ""]
+            return ["", cityName!, "", "", latitude!, longitude!, "", "", countryCode!, "", admin1Code!, admin2Code!, "", "", population!, "", "", timeZone!, ""]
     }
     
     func mappingDictionariesAreEqual(lhs lhs : [String : [String : String]], rhs : [String : [String : String]]) -> Bool {

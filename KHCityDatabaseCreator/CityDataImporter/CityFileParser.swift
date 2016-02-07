@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 public enum CityFileParserError : ErrorType {
     case citiesFileNameNotFound
@@ -97,7 +98,9 @@ internal class CityFileParser: NSObject {
                         admin1Code: parsedValues.admin1Code,
                         admin1NameEnglish: parsedValues.admin1NameEnglish,
                         admin2Code: parsedValues.admin2Code,
-                        population: parsedValues.population)
+                        population: parsedValues.population,
+                        latitude: parsedValues.latitude,
+                        longitude: parsedValues.longitude)
                     locations.append(location)
                 } catch let error {
                     print("Caught error: \(error) for line: \(line)")
@@ -111,6 +114,8 @@ internal class CityFileParser: NSObject {
 extension CityFileParser {
     var kCitiesNumberOfFields : Int { return 19 }
     var kCitiesCityIndex : Int { return 1 }
+    var kCitiesLatitudeIndex : Int { return 4 }
+    var kCitiesLongitudeIndex : Int { return 5 }
     var kCitiesCountryCodeIndex : Int { return 8 }
     var kCitiesAdmin1CodeIndex : Int { return 10 }
     var kCitiesAdmin2CodeIndex : Int { return 11 }
@@ -118,7 +123,7 @@ extension CityFileParser {
     var kCitiesTimeZoneIndex : Int { return 17 }
     
     func parseCitiesValues(values : [String], admin1Mapping : [String : [String : String]]) throws
-        -> (cityNameEnglish : String, timeZoneEnglish : String, countryCode : String, countryNameEnglish : String, admin1Code : String, admin1NameEnglish : String, admin2Code : String, population : Int) {
+        -> (cityNameEnglish : String, timeZoneEnglish : String, countryCode : String, countryNameEnglish : String, admin1Code : String, admin1NameEnglish : String, admin2Code : String, population : Int, latitude : CLLocationDegrees, longitude : CLLocationDegrees) {
             
             guard values.count == kCitiesNumberOfFields else {
                 throw CityFileParserError.citiesLineUnexpectedNumberOfFields
@@ -130,13 +135,17 @@ extension CityFileParser {
                 let cityName = values[kCitiesCityIndex].nonEmpty,
                 let admin2Code = values[kCitiesAdmin2CodeIndex].nonEmpty,
                 let populationString = values[kCitiesPopulationIndex].nonEmpty,
-                let population = Int(populationString) {
+                let population = Int(populationString),
+                let latitudeString = values[kCitiesLatitudeIndex].nonEmpty,
+                let latitude = CLLocationDegrees(latitudeString),
+                let longitudeString = values[kCitiesLongitudeIndex].nonEmpty,
+                let longitude = CLLocationDegrees(longitudeString) {
                     
                     let countryIdentifier = NSLocale.localeIdentifierFromComponents([NSLocaleCountryCode : countryCode])
                     let englishLocale = NSLocale(localeIdentifier: "en_GB")
                     if let countryNameEnglish = englishLocale.displayNameForKey(NSLocaleIdentifier, value: countryIdentifier) {
                         if let admin1Name = (admin1Mapping[countryCode]?[admin1Code])?.nonEmpty {
-                            return (cityName, timeZone, countryCode, countryNameEnglish, admin1Code, admin1Name, admin2Code, population)
+                            return (cityName, timeZone, countryCode, countryNameEnglish, admin1Code, admin1Name, admin2Code, population, latitude, longitude)
                         } else {
                             throw CityFileParserError.citiesLineAdmin1NameNotFound
                         }

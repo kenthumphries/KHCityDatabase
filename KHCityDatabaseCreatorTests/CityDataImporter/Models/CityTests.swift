@@ -9,6 +9,7 @@
 import XCTest
 @testable import KHCityDatabaseCreator
 import RealmSwift
+import CoreLocation
 
 class CityTests: XCTestCase {
     
@@ -87,6 +88,20 @@ class CityTests: XCTestCase {
         
         XCTAssertNotEqual(location.hashValue, other.hashValue)
     }
+    
+    func testHash_differs_latitude() {
+        let location = self.location()
+        let other = self.location(latitude: 12.12)
+        
+        XCTAssertNotEqual(location.hashValue, other.hashValue)
+    }
+
+    func testHash_differs_longitude() {
+        let location = self.location()
+        let other = self.location(latitude: 13.13)
+        
+        XCTAssertNotEqual(location.hashValue, other.hashValue)
+    }
 
     // MARK: func isEqualToCity(other : City?) -> Bool
     
@@ -152,7 +167,21 @@ class CityTests: XCTestCase {
         
         XCTAssertNotEqual(location, other)
     }
-    
+
+    func testIsEqual_differs_latitude() {
+        let location = self.location()
+        let other = self.location(latitude: 12.12)
+        
+        XCTAssertNotEqual(location, other)
+    }
+
+    func testIsEqual_differs_longitude() {
+        let location = self.location()
+        let other = self.location(longitude: 12.12)
+        
+        XCTAssertNotEqual(location, other)
+    }
+
     // MARK: - Utility methods
     
     func location(cityNameEnglish cityNameEnglish : String? = "Vienna",
@@ -162,7 +191,9 @@ class CityTests: XCTestCase {
         admin1Code : String? = "09",
         admin1NameEnglish : String? = "Viennese",
         admin2Code : String? = "123",
-        population : Int? = 1500000) -> City {
+        population : Int? = 1500000,
+        latitude : CLLocationDegrees? = 48.20,
+        longitude : CLLocationDegrees? = 16.37) -> City {
         return City(cityNameEnglish: cityNameEnglish!,
             timeZoneEnglish: timeZoneEnglish!,
             countryCode: countryCode!,
@@ -170,6 +201,8 @@ class CityTests: XCTestCase {
             admin1Code: admin1Code!,
             admin1NameEnglish: admin1NameEnglish!,
             admin2Code: admin2Code!,
-            population: population!)
+            population: population!,
+            latitude: latitude!,
+            longitude: longitude!)
     }
 }

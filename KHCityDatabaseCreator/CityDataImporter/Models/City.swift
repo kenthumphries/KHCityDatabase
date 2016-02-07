@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 import RealmSwift
 
 public class City : Object {
@@ -19,6 +20,12 @@ public class City : Object {
     public dynamic var admin1NameEnglish : String = ""
     public dynamic var admin2Code : String = ""
     public dynamic var population : Int = 0
+    public dynamic var latitude : CLLocationDegrees = 0.0
+    public dynamic var longitude : CLLocationDegrees = 0.0
+    
+    public var position : CLLocation {
+        return CLLocation(latitude: latitude, longitude: longitude)
+    }
     
     public convenience init(cityNameEnglish: String,
         timeZoneEnglish: String,
@@ -27,7 +34,9 @@ public class City : Object {
         admin1Code: String,
         admin1NameEnglish: String,
         admin2Code: String,
-        population: Int) {
+        population: Int,
+        latitude: CLLocationDegrees,
+        longitude: CLLocationDegrees) {
             
             self.init()
 
@@ -39,6 +48,8 @@ public class City : Object {
             self.admin1NameEnglish = admin1NameEnglish
             self.admin2Code = admin2Code
             self.population = population
+            self.latitude = latitude
+            self.longitude = longitude
     }
     
     override public var hash : Int {
@@ -50,6 +61,8 @@ public class City : Object {
         hash ^= self.admin1NameEnglish.hash
         hash ^= self.admin2Code.hash
         hash ^= self.population.hashValue
+        hash ^= self.latitude.hashValue
+        hash ^= self.longitude.hashValue
         return hash
     }
     
@@ -82,6 +95,8 @@ public class City : Object {
         isEqual = isEqual && self.admin1NameEnglish == other.admin1NameEnglish
         isEqual = isEqual && self.admin2Code == other.admin2Code
         isEqual = isEqual && self.population == other.population
+        isEqual = isEqual && self.latitude == other.latitude
+        isEqual = isEqual && self.longitude == other.longitude
         return isEqual
     }
     
