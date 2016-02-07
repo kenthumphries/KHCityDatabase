@@ -87,10 +87,12 @@ typedef int swift_int3  __attribute__((__ext_vector_type__(3)));
 typedef int swift_int4  __attribute__((__ext_vector_type__(4)));
 #if defined(__has_feature) && __has_feature(modules)
 @import RealmSwift;
+@import CoreLocation;
 #endif
 
 #pragma clang diagnostic ignored "-Wproperty-attribute-mismatch"
 #pragma clang diagnostic ignored "-Wduplicate-method-arg"
+@class CLLocation;
 @class RLMRealm;
 @class RLMObjectSchema;
 @class RLMSchema;
@@ -105,7 +107,10 @@ SWIFT_CLASS("_TtC14KHCityDatabase4City")
 @property (nonatomic, copy) NSString * __nonnull admin1NameEnglish;
 @property (nonatomic, copy) NSString * __nonnull admin2Code;
 @property (nonatomic) NSInteger population;
-- (nonnull instancetype)initWithCityNameEnglish:(NSString * __nonnull)cityNameEnglish timeZoneEnglish:(NSString * __nonnull)timeZoneEnglish countryCode:(NSString * __nonnull)countryCode countryNameEnglish:(NSString * __nonnull)countryNameEnglish admin1Code:(NSString * __nonnull)admin1Code admin1NameEnglish:(NSString * __nonnull)admin1NameEnglish admin2Code:(NSString * __nonnull)admin2Code population:(NSInteger)population;
+@property (nonatomic) CLLocationDegrees latitude;
+@property (nonatomic) CLLocationDegrees longitude;
+@property (nonatomic, readonly, strong) CLLocation * __nonnull position;
+- (nonnull instancetype)initWithCityNameEnglish:(NSString * __nonnull)cityNameEnglish timeZoneEnglish:(NSString * __nonnull)timeZoneEnglish countryCode:(NSString * __nonnull)countryCode countryNameEnglish:(NSString * __nonnull)countryNameEnglish admin1Code:(NSString * __nonnull)admin1Code admin1NameEnglish:(NSString * __nonnull)admin1NameEnglish admin2Code:(NSString * __nonnull)admin2Code population:(NSInteger)population latitude:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude;
 @property (nonatomic, readonly) NSUInteger hash;
 - (BOOL)isEqual:(id __nullable)object;
 @property (nonatomic, readonly, copy) NSString * __nonnull description;
