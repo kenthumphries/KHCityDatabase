@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/KHCityDatabase-Swift.h</key>
 		<data>
-		ljqlCHZiF9jx8jw1kPaE+HSn/64=
+		M53Ht+nRSuSc4LEuQuc5+cZ+Owk=
 		</data>
 		<key>Headers/KHCityDatabase.h</key>
 		<data>
@@ -14,7 +14,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		d4OJLZWSkUaFhnVrsVfxSYaDaYY=
+		sy3pK2eTAHrs0JZHNQt6HKrypVM=
 		</data>
 		<key>KHCityDatabase-compacted.realm</key>
 		<data>
@@ -22,19 +22,19 @@
 		</data>
 		<key>Modules/KHCityDatabase.swiftmodule/arm.swiftdoc</key>
 		<data>
-		z9gym0lF2avZftPcPwlmxaitbzc=
+		vX3li+0pmJfxIOleJRvM7XzulwQ=
 		</data>
 		<key>Modules/KHCityDatabase.swiftmodule/arm.swiftmodule</key>
 		<data>
-		ZLSL2nkRstNH+od6bajn0Aom0Qw=
+		oQ5IPVBTKTo3mnGyDq9n3322LX8=
 		</data>
 		<key>Modules/KHCityDatabase.swiftmodule/arm64.swiftdoc</key>
 		<data>
-		fIpxOKAjR9plS6cvnn3Uj8k/7Lc=
+		7BUlQBrhUQ77wbgVsUxliml4eHA=
 		</data>
 		<key>Modules/KHCityDatabase.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		n8WiwEZjsIhDTzn50bVKFryyu+Q=
+		PxCta9r69MTyo3S8xjNwODq57A8=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -44,37 +44,93 @@
 	<key>files2</key>
 	<dict>
 		<key>Headers/KHCityDatabase-Swift.h</key>
-		<data>
-		ljqlCHZiF9jx8jw1kPaE+HSn/64=
-		</data>
+		<dict>
+			<key>hash</key>
+			<data>
+			M53Ht+nRSuSc4LEuQuc5+cZ+Owk=
+			</data>
+			<key>hash2</key>
+			<data>
+			kL7fmwEXs4H95lal+XtYACXwH6IYE/QUcM/Kyxh/mMc=
+			</data>
+		</dict>
 		<key>Headers/KHCityDatabase.h</key>
-		<data>
-		VIEVAojYQQzvIhHqQpDwCt91K0g=
-		</data>
+		<dict>
+			<key>hash</key>
+			<data>
+			VIEVAojYQQzvIhHqQpDwCt91K0g=
+			</data>
+			<key>hash2</key>
+			<data>
+			FpzvtFS4c9ohszaWSTagPGVqhyanl/AQ2d65GYxxzjY=
+			</data>
+		</dict>
 		<key>KHCityDatabase-compacted.realm</key>
-		<data>
-		MvMAoXGKUNs6g/bqsUzUhfqQGgo=
-		</data>
+		<dict>
+			<key>hash</key>
+			<data>
+			MvMAoXGKUNs6g/bqsUzUhfqQGgo=
+			</data>
+			<key>hash2</key>
+			<data>
+			zUYzP7n7fVwqHvSNXJZIg51AoXNFwULD7Q3jWiHmr78=
+			</data>
+		</dict>
 		<key>Modules/KHCityDatabase.swiftmodule/arm.swiftdoc</key>
-		<data>
-		z9gym0lF2avZftPcPwlmxaitbzc=
-		</data>
+		<dict>
+			<key>hash</key>
+			<data>
+			vX3li+0pmJfxIOleJRvM7XzulwQ=
+			</data>
+			<key>hash2</key>
+			<data>
+			4jL5SYsuUZwVrVKRBF0W93GFHjdKVzLWV5emq9vS8g4=
+			</data>
+		</dict>
 		<key>Modules/KHCityDatabase.swiftmodule/arm.swiftmodule</key>
-		<data>
-		ZLSL2nkRstNH+od6bajn0Aom0Qw=
-		</data>
+		<dict>
+			<key>hash</key>
+			<data>
+			oQ5IPVBTKTo3mnGyDq9n3322LX8=
+			</data>
+			<key>hash2</key>
+			<data>
+			g0EmsZRo7n+HFbqTS7RBu24YRoylnEY8NXo+YWyODI0=
+			</data>
+		</dict>
 		<key>Modules/KHCityDatabase.swiftmodule/arm64.swiftdoc</key>
-		<data>
-		fIpxOKAjR9plS6cvnn3Uj8k/7Lc=
-		</data>
+		<dict>
+			<key>hash</key>
+			<data>
+			7BUlQBrhUQ77wbgVsUxliml4eHA=
+			</data>
+			<key>hash2</key>
+			<data>
+			HsTmECpPnCMRxnb73uLJ1+KT7c6FmxT04MLIAz3OSiA=
+			</data>
+		</dict>
 		<key>Modules/KHCityDatabase.swiftmodule/arm64.swiftmodule</key>
-		<data>
-		n8WiwEZjsIhDTzn50bVKFryyu+Q=
-		</data>
+		<dict>
+			<key>hash</key>
+			<data>
+			PxCta9r69MTyo3S8xjNwODq57A8=
+			</data>
+			<key>hash2</key>
+			<data>
+			yTgPwXyJgEzp+2x00Chl6vlMKlupHAlKB2lljJVuK/w=
+			</data>
+		</dict>
 		<key>Modules/module.modulemap</key>
-		<data>
-		V+VuKYBvKhx1NFZXCTC4QJnBWXc=
-		</data>
+		<dict>
+			<key>hash</key>
+			<data>
+			V+VuKYBvKhx1NFZXCTC4QJnBWXc=
+			</data>
+			<key>hash2</key>
+			<data>
+			ZSFn5MnDmqf+QxJY65M0cvX92ZrxCY2nsIe16xpFxX0=
+			</data>
+		</dict>
 	</dict>
 	<key>rules</key>
 	<dict>
