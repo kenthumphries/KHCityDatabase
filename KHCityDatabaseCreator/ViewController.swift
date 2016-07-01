@@ -13,7 +13,7 @@ class ViewController: NSViewController {
     @IBOutlet weak var resultTextField: NSTextField!
     @IBOutlet weak var showInFinderButton: NSButton!
     
-    var databasePath : String?
+    var databaseURL = NSURL()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,24 +44,20 @@ class ViewController: NSViewController {
         }
         
         do {
-            let databasePath = try KHCityRealmCreator().generatePopulatedRealmDatabase()
+            let databaseURL = try KHCityRealmCreator().generatePopulatedRealmDatabase()
             
-            self.resultTextField.stringValue = self.resultTextField.stringValue + databasePath
+            self.resultTextField.stringValue = self.resultTextField.stringValue + databaseURL.absoluteString
             
-            self.databasePath = databasePath
+            self.databaseURL = databaseURL
             showInFinderButton.hidden = false
         }
         catch let error as NSError {
-            self.databasePath = nil
             self.resultTextField.stringValue = "Error: " + error.description
         }
     }
 
     @IBAction func revealInFinder(sender: AnyObject) {
-        if let databasePath = databasePath {
-            let urls = [NSURL(fileURLWithPath: databasePath)]
-            NSWorkspace.sharedWorkspace().activateFileViewerSelectingURLs(urls)
-        }
+        NSWorkspace.sharedWorkspace().activateFileViewerSelectingURLs([databaseURL])
     }
 }
 
