@@ -109,14 +109,14 @@ SWIFT_CLASS("_TtC14KHCityDatabase4City")
 @property (nonatomic, copy) NSString * _Nonnull timeZoneEnglish;
 @property (nonatomic, copy) NSString * _Nonnull countryCode;
 @property (nonatomic, copy) NSString * _Nonnull countryNameEnglish;
-@property (nonatomic, copy) NSString * _Nonnull admin1Code;
-@property (nonatomic, copy) NSString * _Nonnull admin1NameEnglish;
-@property (nonatomic, copy) NSString * _Nonnull admin2Code;
+@property (nonatomic, copy) NSString * _Nullable admin1Code;
+@property (nonatomic, copy) NSString * _Nullable admin1NameEnglish;
+@property (nonatomic, copy) NSString * _Nullable admin2Code;
 @property (nonatomic) NSInteger population;
 @property (nonatomic) CLLocationDegrees latitude;
 @property (nonatomic) CLLocationDegrees longitude;
 @property (nonatomic, readonly, strong) CLLocation * _Nonnull position;
-- (nonnull instancetype)initWithCityNameEnglish:(NSString * _Nonnull)cityNameEnglish timeZoneEnglish:(NSString * _Nonnull)timeZoneEnglish countryCode:(NSString * _Nonnull)countryCode countryNameEnglish:(NSString * _Nonnull)countryNameEnglish admin1Code:(NSString * _Nonnull)admin1Code admin1NameEnglish:(NSString * _Nonnull)admin1NameEnglish admin2Code:(NSString * _Nonnull)admin2Code population:(NSInteger)population latitude:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude;
+- (nonnull instancetype)initWithCityNameEnglish:(NSString * _Nonnull)cityNameEnglish timeZoneEnglish:(NSString * _Nonnull)timeZoneEnglish countryCode:(NSString * _Nonnull)countryCode countryNameEnglish:(NSString * _Nonnull)countryNameEnglish admin1Code:(NSString * _Nullable)admin1Code admin1NameEnglish:(NSString * _Nullable)admin1NameEnglish admin2Code:(NSString * _Nullable)admin2Code population:(NSInteger)population latitude:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude;
 @property (nonatomic, readonly) NSUInteger hash;
 - (BOOL)isEqual:(id _Nullable)object;
 @property (nonatomic, readonly, copy) NSString * _Nonnull description;

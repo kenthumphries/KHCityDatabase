@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/KHCityDatabase-Swift.h</key>
 		<data>
-		M53Ht+nRSuSc4LEuQuc5+cZ+Owk=
+		WsmGyLDxYzIAZpy93GA9GxFCXmE=
 		</data>
 		<key>Headers/KHCityDatabase.h</key>
 		<data>
@@ -18,7 +18,7 @@
 		</data>
 		<key>KHCityDatabase-compacted.realm</key>
 		<data>
-		tmPXJg+0x+e3xeroJpAJE98RYOc=
+		n1Fhai9ox0/J5RkXr5wv8N+cG30=
 		</data>
 		<key>Modules/KHCityDatabase.swiftmodule/arm.swiftdoc</key>
 		<data>
@@ -26,7 +26,7 @@
 		</data>
 		<key>Modules/KHCityDatabase.swiftmodule/arm.swiftmodule</key>
 		<data>
-		oQ5IPVBTKTo3mnGyDq9n3322LX8=
+		G2OntTPlHQu4QUKKQRp/v8odw/E=
 		</data>
 		<key>Modules/KHCityDatabase.swiftmodule/arm64.swiftdoc</key>
 		<data>
@@ -34,7 +34,7 @@
 		</data>
 		<key>Modules/KHCityDatabase.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		PxCta9r69MTyo3S8xjNwODq57A8=
+		S1HRCw98q7MoQSQrV7ZJuIUiIIA=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -47,11 +47,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			M53Ht+nRSuSc4LEuQuc5+cZ+Owk=
+			WsmGyLDxYzIAZpy93GA9GxFCXmE=
 			</data>
 			<key>hash2</key>
 			<data>
-			kL7fmwEXs4H95lal+XtYACXwH6IYE/QUcM/Kyxh/mMc=
+			FWumCXV7eXmADs7j/FHuzWllMwFdwrzKSJdb/Wwdf1Y=
 			</data>
 		</dict>
 		<key>Headers/KHCityDatabase.h</key>
@@ -69,11 +69,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			tmPXJg+0x+e3xeroJpAJE98RYOc=
+			n1Fhai9ox0/J5RkXr5wv8N+cG30=
 			</data>
 			<key>hash2</key>
 			<data>
-			gTSPbc+Xo7qLDxugfMGskTsbN48nlMqkUsv3SlY7bdY=
+			WU2f7WQM4yLYGOdSkGp6r0Its0PIbYLZ0T7RGqQ3pVY=
 			</data>
 		</dict>
 		<key>Modules/KHCityDatabase.swiftmodule/arm.swiftdoc</key>
@@ -91,11 +91,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			oQ5IPVBTKTo3mnGyDq9n3322LX8=
+			G2OntTPlHQu4QUKKQRp/v8odw/E=
 			</data>
 			<key>hash2</key>
 			<data>
-			g0EmsZRo7n+HFbqTS7RBu24YRoylnEY8NXo+YWyODI0=
+			fBck/cUSkkjF5435aSzHYkRfrumi8hyxHuSOXY0qsDc=
 			</data>
 		</dict>
 		<key>Modules/KHCityDatabase.swiftmodule/arm64.swiftdoc</key>
@@ -113,11 +113,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			PxCta9r69MTyo3S8xjNwODq57A8=
+			S1HRCw98q7MoQSQrV7ZJuIUiIIA=
 			</data>
 			<key>hash2</key>
 			<data>
-			yTgPwXyJgEzp+2x00Chl6vlMKlupHAlKB2lljJVuK/w=
+			5EJpNlxjrJcTKiKFALEtn1vHFURxwckJS5zknvy6HG8=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
