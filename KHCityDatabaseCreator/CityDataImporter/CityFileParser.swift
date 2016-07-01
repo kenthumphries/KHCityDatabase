@@ -123,38 +123,42 @@ extension CityFileParser {
     var kCitiesTimeZoneIndex : Int { return 17 }
     
     func parseCitiesValues(values : [String], admin1Mapping : [String : [String : String]]) throws
-        -> (cityNameEnglish : String, timeZoneEnglish : String, countryCode : String, countryNameEnglish : String, admin1Code : String, admin1NameEnglish : String, admin2Code : String, population : Int, latitude : CLLocationDegrees, longitude : CLLocationDegrees) {
+        -> (cityNameEnglish : String, timeZoneEnglish : String, countryCode : String, countryNameEnglish : String, admin1Code : String?, admin1NameEnglish : String?, admin2Code : String?, population : Int, latitude : CLLocationDegrees, longitude : CLLocationDegrees) {
             
             guard values.count == kCitiesNumberOfFields else {
                 throw CityFileParserError.citiesLineUnexpectedNumberOfFields
             }
+
+            // Optional fields
+            let admin1Code = values[kCitiesAdmin1CodeIndex].nonEmpty
+            let admin2Code = values[kCitiesAdmin2CodeIndex].nonEmpty
             
+            // Non optional fields
             if let countryCode = values[kCitiesCountryCodeIndex].nonEmpty,
-                let admin1Code = values[kCitiesAdmin1CodeIndex].nonEmpty,
                 let timeZone = values[kCitiesTimeZoneIndex].nonEmpty,
                 let cityName = values[kCitiesCityIndex].nonEmpty,
-                let admin2Code = values[kCitiesAdmin2CodeIndex].nonEmpty,
                 let populationString = values[kCitiesPopulationIndex].nonEmpty,
                 let population = Int(populationString),
                 let latitudeString = values[kCitiesLatitudeIndex].nonEmpty,
                 let latitude = CLLocationDegrees(latitudeString),
                 let longitudeString = values[kCitiesLongitudeIndex].nonEmpty,
                 let longitude = CLLocationDegrees(longitudeString) {
-                    
-                    let countryIdentifier = NSLocale.localeIdentifierFromComponents([NSLocaleCountryCode : countryCode])
-                    let englishLocale = NSLocale(localeIdentifier: "en_GB")
-                    if let countryNameEnglish = englishLocale.displayNameForKey(NSLocaleIdentifier, value: countryIdentifier) {
-                        if let admin1Name = (admin1Mapping[countryCode]?[admin1Code])?.nonEmpty {
-                            return (cityName, timeZone, countryCode, countryNameEnglish, admin1Code, admin1Name, admin2Code, population, latitude, longitude)
-                        } else {
-                            throw CityFileParserError.citiesLineAdmin1NameNotFound
-                        }
-                    } else {
-                        throw CityFileParserError.citiesLineCountryCodeNotRecognised
-                    }
+                
+                let admin1Name = try fetchAdmin1Name(forAdmin1Code: admin1Code, countryCode: countryCode, admin1Mapping: admin1Mapping)
+                let countryNameEnglish = try fetchCountryNameEnglish(forCountryCode: countryCode)
+                return (cityName, timeZone, countryCode, countryNameEnglish, admin1Code, admin1Name, admin2Code, population, latitude, longitude)
             } else {
                 throw CityFileParserError.citiesLineEmptyFields
             }
+    }
+    
+    func fetchCountryNameEnglish(forCountryCode countryCode : String) throws -> String {
+        let countryIdentifier = NSLocale.localeIdentifierFromComponents([NSLocaleCountryCode : countryCode])
+        let englishLocale = NSLocale(localeIdentifier: "en_GB")
+        guard let countryNameEnglish = englishLocale.displayNameForKey(NSLocaleIdentifier, value: countryIdentifier) else {
+            throw CityFileParserError.citiesLineCountryCodeNotRecognised
+        }
+        return countryNameEnglish
     }
 }
 
@@ -215,5 +219,15 @@ extension CityFileParser {
         } else {
             throw CityFileParserError.admin1LineEmptyFields
         }
+    }
+    
+    func fetchAdmin1Name(forAdmin1Code admin1Code : String?, countryCode : String, admin1Mapping : [String : [String : String]]) throws -> String? {
+        if let validAdmin1Code = admin1Code {
+            guard let admin1Name = (admin1Mapping[countryCode]?[validAdmin1Code])?.nonEmpty else {
+                throw CityFileParserError.citiesLineAdmin1NameNotFound
+            }
+            return admin1Name
+        }
+        return nil
     }
 }

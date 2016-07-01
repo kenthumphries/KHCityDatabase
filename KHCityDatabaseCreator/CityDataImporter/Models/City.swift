@@ -16,9 +16,9 @@ public class City : Object {
     public dynamic var timeZoneEnglish : String = ""
     public dynamic var countryCode : String = ""
     public dynamic var countryNameEnglish : String = ""
-    public dynamic var admin1Code  : String = ""
-    public dynamic var admin1NameEnglish : String = ""
-    public dynamic var admin2Code : String = ""
+    public dynamic var admin1Code  : String?
+    public dynamic var admin1NameEnglish : String?
+    public dynamic var admin2Code : String?
     public dynamic var population : Int = 0
     public dynamic var latitude : CLLocationDegrees = 0.0
     public dynamic var longitude : CLLocationDegrees = 0.0
@@ -31,9 +31,9 @@ public class City : Object {
         timeZoneEnglish: String,
         countryCode: String,
         countryNameEnglish: String,
-        admin1Code: String,
-        admin1NameEnglish: String,
-        admin2Code: String,
+        admin1Code: String?,
+        admin1NameEnglish: String?,
+        admin2Code: String?,
         population: Int,
         latitude: CLLocationDegrees,
         longitude: CLLocationDegrees) {
@@ -57,13 +57,21 @@ public class City : Object {
         hash ^= self.timeZoneEnglish.hash
         hash ^= self.countryCode.hash
         hash ^= self.countryNameEnglish.hash
-        hash ^= self.admin1Code.hash
-        hash ^= self.admin1NameEnglish.hash
-        hash ^= self.admin2Code.hash
+        hash ^= nonEmptyHash(self.admin1Code) // Optional - handle empty case
+        hash ^= nonEmptyHash(self.admin1NameEnglish) // Optional - handle empty case
+        hash ^= nonEmptyHash(self.admin2Code) // Optional - handle empty case
         hash ^= self.population.hashValue
         hash ^= self.latitude.hashValue
         hash ^= self.longitude.hashValue
         return hash
+    }
+    
+    func nonEmptyHash(value : String?) -> Int {
+        if let value = value {
+            return value.hash
+        } else {
+            return 0
+        }
     }
     
     override public func isEqual(object: AnyObject?) -> Bool {
