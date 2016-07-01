@@ -144,7 +144,14 @@ extension CityFileParser {
                 let longitudeString = values[kCitiesLongitudeIndex].nonEmpty,
                 let longitude = CLLocationDegrees(longitudeString) {
                 
-                let admin1Name = try fetchAdmin1Name(forAdmin1Code: admin1Code, countryCode: countryCode, admin1Mapping: admin1Mapping)
+                var admin1Name : String?
+                do {
+                    admin1Name = try fetchAdmin1Name(forAdmin1Code: admin1Code, countryCode: countryCode, admin1Mapping: admin1Mapping)
+                }
+                catch CityFileParserError.citiesLineAdmin1NameNotFound {
+                    print("Caught non-fatal error: \(CityFileParserError.citiesLineAdmin1NameNotFound). Continuing...")
+                }
+                
                 let countryNameEnglish = try fetchCountryNameEnglish(forCountryCode: countryCode)
                 return (cityName, timeZone, countryCode, countryNameEnglish, admin1Code, admin1Name, admin2Code, population, latitude, longitude)
             } else {
