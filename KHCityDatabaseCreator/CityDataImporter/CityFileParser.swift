@@ -14,7 +14,7 @@ public enum CityFileParserError : ErrorType {
     case citiesLineUnexpectedNumberOfFields
     case citiesLineAdmin1NameNotFound
     case citiesLineCountryCodeNotRecognised
-    case citiesLineEmptyFields
+    case citiesLineMissingRequiredFields
     case admin1FilNameNotFound
     case admin1LineUnexpectedNumberOfFields
     case admin1LineMissingKeysFields
@@ -128,13 +128,9 @@ extension CityFileParser {
             guard values.count == kCitiesNumberOfFields else {
                 throw CityFileParserError.citiesLineUnexpectedNumberOfFields
             }
-
-            // Optional fields
-            let admin1Code = values[kCitiesAdmin1CodeIndex].nonEmpty
-            let admin2Code = values[kCitiesAdmin2CodeIndex].nonEmpty
             
             // Non optional fields
-            if let countryCode = values[kCitiesCountryCodeIndex].nonEmpty,
+            guard let countryCode = values[kCitiesCountryCodeIndex].nonEmpty,
                 let timeZone = values[kCitiesTimeZoneIndex].nonEmpty,
                 let cityName = values[kCitiesCityIndex].nonEmpty,
                 let populationString = values[kCitiesPopulationIndex].nonEmpty,
@@ -142,21 +138,33 @@ extension CityFileParser {
                 let latitudeString = values[kCitiesLatitudeIndex].nonEmpty,
                 let latitude = CLLocationDegrees(latitudeString),
                 let longitudeString = values[kCitiesLongitudeIndex].nonEmpty,
-                let longitude = CLLocationDegrees(longitudeString) {
-                
-                var admin1Name : String?
+                let longitude = CLLocationDegrees(longitudeString) else {
+                    throw CityFileParserError.citiesLineMissingRequiredFields
+            }
+
+            let countryNameEnglish = try fetchCountryNameEnglish(forCountryCode: countryCode)
+            
+            // Optional fields
+            let admin1Code = values[kCitiesAdmin1CodeIndex].nonEmpty
+            let admin2Code = values[kCitiesAdmin2CodeIndex].nonEmpty
+            
+            var admin1Name : String?
+            if let admin1Code = admin1Code {
                 do {
                     admin1Name = try fetchAdmin1Name(forAdmin1Code: admin1Code, countryCode: countryCode, admin1Mapping: admin1Mapping)
                 }
                 catch CityFileParserError.citiesLineAdmin1NameNotFound {
-                    print("Caught non-fatal error: \(CityFileParserError.citiesLineAdmin1NameNotFound). Continuing...")
+                    print("Warning: \(CityFileParserError.citiesLineAdmin1NameNotFound) for city : \(cityName) [\(countryCode).\(admin1Code)]")
                 }
-                
-                let countryNameEnglish = try fetchCountryNameEnglish(forCountryCode: countryCode)
-                return (cityName, timeZone, countryCode, countryNameEnglish, admin1Code, admin1Name, admin2Code, population, latitude, longitude)
             } else {
-                throw CityFileParserError.citiesLineEmptyFields
+                print("Warning: No admin1Code for city : \(cityName) [\(countryCode)]")
             }
+
+            if admin2Code == nil {
+                print("Warning: No admin2Code for city : \(cityName) [\(countryCode)]")
+            }
+            
+            return (cityName, timeZone, countryCode, countryNameEnglish, admin1Code, admin1Name, admin2Code, population, latitude, longitude)
     }
     
     func fetchCountryNameEnglish(forCountryCode countryCode : String) throws -> String {

@@ -344,11 +344,11 @@ class CityFileParserTests: XCTestCase {
             try stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1MappingVictoria)
             XCTFail("Parser must throw error")
         }
-        catch CityFileParserError.citiesLineEmptyFields {
+        catch CityFileParserError.citiesLineMissingRequiredFields {
             // Do nothing test passed
         }
         catch {
-            XCTFail("Parser must throw .citiesLineEmptyFields error")
+            XCTFail("Parser must throw .citiesLineMissingRequiredFields error")
         }
     }
     
@@ -372,11 +372,11 @@ class CityFileParserTests: XCTestCase {
             try stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1MappingVictoria)
             XCTFail("Parser must throw error")
         }
-        catch CityFileParserError.citiesLineEmptyFields {
+        catch CityFileParserError.citiesLineMissingRequiredFields {
             // Do nothing test passed
         }
         catch {
-            XCTFail("Parser must throw .citiesLineEmptyFields error")
+            XCTFail("Parser must throw .citiesLineMissingRequiredFields error")
         }
     }
     
@@ -386,11 +386,11 @@ class CityFileParserTests: XCTestCase {
             try stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1MappingVictoria)
             XCTFail("Parser must throw error")
         }
-        catch CityFileParserError.citiesLineEmptyFields {
+        catch CityFileParserError.citiesLineMissingRequiredFields {
             // Do nothing test passed
         }
         catch {
-            XCTFail("Parser must throw .citiesLineEmptyFields error")
+            XCTFail("Parser must throw .citiesLineMissingRequiredFields error")
         }
     }
 
@@ -400,11 +400,11 @@ class CityFileParserTests: XCTestCase {
             try stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1MappingVictoria)
             XCTFail("Parser must throw error")
         }
-        catch CityFileParserError.citiesLineEmptyFields {
+        catch CityFileParserError.citiesLineMissingRequiredFields {
             // Do nothing test passed
         }
         catch {
-            XCTFail("Parser must throw .citiesLineEmptyFields error")
+            XCTFail("Parser must throw .citiesLineMissingRequiredFields error")
         }
     }
     
@@ -414,11 +414,11 @@ class CityFileParserTests: XCTestCase {
             try stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1MappingVictoria)
             XCTFail("Parser must throw error")
         }
-        catch CityFileParserError.citiesLineEmptyFields {
+        catch CityFileParserError.citiesLineMissingRequiredFields {
             // Do nothing test passed
         }
         catch {
-            XCTFail("Parser must throw .citiesLineEmptyFields error")
+            XCTFail("Parser must throw .citiesLineMissingRequiredFields error")
         }
     }
 
@@ -428,11 +428,11 @@ class CityFileParserTests: XCTestCase {
             try stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1MappingVictoria)
             XCTFail("Parser must throw error")
         }
-        catch CityFileParserError.citiesLineEmptyFields {
+        catch CityFileParserError.citiesLineMissingRequiredFields {
             // Do nothing test passed
         }
         catch {
-            XCTFail("Parser must throw .citiesLineEmptyFields error")
+            XCTFail("Parser must throw .citiesLineMissingRequiredFields error")
         }
     }
     
@@ -442,11 +442,11 @@ class CityFileParserTests: XCTestCase {
             try stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1MappingVictoria)
             XCTFail("Parser must throw error")
         }
-        catch CityFileParserError.citiesLineEmptyFields {
+        catch CityFileParserError.citiesLineMissingRequiredFields {
             // Do nothing test passed
         }
         catch {
-            XCTFail("Parser must throw .citiesLineEmptyFields error")
+            XCTFail("Parser must throw .citiesLineMissingRequiredFields error")
         }
     }
 
@@ -456,11 +456,11 @@ class CityFileParserTests: XCTestCase {
             try stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1MappingVictoria)
             XCTFail("Parser must throw error")
         }
-        catch CityFileParserError.citiesLineEmptyFields {
+        catch CityFileParserError.citiesLineMissingRequiredFields {
             // Do nothing test passed
         }
         catch {
-            XCTFail("Parser must throw .citiesLineEmptyFields error")
+            XCTFail("Parser must throw .citiesLineMissingRequiredFields error")
         }
     }
 
