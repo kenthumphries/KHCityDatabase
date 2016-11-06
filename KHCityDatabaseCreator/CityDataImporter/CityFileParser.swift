@@ -170,7 +170,7 @@ extension CityFileParser {
     func fetchCountryNameEnglish(forCountryCode countryCode : String) throws -> String {
         let countryIdentifier = Locale.identifier(fromComponents: [NSLocale.Key.countryCode.rawValue : countryCode])
         let englishLocale = Locale(identifier: "en_GB")
-        guard let countryNameEnglish = englishLocale.displayName(forKey: NSLocale.Key.identifier, value: countryIdentifier) else {
+        guard let countryNameEnglish = (englishLocale as NSLocale).displayName(forKey: NSLocale.Key.identifier, value: countryIdentifier) else {
             throw CityFileParserError.citiesLineCountryCodeNotRecognised
         }
         return countryNameEnglish

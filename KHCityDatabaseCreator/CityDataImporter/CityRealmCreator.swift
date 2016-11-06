@@ -11,8 +11,6 @@ import RealmSwift
 
 enum CityRealmCreatorError: Error {
     case invalidFileURL
-    case invalidCompactedFileURL
-    case invalidPath
 }
 
 class KHCityRealmCreator {
@@ -39,7 +37,7 @@ class KHCityRealmCreator {
         try removeFileAtURL(compactedFileURL)
         
         // Create the compacted Realm
-        try realm.writeCopyToURL(compactedFileURL)
+        try realm.writeCopy(toFile:compactedFileURL)
         
 
         return compactedFileURL
@@ -47,7 +45,7 @@ class KHCityRealmCreator {
     
     func getFileURL(_ config : Realm.Configuration) throws -> URL {
         // Use the default directory, but replace the filename with databaseName
-        guard let fileURL = config.fileURL?.URLByDeletingLastPathComponent?.URLByAppendingPathComponent("\(databaseName).realm") else {
+        guard let fileURL = config.fileURL?.deletingLastPathComponent().appendingPathComponent("\(databaseName).realm") else {
                 throw CityRealmCreatorError.invalidFileURL
         }
         
@@ -56,18 +54,12 @@ class KHCityRealmCreator {
     
     func getCompactedFileURL(_ fileURL : URL) throws -> URL {
         // Use the default directory, but replace the filename with databaseName & "compacted" label
-        guard let compactedFileURL = fileURL.deletingLastPathComponent().appendingPathComponent("\(databaseName)-compacted.realm") else {
-            throw CityRealmCreatorError.invalidCompactedFileURL
-        }
-        
+        let compactedFileURL = fileURL.deletingLastPathComponent().appendingPathComponent("\(databaseName)-compacted.realm")
         return compactedFileURL
     }
     
     func removeFileAtURL(_ url : URL) throws {
-        guard let filePath = url.path else {
-            throw CityRealmCreatorError.invalidPath
-        }
-        
+        let filePath = url.path
         if FileManager.default.fileExists(atPath: filePath) {
             try FileManager.default.removeItem(atPath: filePath)
         }
@@ -77,7 +69,7 @@ class KHCityRealmCreator {
         // Create a new realm, import files and write to disk
         let realm = try Realm(configuration: config)
         
-        let locations = try CityFileParser(citiesFileName: citiesFileName, admin1FileName: admin1FileName, inBundle: Bundle.mainBundle).parseCities()
+        let locations = try CityFileParser(citiesFileName: citiesFileName, admin1FileName: admin1FileName, inBundle: Bundle.main).parseCities()
         
         try realm.write({ () -> Void in
             for location in locations {

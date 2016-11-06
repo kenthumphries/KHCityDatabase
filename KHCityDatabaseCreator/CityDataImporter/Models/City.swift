@@ -74,7 +74,7 @@ open class City : Object {
         }
     }
     
-    override open func isEqual(_ object: AnyObject?) -> Bool {
+    override open func isEqual(_ object: Any?) -> Bool {
         guard let other = object as? City else {
             // Break quickly in case other Location is nil, or wrong type
             return false

@@ -13,7 +13,7 @@ class ViewController: NSViewController {
     @IBOutlet weak var resultTextField: NSTextField!
     @IBOutlet weak var showInFinderButton: NSButton!
     
-    var databaseURL = URL()
+    var databaseURL : URL?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +21,7 @@ class ViewController: NSViewController {
         // Do any additional setup after loading the view.
     }
 
-    override var representedObject: AnyObject? {
+    override var representedObject: Any? {
         didSet {
         // Update the view, if already loaded.
         }
@@ -46,7 +46,7 @@ class ViewController: NSViewController {
         do {
             let databaseURL = try KHCityRealmCreator().generatePopulatedRealmDatabase()
             
-            self.resultTextField.stringValue = self.resultTextField.stringValue + databaseURL.absoluteString!
+            self.resultTextField.stringValue = self.resultTextField.stringValue + databaseURL.absoluteString
             
             self.databaseURL = databaseURL
             showInFinderButton.isHidden = false
@@ -57,7 +57,9 @@ class ViewController: NSViewController {
     }
 
     @IBAction func revealInFinder(_ sender: AnyObject) {
-        NSWorkspace.shared().activateFileViewerSelecting([databaseURL])
+        if let databaseURL = databaseURL {
+            NSWorkspace.shared().activateFileViewerSelecting([databaseURL])
+        }
     }
 }
 
