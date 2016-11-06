@@ -13,7 +13,7 @@ class ViewController: NSViewController {
     @IBOutlet weak var resultTextField: NSTextField!
     @IBOutlet weak var showInFinderButton: NSButton!
     
-    var databaseURL = NSURL()
+    var databaseURL = URL()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,37 +27,37 @@ class ViewController: NSViewController {
         }
     }
 
-    @IBAction func generateDatabase(sender: AnyObject) {
+    @IBAction func generateDatabase(_ sender: AnyObject) {
 
         guard let sender = sender as? NSButton else {
             return
         }
         
-        sender.enabled = false
-        showInFinderButton.hidden = true
+        sender.isEnabled = false
+        showInFinderButton.isHidden = true
         
         defer {
-            sender.enabled = true
+            sender.isEnabled = true
             self.resultTextField.sizeToFit()
             self.view.needsLayout = true
-            self.view.setNeedsDisplayInRect(self.view.bounds)
+            self.view.setNeedsDisplay(self.view.bounds)
         }
         
         do {
             let databaseURL = try KHCityRealmCreator().generatePopulatedRealmDatabase()
             
-            self.resultTextField.stringValue = self.resultTextField.stringValue + databaseURL.absoluteString
+            self.resultTextField.stringValue = self.resultTextField.stringValue + databaseURL.absoluteString!
             
             self.databaseURL = databaseURL
-            showInFinderButton.hidden = false
+            showInFinderButton.isHidden = false
         }
         catch let error as NSError {
             self.resultTextField.stringValue = "Error: " + error.description
         }
     }
 
-    @IBAction func revealInFinder(sender: AnyObject) {
-        NSWorkspace.sharedWorkspace().activateFileViewerSelectingURLs([databaseURL])
+    @IBAction func revealInFinder(_ sender: AnyObject) {
+        NSWorkspace.shared().activateFileViewerSelecting([databaseURL])
     }
 }
 

@@ -9,7 +9,7 @@
 import Foundation
 import CoreLocation
 
-public enum CityFileParserError : ErrorType {
+public enum CityFileParserError : Error {
     case citiesFileNameNotFound
     case citiesLineUnexpectedNumberOfFields
     case citiesLineAdmin1NameNotFound
@@ -33,11 +33,11 @@ internal class CityFileParser: NSObject {
     let kTabSeparator = "\t"
     let kKeySeparator = "."
     
-    private var bundle : NSBundle
-    private(set) var citiesFileContents : String?
-    private(set) var admin1FileContents : String?
+    fileprivate var bundle : Bundle
+    fileprivate(set) var citiesFileContents : String?
+    fileprivate(set) var admin1FileContents : String?
     
-    init(citiesFileName : String, admin1FileName : String, inBundle bundle : NSBundle) throws {
+    init(citiesFileName : String, admin1FileName : String, inBundle bundle : Bundle) throws {
 
         self.bundle = bundle
 
@@ -46,14 +46,14 @@ internal class CityFileParser: NSObject {
         guard citiesFileName.characters.count > 0 else {
             throw CityFileParserError.citiesFileNameNotFound
         }
-        guard let citiesPath = bundle.pathForResource(citiesFileName, ofType: "txt") else {
+        guard let citiesPath = bundle.path(forResource: citiesFileName, ofType: "txt") else {
             throw CityFileParserError.citiesFileNameNotFound
         }
 
         guard admin1FileName.characters.count > 0 else {
             throw CityFileParserError.admin1FilNameNotFound
         }
-        guard let admin1Path = bundle.pathForResource(admin1FileName, ofType: "txt") else {
+        guard let admin1Path = bundle.path(forResource: admin1FileName, ofType: "txt") else {
             throw CityFileParserError.admin1FilNameNotFound
         }
         
@@ -84,9 +84,9 @@ internal class CityFileParser: NSObject {
         
         var locations = [City]()
         
-        if let citiesLines = citiesFileContents?.componentsSeparatedByString(kLineSeparator) {
+        if let citiesLines = citiesFileContents?.components(separatedBy: kLineSeparator) {
             for line in citiesLines {
-                let values = line.componentsSeparatedByString(kTabSeparator)
+                let values = line.components(separatedBy: kTabSeparator)
                 
                 do {
                     let parsedValues = try self.parseCitiesValues(values, admin1Mapping: admin1Mapping)
@@ -122,7 +122,7 @@ extension CityFileParser {
     var kCitiesPopulationIndex : Int { return 14 }
     var kCitiesTimeZoneIndex : Int { return 17 }
     
-    func parseCitiesValues(values : [String], admin1Mapping : [String : [String : String]]) throws
+    func parseCitiesValues(_ values : [String], admin1Mapping : [String : [String : String]]) throws
         -> (cityNameEnglish : String, timeZoneEnglish : String, countryCode : String, countryNameEnglish : String, admin1Code : String?, admin1NameEnglish : String?, admin2Code : String?, population : Int, latitude : CLLocationDegrees, longitude : CLLocationDegrees) {
             
             guard values.count == kCitiesNumberOfFields else {
@@ -168,9 +168,9 @@ extension CityFileParser {
     }
     
     func fetchCountryNameEnglish(forCountryCode countryCode : String) throws -> String {
-        let countryIdentifier = NSLocale.localeIdentifierFromComponents([NSLocaleCountryCode : countryCode])
-        let englishLocale = NSLocale(localeIdentifier: "en_GB")
-        guard let countryNameEnglish = englishLocale.displayNameForKey(NSLocaleIdentifier, value: countryIdentifier) else {
+        let countryIdentifier = Locale.identifier(fromComponents: [NSLocale.Key.countryCode.rawValue : countryCode])
+        let englishLocale = Locale(identifier: "en_GB")
+        guard let countryNameEnglish = englishLocale.displayName(forKey: NSLocale.Key.identifier, value: countryIdentifier) else {
             throw CityFileParserError.citiesLineCountryCodeNotRecognised
         }
         return countryNameEnglish
@@ -187,10 +187,10 @@ extension CityFileParser {
     
         var mapping = [String : [String : String]]()
         
-        if let admin1Lines = admin1FileContents?.componentsSeparatedByString(kLineSeparator) {
+        if let admin1Lines = admin1FileContents?.components(separatedBy: kLineSeparator) {
             for line in admin1Lines {
                 
-                let values = line.componentsSeparatedByString(kTabSeparator)
+                let values = line.components(separatedBy: kTabSeparator)
                 
                 do {
                     let parsedValues = try self.parseAdmin1MappingValues(values)
@@ -215,13 +215,13 @@ extension CityFileParser {
     var kAdmin1KeysCountryCodeIndex : Int { return 0 }
     var kAdmin1KeysAdmin1CodeIndex  : Int { return 1 }
     
-    func parseAdmin1MappingValues(values : [String]) throws -> (countryCode : String, admin1Code : String, admin1Name : String) {
+    func parseAdmin1MappingValues(_ values : [String]) throws -> (countryCode : String, admin1Code : String, admin1Name : String) {
         
         guard values.count == kAdmin1NumberOfFields else {
             throw CityFileParserError.admin1LineUnexpectedNumberOfFields
         }
         
-        let admin1Keys = values[kAdmin1KeysIndex].componentsSeparatedByString(kKeySeparator)
+        let admin1Keys = values[kAdmin1KeysIndex].components(separatedBy: kKeySeparator)
         
         guard admin1Keys.count == kAdmin1NumberOfKeysFields else {
             throw CityFileParserError.admin1LineMissingKeysFields

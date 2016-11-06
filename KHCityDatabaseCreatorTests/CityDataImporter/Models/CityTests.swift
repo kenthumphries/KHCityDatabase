@@ -184,7 +184,7 @@ class CityTests: XCTestCase {
 
     // MARK: - Utility methods
     
-    func location(cityNameEnglish cityNameEnglish : String? = "Vienna",
+    func location(cityNameEnglish : String? = "Vienna",
         timeZoneEnglish : String? = "Vienna/Europe",
         countryCode : String? = "AT",
         countryNameEnglish : String? = "Austria",

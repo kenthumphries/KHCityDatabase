@@ -382,12 +382,14 @@
 					};
 					37397A181C5EA6F100EA5BCE = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0800;
 					};
 					37397A4D1C5EAA0B00EA5BCE = {
 						CreatedOnToolsVersion = 7.2;
 					};
 					373ABB921C5EAEBE00D14122 = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0800;
 						TestTargetID = 37397A181C5EA6F100EA5BCE;
 					};
 				};
@@ -666,6 +668,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.KentHumphries.KHCityDatabaseCreator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -685,6 +688,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.KentHumphries.KHCityDatabaseCreator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -715,6 +719,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.KentHumphries.KHCityDatabaseCreatorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KHCityDatabaseCreator.app/Contents/MacOS/KHCityDatabaseCreator";
 			};
 			name = Debug;
@@ -732,6 +737,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.KentHumphries.KHCityDatabaseCreatorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KHCityDatabaseCreator.app/Contents/MacOS/KHCityDatabaseCreator";
 			};
 			name = Release;

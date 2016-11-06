@@ -10,20 +10,20 @@ import Foundation
 import CoreLocation
 import RealmSwift
 
-public class City : Object {
+open class City : Object {
     
-    public dynamic var cityNameEnglish : String = ""
-    public dynamic var timeZoneEnglish : String = ""
-    public dynamic var countryCode : String = ""
-    public dynamic var countryNameEnglish : String = ""
-    public dynamic var admin1Code  : String?
-    public dynamic var admin1NameEnglish : String?
-    public dynamic var admin2Code : String?
-    public dynamic var population : Int = 0
-    public dynamic var latitude : CLLocationDegrees = 0.0
-    public dynamic var longitude : CLLocationDegrees = 0.0
+    open dynamic var cityNameEnglish : String = ""
+    open dynamic var timeZoneEnglish : String = ""
+    open dynamic var countryCode : String = ""
+    open dynamic var countryNameEnglish : String = ""
+    open dynamic var admin1Code  : String?
+    open dynamic var admin1NameEnglish : String?
+    open dynamic var admin2Code : String?
+    open dynamic var population : Int = 0
+    open dynamic var latitude : CLLocationDegrees = 0.0
+    open dynamic var longitude : CLLocationDegrees = 0.0
     
-    public var position : CLLocation {
+    open var position : CLLocation {
         return CLLocation(latitude: latitude, longitude: longitude)
     }
     
@@ -52,7 +52,7 @@ public class City : Object {
             self.longitude = longitude
     }
     
-    override public var hash : Int {
+    override open var hash : Int {
         var hash = self.cityNameEnglish.hash
         hash ^= self.timeZoneEnglish.hash
         hash ^= self.countryCode.hash
@@ -66,7 +66,7 @@ public class City : Object {
         return hash
     }
     
-    func nonEmptyHash(value : String?) -> Int {
+    func nonEmptyHash(_ value : String?) -> Int {
         if let value = value {
             return value.hash
         } else {
@@ -74,7 +74,7 @@ public class City : Object {
         }
     }
     
-    override public func isEqual(object: AnyObject?) -> Bool {
+    override open func isEqual(_ object: AnyObject?) -> Bool {
         guard let other = object as? City else {
             // Break quickly in case other Location is nil, or wrong type
             return false
@@ -83,7 +83,7 @@ public class City : Object {
         return self.isEqualToLocation(other)
     }
 
-    func isEqualToLocation(other : City?) -> Bool {
+    func isEqualToLocation(_ other : City?) -> Bool {
         
         guard let other = other else {
             // Break quickly in case other Location is nil
@@ -108,7 +108,7 @@ public class City : Object {
         return isEqual
     }
     
-    override public var description: String {
+    override open var description: String {
         return "\(cityNameEnglish), \(admin1NameEnglish), \(countryCode) (\(population))"
     }
 }
