@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		370630E71DCEEBCB00D10A2A /* KHCityDatabase-compacted.realm in Resources */ = {isa = PBXBuildFile; fileRef = 370630E61DCEEBCB00D10A2A /* KHCityDatabase-compacted.realm */; };
 		37397A0E1C5EA69000EA5BCE /* KHCityDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = 37397A0D1C5EA69000EA5BCE /* KHCityDatabase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37397A1C1C5EA6F100EA5BCE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37397A1B1C5EA6F100EA5BCE /* AppDelegate.swift */; };
 		37397A1E1C5EA6F100EA5BCE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37397A1D1C5EA6F100EA5BCE /* ViewController.swift */; };
@@ -41,7 +42,6 @@
 		37397A4B1C5EA90800EA5BCE /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 37397A471C5EA90800EA5BCE /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		37397A551C5EAAC100EA5BCE /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37397A531C5EAAC100EA5BCE /* Realm.framework */; };
 		37397A561C5EAAC100EA5BCE /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37397A541C5EAAC100EA5BCE /* RealmSwift.framework */; };
-		373A72761D269B1A00F1CEC7 /* KHCityDatabase-compacted.realm in Resources */ = {isa = PBXBuildFile; fileRef = 373A72751D269B1A00F1CEC7 /* KHCityDatabase-compacted.realm */; };
 		373ABBA31C5EAF2500D14122 /* CityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373ABB9F1C5EAF2500D14122 /* CityTests.swift */; };
 		373ABBA41C5EAF2500D14122 /* binary.txt in Resources */ = {isa = PBXBuildFile; fileRef = 373ABBA11C5EAF2500D14122 /* binary.txt */; };
 		373ABBA51C5EAF2500D14122 /* CityFileParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373ABBA21C5EAF2500D14122 /* CityFileParserTests.swift */; };
@@ -78,6 +78,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		370630E61DCEEBCB00D10A2A /* KHCityDatabase-compacted.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KHCityDatabase-compacted.realm"; sourceTree = "<group>"; };
 		37397A0A1C5EA69000EA5BCE /* KHCityDatabase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KHCityDatabase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		37397A0D1C5EA69000EA5BCE /* KHCityDatabase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KHCityDatabase.h; sourceTree = "<group>"; };
 		37397A0F1C5EA69000EA5BCE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -137,6 +138,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		370630E51DCEEBCB00D10A2A /* 2016-11-06_15-38-00-t1100 */ = {
+			isa = PBXGroup;
+			children = (
+				370630E61DCEEBCB00D10A2A /* KHCityDatabase-compacted.realm */,
+			);
+			path = "2016-11-06_15-38-00-t1100";
+			sourceTree = "<group>";
+		};
 		37397A001C5EA69000EA5BCE = {
 			isa = PBXGroup;
 			children = (
@@ -250,8 +259,9 @@
 		373ABB8B1C5EAE0600D14122 /* CreatedDatabase */ = {
 			isa = PBXGroup;
 			children = (
-				37AAF8A21C66CA0900161F83 /* 2016-02-07_00-37-00-t0100 */,
+				370630E51DCEEBCB00D10A2A /* 2016-11-06_15-38-00-t1100 */,
 				373A72741D269B1A00F1CEC7 /* 2016-07-01_14-29-00-t0200 */,
+				37AAF8A21C66CA0900161F83 /* 2016-02-07_00-37-00-t0100 */,
 			);
 			path = CreatedDatabase;
 			sourceTree = "<group>";
@@ -379,6 +389,7 @@
 				TargetAttributes = {
 					37397A091C5EA69000EA5BCE = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0800;
 					};
 					37397A181C5EA6F100EA5BCE = {
 						CreatedOnToolsVersion = 7.2;
@@ -386,6 +397,7 @@
 					};
 					37397A4D1C5EAA0B00EA5BCE = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0800;
 					};
 					373ABB921C5EAEBE00D14122 = {
 						CreatedOnToolsVersion = 7.2;
@@ -420,7 +432,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				373A72761D269B1A00F1CEC7 /* KHCityDatabase-compacted.realm in Resources */,
+				370630E71DCEEBCB00D10A2A /* KHCityDatabase-compacted.realm in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -634,6 +646,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.KentHumphries.KHCityDatabase;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -656,6 +669,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.KentHumphries.KHCityDatabase;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -703,6 +717,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -710,6 +725,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
