@@ -109,6 +109,6 @@ open class City : Object {
     }
     
     override open var description: String {
-        return "\(cityNameEnglish), \(admin1NameEnglish), \(countryCode) (\(population))"
+        return "\(cityNameEnglish), \(String(describing: admin1NameEnglish)), \(countryCode) (\(population))"
     }
 }
