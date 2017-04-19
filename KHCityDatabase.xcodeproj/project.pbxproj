@@ -36,12 +36,6 @@
 		37397A3E1C5EA72C00EA5BCE /* cities5000.txt in Resources */ = {isa = PBXBuildFile; fileRef = 37397A351C5EA72C00EA5BCE /* cities5000.txt */; };
 		37397A3F1C5EA72C00EA5BCE /* geonames-readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 37397A361C5EA72C00EA5BCE /* geonames-readme.txt */; };
 		37397A401C5EA74E00EA5BCE /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37397A2C1C5EA72C00EA5BCE /* City.swift */; };
-		37397A481C5EA90800EA5BCE /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37397A461C5EA90800EA5BCE /* Realm.framework */; };
-		37397A491C5EA90800EA5BCE /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 37397A461C5EA90800EA5BCE /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		37397A4A1C5EA90800EA5BCE /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37397A471C5EA90800EA5BCE /* RealmSwift.framework */; };
-		37397A4B1C5EA90800EA5BCE /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 37397A471C5EA90800EA5BCE /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		37397A551C5EAAC100EA5BCE /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37397A531C5EAAC100EA5BCE /* Realm.framework */; };
-		37397A561C5EAAC100EA5BCE /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37397A541C5EAAC100EA5BCE /* RealmSwift.framework */; };
 		373ABBA31C5EAF2500D14122 /* CityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373ABB9F1C5EAF2500D14122 /* CityTests.swift */; };
 		373ABBA41C5EAF2500D14122 /* binary.txt in Resources */ = {isa = PBXBuildFile; fileRef = 373ABBA11C5EAF2500D14122 /* binary.txt */; };
 		373ABBA51C5EAF2500D14122 /* CityFileParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373ABBA21C5EAF2500D14122 /* CityFileParserTests.swift */; };
@@ -50,6 +44,12 @@
 		373ABBA81C5EB15100D14122 /* cities1000.txt in Resources */ = {isa = PBXBuildFile; fileRef = 37397A341C5EA72C00EA5BCE /* cities1000.txt */; };
 		373ABBA91C5EB15100D14122 /* cities5000.txt in Resources */ = {isa = PBXBuildFile; fileRef = 37397A351C5EA72C00EA5BCE /* cities5000.txt */; };
 		373ABBAA1C5EB15100D14122 /* geonames-readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 37397A361C5EA72C00EA5BCE /* geonames-readme.txt */; };
+		37D2AE1D1EA75474007DA44F /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D2AE1B1EA75474007DA44F /* Realm.framework */; };
+		37D2AE1E1EA75474007DA44F /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 37D2AE1B1EA75474007DA44F /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		37D2AE1F1EA75474007DA44F /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D2AE1C1EA75474007DA44F /* RealmSwift.framework */; };
+		37D2AE201EA75474007DA44F /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 37D2AE1C1EA75474007DA44F /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		37D2AE241EA754A8007DA44F /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D2AE221EA754A8007DA44F /* Realm.framework */; };
+		37D2AE251EA754A8007DA44F /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D2AE231EA754A8007DA44F /* RealmSwift.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,8 +69,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				37397A4B1C5EA90800EA5BCE /* RealmSwift.framework in Embed Frameworks */,
-				37397A491C5EA90800EA5BCE /* Realm.framework in Embed Frameworks */,
+				37D2AE201EA75474007DA44F /* RealmSwift.framework in Embed Frameworks */,
+				37D2AE1E1EA75474007DA44F /* Realm.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -96,10 +96,6 @@
 		37397A341C5EA72C00EA5BCE /* cities1000.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cities1000.txt; sourceTree = "<group>"; };
 		37397A351C5EA72C00EA5BCE /* cities5000.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cities5000.txt; sourceTree = "<group>"; };
 		37397A361C5EA72C00EA5BCE /* geonames-readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "geonames-readme.txt"; sourceTree = "<group>"; };
-		37397A461C5EA90800EA5BCE /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
-		37397A471C5EA90800EA5BCE /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
-		37397A531C5EAAC100EA5BCE /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
-		37397A541C5EAAC100EA5BCE /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
 		373A72751D269B1A00F1CEC7 /* KHCityDatabase-compacted.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KHCityDatabase-compacted.realm"; sourceTree = "<group>"; };
 		373ABB931C5EAEBE00D14122 /* KHCityDatabaseCreatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KHCityDatabaseCreatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		373ABB971C5EAEBE00D14122 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -107,6 +103,10 @@
 		373ABBA11C5EAF2500D14122 /* binary.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = binary.txt; sourceTree = "<group>"; };
 		373ABBA21C5EAF2500D14122 /* CityFileParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityFileParserTests.swift; sourceTree = "<group>"; };
 		37AAF8A31C66CA0900161F83 /* KHCityDatabase-compacted.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KHCityDatabase-compacted.realm"; sourceTree = "<group>"; };
+		37D2AE1B1EA75474007DA44F /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
+		37D2AE1C1EA75474007DA44F /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
+		37D2AE221EA754A8007DA44F /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
+		37D2AE231EA754A8007DA44F /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,8 +114,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				37397A561C5EAAC100EA5BCE /* RealmSwift.framework in Frameworks */,
-				37397A551C5EAAC100EA5BCE /* Realm.framework in Frameworks */,
+				37D2AE241EA754A8007DA44F /* Realm.framework in Frameworks */,
+				37D2AE251EA754A8007DA44F /* RealmSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,8 +123,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				37397A4A1C5EA90800EA5BCE /* RealmSwift.framework in Frameworks */,
-				37397A481C5EA90800EA5BCE /* Realm.framework in Frameworks */,
+				37D2AE1F1EA75474007DA44F /* RealmSwift.framework in Frameworks */,
+				37D2AE1D1EA75474007DA44F /* Realm.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,6 +153,7 @@
 				37397A1A1C5EA6F100EA5BCE /* KHCityDatabaseCreator */,
 				373ABB941C5EAEBE00D14122 /* KHCityDatabaseCreatorTests */,
 				37397A0B1C5EA69000EA5BCE /* Products */,
+				37D2AE211EA754A7007DA44F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -233,8 +234,8 @@
 		37397A411C5EA81500EA5BCE /* Realm-OSX */ = {
 			isa = PBXGroup;
 			children = (
-				37397A461C5EA90800EA5BCE /* Realm.framework */,
-				37397A471C5EA90800EA5BCE /* RealmSwift.framework */,
+				37D2AE1B1EA75474007DA44F /* Realm.framework */,
+				37D2AE1C1EA75474007DA44F /* RealmSwift.framework */,
 			);
 			path = "Realm-OSX";
 			sourceTree = "<group>";
@@ -242,8 +243,8 @@
 		37397A521C5EAAC100EA5BCE /* Realm-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				37397A531C5EAAC100EA5BCE /* Realm.framework */,
-				37397A541C5EAAC100EA5BCE /* RealmSwift.framework */,
+				37D2AE221EA754A8007DA44F /* Realm.framework */,
+				37D2AE231EA754A8007DA44F /* RealmSwift.framework */,
 			);
 			path = "Realm-iOS";
 			sourceTree = "<group>";
@@ -307,6 +308,13 @@
 				37AAF8A31C66CA0900161F83 /* KHCityDatabase-compacted.realm */,
 			);
 			path = "2016-02-07_00-37-00-t0100";
+			sourceTree = "<group>";
+		};
+		37D2AE211EA754A7007DA44F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
