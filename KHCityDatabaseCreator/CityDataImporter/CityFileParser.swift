@@ -23,7 +23,7 @@ public enum CityFileParserError : Error {
 
 extension String {
     var nonEmpty : String? {
-        return self.characters.count > 0 ? self : nil
+        return self.count > 0 ? self : nil
     }
 }
 
@@ -43,14 +43,14 @@ internal class CityFileParser: NSObject {
 
         super.init()
 
-        guard citiesFileName.characters.count > 0 else {
+        guard citiesFileName.count > 0 else {
             throw CityFileParserError.citiesFileNameNotFound
         }
         guard let citiesPath = bundle.path(forResource: citiesFileName, ofType: "txt") else {
             throw CityFileParserError.citiesFileNameNotFound
         }
 
-        guard admin1FileName.characters.count > 0 else {
+        guard admin1FileName.count > 0 else {
             throw CityFileParserError.admin1FilNameNotFound
         }
         guard let admin1Path = bundle.path(forResource: admin1FileName, ofType: "txt") else {
@@ -177,11 +177,15 @@ extension CityFileParser {
     }
 }
 
-extension CityFileParser {
+@objc extension CityFileParser {
 
     internal func createAdmin1Mapping() -> [String : [String : String]] {
         return self.createAdmin1Mapping(fromContents: self.admin1FileContents)
     }
+    
+}
+
+extension CityFileParser {
     
     func createAdmin1Mapping(fromContents admin1FileContents : String?) -> [String : [String : String]] {
     

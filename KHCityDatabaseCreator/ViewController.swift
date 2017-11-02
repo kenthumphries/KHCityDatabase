@@ -58,7 +58,7 @@ class ViewController: NSViewController {
 
     @IBAction func revealInFinder(_ sender: AnyObject) {
         if let databaseURL = databaseURL {
-            NSWorkspace.shared().activateFileViewerSelecting([databaseURL])
+            NSWorkspace.shared.activateFileViewerSelecting([databaseURL])
         }
     }
 }

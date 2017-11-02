@@ -12,16 +12,16 @@ import RealmSwift
 
 open class City : Object {
     
-    open dynamic var cityNameEnglish : String = ""
-    open dynamic var timeZoneEnglish : String = ""
-    open dynamic var countryCode : String = ""
-    open dynamic var countryNameEnglish : String = ""
-    open dynamic var admin1Code  : String?
-    open dynamic var admin1NameEnglish : String?
-    open dynamic var admin2Code : String?
-    open dynamic var population : Int = 0
-    open dynamic var latitude : CLLocationDegrees = 0.0
-    open dynamic var longitude : CLLocationDegrees = 0.0
+    @objc open dynamic var cityNameEnglish : String = ""
+    @objc open dynamic var timeZoneEnglish : String = ""
+    @objc open dynamic var countryCode : String = ""
+    @objc open dynamic var countryNameEnglish : String = ""
+    @objc open dynamic var admin1Code  : String?
+    @objc open dynamic var admin1NameEnglish : String?
+    @objc open dynamic var admin2Code : String?
+    @objc open dynamic var population : Int = 0
+    @objc open dynamic var latitude : CLLocationDegrees = 0.0
+    @objc open dynamic var longitude : CLLocationDegrees = 0.0
     
     open var position : CLLocation {
         return CLLocation(latitude: latitude, longitude: longitude)

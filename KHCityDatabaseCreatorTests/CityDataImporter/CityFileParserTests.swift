@@ -159,7 +159,7 @@ class CityFileParserTests: XCTestCase {
     func testParseAdmin1MappingValues_noValues() {
         do {
             let values = [String]()
-            try stubCityFileParser().parseAdmin1MappingValues(values)
+            try _ = stubCityFileParser().parseAdmin1MappingValues(values)
             XCTFail("Parser must throw error")
         }
         catch CityFileParserError.admin1LineUnexpectedNumberOfFields {
@@ -173,7 +173,7 @@ class CityFileParserTests: XCTestCase {
     func testParseAdmin1MappingValues_emptyCodes() {
         do {
             let values = ["", "Victoria", "", ""]
-            try stubCityFileParser().parseAdmin1MappingValues(values)
+            try _ = stubCityFileParser().parseAdmin1MappingValues(values)
             XCTFail("Parser must throw error")
         }
         catch CityFileParserError.admin1LineMissingKeysFields {
@@ -187,7 +187,7 @@ class CityFileParserTests: XCTestCase {
     func testParseAdmin1MappingValues_missingCodesSeparator() {
         do {
             let values = ["AU07", "Victoria", "", ""]
-            try stubCityFileParser().parseAdmin1MappingValues(values)
+            try _ = stubCityFileParser().parseAdmin1MappingValues(values)
             XCTFail("Parser must throw error")
         }
         catch CityFileParserError.admin1LineMissingKeysFields {
@@ -201,7 +201,7 @@ class CityFileParserTests: XCTestCase {
     func testParseAdmin1MappingValues_emptyCountryCode() {
         do {
             let values = [".07", "Victoria", "", ""]
-            try stubCityFileParser().parseAdmin1MappingValues(values)
+            try _ = stubCityFileParser().parseAdmin1MappingValues(values)
             XCTFail("Parser must throw error")
         }
         catch CityFileParserError.admin1LineEmptyFields {
@@ -215,7 +215,7 @@ class CityFileParserTests: XCTestCase {
     func testParseAdmin1MappingValues_emptyAdmin1Code() {
         do {
             let values = ["AU.", "Victoria", "", ""]
-            try stubCityFileParser().parseAdmin1MappingValues(values)
+            try _ = stubCityFileParser().parseAdmin1MappingValues(values)
             XCTFail("Parser must throw error")
         }
         catch CityFileParserError.admin1LineEmptyFields {
@@ -229,7 +229,7 @@ class CityFileParserTests: XCTestCase {
     func testParseAdmin1MappingValues_emptyAdmin1Name() {
         do {
             let values = [".07", "", "", ""]
-            try stubCityFileParser().parseAdmin1MappingValues(values)
+            try _ = stubCityFileParser().parseAdmin1MappingValues(values)
             XCTFail("Parser must throw error")
         }
         catch CityFileParserError.admin1LineEmptyFields {
@@ -243,7 +243,7 @@ class CityFileParserTests: XCTestCase {
     func testParseAdmin1MappingValues_extraFields() {
         do {
             let values = [".07", "", "", "", ""]
-            try stubCityFileParser().parseAdmin1MappingValues(values)
+            try _ = stubCityFileParser().parseAdmin1MappingValues(values)
             XCTFail("Parser must throw error")
         }
         catch CityFileParserError.admin1LineUnexpectedNumberOfFields {
@@ -327,7 +327,7 @@ class CityFileParserTests: XCTestCase {
     func testParseCitiesValues_noValues() {
         do {
             let values = [String]()
-            try stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1MappingVictoria)
+            try _ = stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1MappingVictoria)
             XCTFail("Parser must throw error")
         }
         catch CityFileParserError.citiesLineUnexpectedNumberOfFields {
@@ -341,7 +341,7 @@ class CityFileParserTests: XCTestCase {
     func testParseCitiesValues_emptyCountryCode() {
         do {
             let values = self.citiesLineValues(countryCode: "")
-            try stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1MappingVictoria)
+            try _ = stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1MappingVictoria)
             XCTFail("Parser must throw error")
         }
         catch CityFileParserError.citiesLineMissingRequiredFields {
@@ -355,7 +355,7 @@ class CityFileParserTests: XCTestCase {
     func testParseCitiesValues_unrecognisedCountryCode() {
         do {
             let values = self.citiesLineValues(countryCode: ".?!")
-            try stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1MappingVictoria)
+            try _ = stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1MappingVictoria)
             XCTFail("Parser must throw error")
         }
         catch CityFileParserError.citiesLineCountryCodeNotRecognised {
@@ -369,7 +369,7 @@ class CityFileParserTests: XCTestCase {
     func testParseCitiesValues_emptyAdmin1Code() {
         do {
             let values = self.citiesLineValues(admin1Code: "")
-            try stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1MappingVictoria)
+            try _ = stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1MappingVictoria)
             XCTFail("Parser must throw error")
         }
         catch CityFileParserError.citiesLineMissingRequiredFields {
@@ -383,7 +383,7 @@ class CityFileParserTests: XCTestCase {
     func testParseCitiesValues_emptyTimeZone() {
         do {
             let values = self.citiesLineValues(timeZone: "")
-            try stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1MappingVictoria)
+            try _ = stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1MappingVictoria)
             XCTFail("Parser must throw error")
         }
         catch CityFileParserError.citiesLineMissingRequiredFields {
@@ -397,7 +397,7 @@ class CityFileParserTests: XCTestCase {
     func testParseCitiesValues_emptyCityName() {
         do {
             let values = self.citiesLineValues(cityName: "")
-            try stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1MappingVictoria)
+            try _ = stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1MappingVictoria)
             XCTFail("Parser must throw error")
         }
         catch CityFileParserError.citiesLineMissingRequiredFields {
@@ -411,7 +411,7 @@ class CityFileParserTests: XCTestCase {
     func testParseCitiesValues_emptyAdmin2Code() {
         do {
             let values = self.citiesLineValues(admin2Code: "")
-            try stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1MappingVictoria)
+            try _ = stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1MappingVictoria)
             XCTFail("Parser must throw error")
         }
         catch CityFileParserError.citiesLineMissingRequiredFields {
@@ -425,7 +425,7 @@ class CityFileParserTests: XCTestCase {
     func testParseCitiesValues_emptyPopulation() {
         do {
             let values = self.citiesLineValues(population: "")
-            try stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1MappingVictoria)
+            try _ = stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1MappingVictoria)
             XCTFail("Parser must throw error")
         }
         catch CityFileParserError.citiesLineMissingRequiredFields {
@@ -439,7 +439,7 @@ class CityFileParserTests: XCTestCase {
     func testParseCitiesValues_emptyLatitude() {
         do {
             let values = self.citiesLineValues(latitude: "")
-            try stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1MappingVictoria)
+            try _ = stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1MappingVictoria)
             XCTFail("Parser must throw error")
         }
         catch CityFileParserError.citiesLineMissingRequiredFields {
@@ -453,7 +453,7 @@ class CityFileParserTests: XCTestCase {
     func testParseCitiesValues_emptyLongitude() {
         do {
             let values = self.citiesLineValues(longitude: "")
-            try stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1MappingVictoria)
+            try _ = stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1MappingVictoria)
             XCTFail("Parser must throw error")
         }
         catch CityFileParserError.citiesLineMissingRequiredFields {
@@ -468,7 +468,7 @@ class CityFileParserTests: XCTestCase {
         do {
             let values = self.citiesLineValues()
             let admin1Mapping = [String : [String : String]]()
-            try stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1Mapping)
+            try _ = stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1Mapping)
             XCTFail("Parser must throw error")
         }
         catch CityFileParserError.citiesLineAdmin1NameNotFound {
@@ -483,7 +483,7 @@ class CityFileParserTests: XCTestCase {
         do {
             // Use admin1Code that cannot be found in admin1Mapping
             let values = self.citiesLineValues(admin1Code : "04")
-            try stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1MappingVictoria)
+            try _ = stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1MappingVictoria)
             XCTFail("Parser must throw error")
         }
         catch CityFileParserError.citiesLineAdmin1NameNotFound {
@@ -497,7 +497,7 @@ class CityFileParserTests: XCTestCase {
     func testParseCitiesValues_extraFields() {
         do {
             let values = [".07", ""]
-            try stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1MappingVictoria)
+            try _ = stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1MappingVictoria)
             XCTFail("Parser must throw error")
         }
         catch CityFileParserError.citiesLineUnexpectedNumberOfFields {
