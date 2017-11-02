@@ -1,5 +1,5 @@
 //
-//  Location.swift
+//  City.swift
 //  KHCityDatabase
 //
 //  Created by Kent Humphries on 18/12/2015.
