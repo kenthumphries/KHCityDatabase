@@ -7,4 +7,5 @@ framework module KHCityDatabase {
 
 module KHCityDatabase.Swift {
     header "KHCityDatabase-Swift.h"
+    requires objc
 }

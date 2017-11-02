@@ -21,7 +21,6 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		370630E71DCEEBCB00D10A2A /* KHCityDatabase-compacted.realm in Resources */ = {isa = PBXBuildFile; fileRef = 370630E61DCEEBCB00D10A2A /* KHCityDatabase-compacted.realm */; };
 		37397A0E1C5EA69000EA5BCE /* KHCityDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = 37397A0D1C5EA69000EA5BCE /* KHCityDatabase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37397A1C1C5EA6F100EA5BCE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37397A1B1C5EA6F100EA5BCE /* AppDelegate.swift */; };
 		37397A1E1C5EA6F100EA5BCE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37397A1D1C5EA6F100EA5BCE /* ViewController.swift */; };
@@ -44,6 +43,7 @@
 		373ABBA81C5EB15100D14122 /* cities1000.txt in Resources */ = {isa = PBXBuildFile; fileRef = 37397A341C5EA72C00EA5BCE /* cities1000.txt */; };
 		373ABBA91C5EB15100D14122 /* cities5000.txt in Resources */ = {isa = PBXBuildFile; fileRef = 37397A351C5EA72C00EA5BCE /* cities5000.txt */; };
 		373ABBAA1C5EB15100D14122 /* geonames-readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 37397A361C5EA72C00EA5BCE /* geonames-readme.txt */; };
+		374B7BA81FABE6D4008A7C34 /* KHCityDatabase-compacted.realm in Resources */ = {isa = PBXBuildFile; fileRef = 374B7BA71FABE6D4008A7C34 /* KHCityDatabase-compacted.realm */; };
 		37D2AE1D1EA75474007DA44F /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D2AE1B1EA75474007DA44F /* Realm.framework */; };
 		37D2AE1E1EA75474007DA44F /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 37D2AE1B1EA75474007DA44F /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		37D2AE1F1EA75474007DA44F /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D2AE1C1EA75474007DA44F /* RealmSwift.framework */; };
@@ -102,6 +102,7 @@
 		373ABB9F1C5EAF2500D14122 /* CityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityTests.swift; sourceTree = "<group>"; };
 		373ABBA11C5EAF2500D14122 /* binary.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = binary.txt; sourceTree = "<group>"; };
 		373ABBA21C5EAF2500D14122 /* CityFileParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityFileParserTests.swift; sourceTree = "<group>"; };
+		374B7BA71FABE6D4008A7C34 /* KHCityDatabase-compacted.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KHCityDatabase-compacted.realm"; sourceTree = "<group>"; };
 		37AAF8A31C66CA0900161F83 /* KHCityDatabase-compacted.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KHCityDatabase-compacted.realm"; sourceTree = "<group>"; };
 		37D2AE1B1EA75474007DA44F /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
 		37D2AE1C1EA75474007DA44F /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
@@ -260,6 +261,7 @@
 		373ABB8B1C5EAE0600D14122 /* CreatedDatabase */ = {
 			isa = PBXGroup;
 			children = (
+				374B7BA61FABE6D4008A7C34 /* 2017-11-02_00-49-00-t0100 */,
 				370630E51DCEEBCB00D10A2A /* 2016-11-06_15-38-00-t1100 */,
 				373A72741D269B1A00F1CEC7 /* 2016-07-01_14-29-00-t0200 */,
 				37AAF8A21C66CA0900161F83 /* 2016-02-07_00-37-00-t0100 */,
@@ -301,6 +303,15 @@
 			);
 			path = Resources;
 			sourceTree = "<group>";
+		};
+		374B7BA61FABE6D4008A7C34 /* 2017-11-02_00-49-00-t0100 */ = {
+			isa = PBXGroup;
+			children = (
+				374B7BA71FABE6D4008A7C34 /* KHCityDatabase-compacted.realm */,
+			);
+			name = "2017-11-02_00-49-00-t0100";
+			path = "KHCityDatabase/CreatedDatabase/2017-11-02_00-49-00-t0100";
+			sourceTree = SOURCE_ROOT;
 		};
 		37AAF8A21C66CA0900161F83 /* 2016-02-07_00-37-00-t0100 */ = {
 			isa = PBXGroup;
@@ -440,7 +451,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				370630E71DCEEBCB00D10A2A /* KHCityDatabase-compacted.realm in Resources */,
+				374B7BA81FABE6D4008A7C34 /* KHCityDatabase-compacted.realm in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
