@@ -313,6 +313,7 @@ class CityFileParserTests: XCTestCase {
             let parsedValues = try stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1MappingVictoria)
             
             XCTAssertEqual(parsedValues.cityNamePreferred, "Melbourne")
+            XCTAssertEqual(parsedValues.cityNameASCII, "Melbun")
             XCTAssertEqual(parsedValues.timeZone, "Australia/Melbourne")
             XCTAssertEqual(parsedValues.countryCode, "AU")
             XCTAssertEqual(parsedValues.countryNamePreferred, "Australia")
@@ -406,7 +407,21 @@ class CityFileParserTests: XCTestCase {
             XCTFail("Parser must throw .citiesLineMissingRequiredFields error")
         }
     }
-    
+
+    func testParseCitiesValues_emptyCityNameASCII() {
+        do {
+            let values = self.citiesLineValues(cityNameASCII: "")
+            try _ = stubCityFileParser().parseCitiesValues(values, admin1Mapping: admin1MappingVictoria)
+            XCTFail("Parser must throw error")
+        }
+        catch CityFileParserError.citiesLineMissingRequiredFields {
+            // Do nothing test passed
+        }
+        catch {
+            XCTFail("Parser must throw .citiesLineMissingRequiredFields error")
+        }
+    }
+
     func testParseCitiesValues_emptyAdmin2Code() {
         do {
             let values = self.citiesLineValues(admin2Code: "")
@@ -564,44 +579,45 @@ class CityFileParserTests: XCTestCase {
     }
     
     var cityMelbourne : City {
-        return City(cityNamePreferred: "Melbourne", timeZone: "Australia/Melbourne", countryCode: "AU", countryNamePreferred: "Australia", admin1Code: "07", admin1NamePreferred: "Victoria", admin2Code: "24600", population: 123456, latitude: 37.81, longitude: 144.96)
+        return City(cityNamePreferred: "Melbourne", cityNameASCII: "Melbun", timeZone: "Australia/Melbourne", countryCode: "AU", countryNamePreferred: "Australia", admin1Code: "07", admin1NamePreferred: "Victoria", admin2Code: "24600", population: 123456, latitude: 37.81, longitude: 144.96)
     }
     
     var citiesLineHobart : String {
-        return self.citiesLineValues(cityName: "Hobart", timeZone: "Australia/Hobart", admin1Code: "06", admin2Code: "12345", population: "30000", latitude: "37.81", longitude: "140.96").joined(separator: "\t")
+        return self.citiesLineValues(cityName: "Hobart", cityNameASCII: "Hobbiton", timeZone: "Australia/Hobart", admin1Code: "06", admin2Code: "12345", population: "30000", latitude: "37.81", longitude: "140.96").joined(separator: "\t")
     }
     
     var cityHobart : City {
-        return City(cityNamePreferred: "Hobart", timeZone: "Australia/Hobart", countryCode: "AU", countryNamePreferred: "Australia", admin1Code: "06", admin1NamePreferred: "Tasmania", admin2Code: "12345", population: 30000, latitude: 37.81, longitude: 140.96)
+        return City(cityNamePreferred: "Hobart", cityNameASCII: "Hobbiton", timeZone: "Australia/Hobart", countryCode: "AU", countryNamePreferred: "Australia", admin1Code: "06", admin1NamePreferred: "Tasmania", admin2Code: "12345", population: 30000, latitude: 37.81, longitude: 140.96)
     }
     
     var citiesLineBrisbane : String {
-        return self.citiesLineValues(cityName: "Brisbane", timeZone: "Australia/Brisbane", admin1Code: "04", admin2Code: "23456", population: "300000", latitude: "37.81", longitude: "148.96").joined(separator: "\t")
+        return self.citiesLineValues(cityName: "Brisbane", cityNameASCII: "Brisvegas", timeZone: "Australia/Brisbane", admin1Code: "04", admin2Code: "23456", population: "300000", latitude: "37.81", longitude: "148.96").joined(separator: "\t")
     }
     
     var cityBrisbane : City {
-        return City(cityNamePreferred: "Brisbane", timeZone: "Australia/Brisbane", countryCode: "AU", countryNamePreferred: "Australia", admin1Code: "04", admin1NamePreferred: "Queensland", admin2Code: "23456", population: 300000, latitude: 37.81, longitude: 148.96)
+        return City(cityNamePreferred: "Brisbane", cityNameASCII: "Brisvegas", timeZone: "Australia/Brisbane", countryCode: "AU", countryNamePreferred: "Australia", admin1Code: "04", admin1NamePreferred: "Queensland", admin2Code: "23456", population: 300000, latitude: 37.81, longitude: 148.96)
         
     }
     
     var citiesLineGlasgow : String {
-        return self.citiesLineValues(cityName: "Glasgow", timeZone: "Europe/London", countryCode: "GB", admin1Code: "SCT", admin2Code: "34567", population: "2000000", latitude: "55.85", longitude: "4.26").joined(separator: "\t")
+        return self.citiesLineValues(cityName: "Glasgow", cityNameASCII: "Glasgw", timeZone: "Europe/London", countryCode: "GB", admin1Code: "SCT", admin2Code: "34567", population: "2000000", latitude: "55.85", longitude: "4.26").joined(separator: "\t")
     }
     
     var cityGlasgow : City {
-        return City(cityNamePreferred: "Glasgow", timeZone: "Europe/London", countryCode: "GB", countryNamePreferred: "United Kingdom", admin1Code: "SCT", admin1NamePreferred: "Scotland", admin2Code: "34567", population: 2000000, latitude: 55.85, longitude: 4.26)
+        return City(cityNamePreferred: "Glasgow", cityNameASCII: "Glasgw", timeZone: "Europe/London", countryCode: "GB", countryNamePreferred: "United Kingdom", admin1Code: "SCT", admin1NamePreferred: "Scotland", admin2Code: "34567", population: 2000000, latitude: 55.85, longitude: 4.26)
     }
     
     var citiesLineCardiff : String {
-        return self.citiesLineValues(cityName: "Cardiff", timeZone: "Europe/London", countryCode: "GB", admin1Code: "WLS", admin2Code: "45678", population: "10000", latitude: "55.85", longitude: "6.26").joined(separator: "\t")
+        return self.citiesLineValues(cityName: "Cardiff", cityNameASCII: "Cardf", timeZone: "Europe/London", countryCode: "GB", admin1Code: "WLS", admin2Code: "45678", population: "10000", latitude: "55.85", longitude: "6.26").joined(separator: "\t")
     }
     
     var cityCardiff : City {
-        return City(cityNamePreferred: "Cardiff", timeZone: "Europe/London", countryCode: "GB", countryNamePreferred: "United Kingdom", admin1Code: "WLS", admin1NamePreferred: "Wales", admin2Code: "45678", population: 10000, latitude: 55.85, longitude: 6.26)
+        return City(cityNamePreferred: "Cardiff", cityNameASCII: "Cardf", timeZone: "Europe/London", countryCode: "GB", countryNamePreferred: "United Kingdom", admin1Code: "WLS", admin1NamePreferred: "Wales", admin2Code: "45678", population: 10000, latitude: 55.85, longitude: 6.26)
     }
     
     func citiesLineValues(
         cityName:String? = "Melbourne",
+        cityNameASCII:String? = "Melbun",
         timeZone:String? = "Australia/Melbourne",
         countryCode:String? = "AU",
         admin1Code:String? = "07",
@@ -610,7 +626,7 @@ class CityFileParserTests: XCTestCase {
         latitude:String? = "37.81",
         longitude:String? = "144.96") -> [String] {
         
-        return ["", cityName!, "", "", latitude!, longitude!, "", "", countryCode!, "", admin1Code!, admin2Code!, "", "", population!, "", "", timeZone!, ""]
+        return ["", cityName!, cityNameASCII!, "", latitude!, longitude!, "", "", countryCode!, "", admin1Code!, admin2Code!, "", "", population!, "", "", timeZone!, ""]
     }
     
     func mappingDictionariesAreEqual(lhs : [String : [String : String]], rhs : [String : [String : String]]) -> Bool {

@@ -92,6 +92,7 @@ internal class CityFileParser: NSObject {
                     let parsedValues = try self.parseCitiesValues(values, admin1Mapping: admin1Mapping)
                     
                     let location = City(cityNamePreferred : parsedValues.cityNamePreferred,
+                                        cityNameASCII: parsedValues.cityNameASCII,
                                         timeZone: parsedValues.timeZone,
                                         countryCode: parsedValues.countryCode,
                                         countryNamePreferred: parsedValues.countryNamePreferred,
@@ -114,6 +115,7 @@ internal class CityFileParser: NSObject {
 extension CityFileParser {
     var kCitiesNumberOfFields : Int { return 19 }
     var kCitiesCityIndex : Int { return 1 }
+    var kCitiesCityASCIIIndex : Int { return 2 }
     var kCitiesLatitudeIndex : Int { return 4 }
     var kCitiesLongitudeIndex : Int { return 5 }
     var kCitiesCountryCodeIndex : Int { return 8 }
@@ -123,7 +125,7 @@ extension CityFileParser {
     var kCitiesTimeZoneIndex : Int { return 17 }
     
     func parseCitiesValues(_ values : [String], admin1Mapping : [String : [String : String]]) throws
-        -> (cityNamePreferred : String, timeZone : String, countryCode : String, countryNamePreferred : String, admin1Code : String?, admin1NamePreferred : String?, admin2Code : String?, population : Int, latitude : CLLocationDegrees, longitude : CLLocationDegrees) {
+        -> (cityNamePreferred : String, cityNameASCII: String, timeZone : String, countryCode : String, countryNamePreferred : String, admin1Code : String?, admin1NamePreferred : String?, admin2Code : String?, population : Int, latitude : CLLocationDegrees, longitude : CLLocationDegrees) {
             
             guard values.count == kCitiesNumberOfFields else {
                 throw CityFileParserError.citiesLineUnexpectedNumberOfFields
@@ -133,6 +135,7 @@ extension CityFileParser {
             guard let countryCode = values[kCitiesCountryCodeIndex].nonEmpty,
                 let timeZone = values[kCitiesTimeZoneIndex].nonEmpty,
                 let cityName = values[kCitiesCityIndex].nonEmpty,
+                let cityNameASCII = values[kCitiesCityASCIIIndex].nonEmpty,
                 let populationString = values[kCitiesPopulationIndex].nonEmpty,
                 let population = Int(populationString),
                 let latitudeString = values[kCitiesLatitudeIndex].nonEmpty,
@@ -164,7 +167,7 @@ extension CityFileParser {
                 print("Warning: No admin2Code for city : \(cityName) [\(countryCode)]")
             }
             
-            return (cityName, timeZone, countryCode, countryNamePreferred, admin1Code, admin1Name, admin2Code, population, latitude, longitude)
+            return (cityName, cityNameASCII, timeZone, countryCode, countryNamePreferred, admin1Code, admin1Name, admin2Code, population, latitude, longitude)
     }
     
     func fetchCountryNamePreferred(forCountryCode countryCode : String) throws -> String {
