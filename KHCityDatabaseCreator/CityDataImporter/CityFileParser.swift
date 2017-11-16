@@ -93,6 +93,7 @@ internal class CityFileParser: NSObject {
                     
                     let location = City(cityNamePreferred : parsedValues.cityNamePreferred,
                                         cityNameASCII: parsedValues.cityNameASCII,
+                                        cityNameAlternates: parsedValues.cityNameAlternates,
                                         timeZone: parsedValues.timeZone,
                                         countryCode: parsedValues.countryCode,
                                         countryNamePreferred: parsedValues.countryNamePreferred,
@@ -116,6 +117,7 @@ extension CityFileParser {
     var kCitiesNumberOfFields : Int { return 19 }
     var kCitiesCityIndex : Int { return 1 }
     var kCitiesCityASCIIIndex : Int { return 2 }
+    var kCitiesCityAlternatesIndex : Int { return 3 }
     var kCitiesLatitudeIndex : Int { return 4 }
     var kCitiesLongitudeIndex : Int { return 5 }
     var kCitiesCountryCodeIndex : Int { return 8 }
@@ -125,7 +127,7 @@ extension CityFileParser {
     var kCitiesTimeZoneIndex : Int { return 17 }
     
     func parseCitiesValues(_ values : [String], admin1Mapping : [String : [String : String]]) throws
-        -> (cityNamePreferred : String, cityNameASCII: String, timeZone : String, countryCode : String, countryNamePreferred : String, admin1Code : String?, admin1NamePreferred : String?, admin2Code : String?, population : Int, latitude : CLLocationDegrees, longitude : CLLocationDegrees) {
+        -> (cityNamePreferred : String, cityNameASCII: String, cityNameAlternates: String?, timeZone : String, countryCode : String, countryNamePreferred : String, admin1Code : String?, admin1NamePreferred : String?, admin2Code : String?, population : Int, latitude : CLLocationDegrees, longitude : CLLocationDegrees) {
             
             guard values.count == kCitiesNumberOfFields else {
                 throw CityFileParserError.citiesLineUnexpectedNumberOfFields
@@ -150,7 +152,8 @@ extension CityFileParser {
             // Optional fields
             let admin1Code = values[kCitiesAdmin1CodeIndex].nonEmpty
             let admin2Code = values[kCitiesAdmin2CodeIndex].nonEmpty
-            
+            let cityNameAlternates = values[kCitiesCityAlternatesIndex].nonEmpty
+
             var admin1Name : String?
             if let admin1Code = admin1Code {
                 do {
@@ -167,7 +170,7 @@ extension CityFileParser {
                 print("Warning: No admin2Code for city : \(cityName) [\(countryCode)]")
             }
             
-            return (cityName, cityNameASCII, timeZone, countryCode, countryNamePreferred, admin1Code, admin1Name, admin2Code, population, latitude, longitude)
+            return (cityName, cityNameASCII, cityNameAlternates, timeZone, countryCode, countryNamePreferred, admin1Code, admin1Name, admin2Code, population, latitude, longitude)
     }
     
     func fetchCountryNamePreferred(forCountryCode countryCode : String) throws -> String {

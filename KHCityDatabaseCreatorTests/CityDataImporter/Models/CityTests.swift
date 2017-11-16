@@ -47,6 +47,13 @@ class CityTests: XCTestCase {
         XCTAssertNotEqual(location.hashValue, other.hashValue)
     }
 
+    func testHash_differs_cityNameAlternates() {
+        let location = self.location()
+        let other = self.location(cityNameAlternates: "Wiendog, Wienout")
+        
+        XCTAssertNotEqual(location.hashValue, other.hashValue)
+    }
+
     func testHash_differs_timeZone() {
         let location = self.location()
         let other = self.location(timeZone: "Wien/Europa")
@@ -133,6 +140,13 @@ class CityTests: XCTestCase {
         XCTAssertNotEqual(location, other)
     }
 
+    func testIsEqual_differs_cityNameAlternates() {
+        let location = self.location()
+        let other = self.location(cityNameAlternates: "Wiendog, Weihnacht")
+        
+        XCTAssertNotEqual(location, other)
+    }
+
     func testIsEqual_differs_timeZone() {
         let location = self.location()
         let other = self.location(timeZone: "Wien/Europa")
@@ -200,6 +214,7 @@ class CityTests: XCTestCase {
     
     func location(cityNamePreferred : String? = "Viénna",
                   cityNameASCII : String? = "Vienna",
+                  cityNameAlternates : String? = "Wiendog, Warum",
                   timeZone : String? = "Vienna/Europe",
                   countryCode : String? = "AT",
                   countryNamePreferred : String? = "Austria",
@@ -211,6 +226,7 @@ class CityTests: XCTestCase {
                   longitude : CLLocationDegrees? = 16.37) -> City {
         return City(cityNamePreferred: cityNamePreferred!,
                     cityNameASCII: cityNameASCII!,
+                    cityNameAlternates: cityNameAlternates!,
                     timeZone: timeZone!,
                     countryCode: countryCode!,
                     countryNamePreferred: countryNamePreferred!,

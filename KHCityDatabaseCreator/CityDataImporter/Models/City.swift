@@ -14,6 +14,7 @@ open class City : Object {
     
     @objc open dynamic var cityNamePreferred : String = ""
     @objc open dynamic var cityNameASCII : String = ""
+    @objc open dynamic var cityNameAlternates : String? = ""
     @objc open dynamic var timeZone : String = ""
     @objc open dynamic var countryCode : String = ""
     @objc open dynamic var countryNamePreferred : String = ""
@@ -30,6 +31,7 @@ open class City : Object {
     
     public convenience init(cityNamePreferred: String,
                             cityNameASCII: String,
+                            cityNameAlternates: String?,
                             timeZone: String,
                             countryCode: String,
                             countryNamePreferred: String,
@@ -44,6 +46,7 @@ open class City : Object {
         
         self.cityNamePreferred = cityNamePreferred
         self.cityNameASCII = cityNameASCII
+        self.cityNameAlternates = cityNameAlternates
         self.timeZone = timeZone
         self.countryCode = countryCode
         self.countryNamePreferred = countryNamePreferred
@@ -58,6 +61,7 @@ open class City : Object {
     override open var hash : Int {
         var hash = self.cityNamePreferred.hash
         hash ^= self.cityNameASCII.hash
+        hash ^= nonEmptyHash(self.cityNameAlternates) // Optional - handle empty case
         hash ^= self.timeZone.hash
         hash ^= self.countryCode.hash
         hash ^= self.countryNamePreferred.hash
@@ -101,6 +105,7 @@ open class City : Object {
         
         var isEqual = self.cityNamePreferred == other.cityNamePreferred
         isEqual = isEqual && self.cityNameASCII == other.cityNameASCII
+        isEqual = isEqual && self.cityNameAlternates == other.cityNameAlternates
         isEqual = isEqual && self.timeZone == other.timeZone
         isEqual = isEqual && self.countryCode == other.countryCode
         isEqual = isEqual && self.countryNamePreferred == other.countryNamePreferred
