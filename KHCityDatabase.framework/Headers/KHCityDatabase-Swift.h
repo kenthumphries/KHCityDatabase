@@ -191,12 +191,14 @@ SWIFT_MODULE_NAMESPACE_PUSH("KHCityDatabase")
 
 SWIFT_CLASS("_TtC14KHCityDatabase4City")
 @interface City : RealmSwiftObject
-@property (nonatomic, copy) NSString * _Nonnull cityNameEnglish;
-@property (nonatomic, copy) NSString * _Nonnull timeZoneEnglish;
+@property (nonatomic, copy) NSString * _Nonnull cityNamePreferred;
+@property (nonatomic, copy) NSString * _Nonnull cityNameASCII;
+@property (nonatomic, copy) NSString * _Nullable cityNameAlternates;
+@property (nonatomic, copy) NSString * _Nonnull timeZone;
 @property (nonatomic, copy) NSString * _Nonnull countryCode;
-@property (nonatomic, copy) NSString * _Nonnull countryNameEnglish;
+@property (nonatomic, copy) NSString * _Nonnull countryNamePreferred;
 @property (nonatomic, copy) NSString * _Nullable admin1Code;
-@property (nonatomic, copy) NSString * _Nullable admin1NameEnglish;
+@property (nonatomic, copy) NSString * _Nullable admin1NamePreferred;
 @property (nonatomic, copy) NSString * _Nullable admin2Code;
 @property (nonatomic) NSInteger population;
 @property (nonatomic) CLLocationDegrees latitude;

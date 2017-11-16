@@ -3,8 +3,8 @@
 3) Ensure that ./KHCityDatabaseCreator/Realm-OSX is up-to-date
 4) Run KHCityDatabaseCreator
    Note output: this shows which cities/countries can NOT be imported
-5) Copy generated KHCityDatabase-compacted.realm into KHCityDatabase/CreatedDatabase with correct timestamp
-6) Ensure that only the most recent KHCityDatabase-compacted.realm is added to the project
+5) Copy generated KHCityDatabase-compacted.realm and it's enclosing timestamped directory into KHCityDatabase/CreatedDatabase
+6) Ensure that only the most recent KHCityDatabase-compacted.realm is added to the Xcode target in CurrentDatabase group
 7) Run KHFatCityDatabase (target is irrelevant - it creates a fat framework)
    This updates the framework at ./KHCityDatabase.framework
 8) Commit everything if you haven't already
