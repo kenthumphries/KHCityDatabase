@@ -38,7 +38,6 @@ class KHCityRealmCreator {
         
         // Create the compacted Realm
         try realm.writeCopy(toFile:compactedFileURL)
-        
 
         return compactedFileURL
     }
@@ -53,8 +52,28 @@ class KHCityRealmCreator {
     }
     
     func getCompactedFileURL(_ fileURL : URL) throws -> URL {
-        // Use the default directory, but replace the filename with databaseName & "compacted" label
-        let compactedFileURL = fileURL.deletingLastPathComponent().appendingPathComponent("\(databaseName)-compacted.realm")
+        let baseURL : URL
+        // Create a temporary directory using timestamp
+        do {
+            baseURL = try FileManager().url(for: .itemReplacementDirectory, in: .userDomainMask, appropriateFor: fileURL, create: true)
+        }
+        catch {
+            throw CityRealmCreatorError.invalidFileURL
+        }
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'_'HH-mm-ss-Z"
+        let timestamp = formatter.string(from: Date()).replacingOccurrences(of: "+", with: "t")
+        let directoryURL = baseURL.appendingPathComponent(timestamp)
+        
+        do {
+            try _ = FileManager().createDirectory(at: directoryURL, withIntermediateDirectories: true)
+        }
+        catch {
+            throw CityRealmCreatorError.invalidFileURL
+        }
+
+        let compactedFileURL = directoryURL.appendingPathComponent("\(databaseName)-compacted.realm")
         return compactedFileURL
     }
     
