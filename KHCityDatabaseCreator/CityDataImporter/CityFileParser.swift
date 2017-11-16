@@ -38,18 +38,18 @@ internal class CityFileParser: NSObject {
     fileprivate(set) var admin1FileContents : String?
     
     init(citiesFileName : String, admin1FileName : String, inBundle bundle : Bundle) throws {
-
+        
         self.bundle = bundle
-
+        
         super.init()
-
+        
         guard citiesFileName.count > 0 else {
             throw CityFileParserError.citiesFileNameNotFound
         }
         guard let citiesPath = bundle.path(forResource: citiesFileName, ofType: "txt") else {
             throw CityFileParserError.citiesFileNameNotFound
         }
-
+        
         guard admin1FileName.count > 0 else {
             throw CityFileParserError.admin1FilNameNotFound
         }
@@ -72,7 +72,7 @@ internal class CityFileParser: NSObject {
             throw CityFileParserError.admin1FilNameNotFound
         }
     }
-
+    
     // MARK: - parseCities
     // Cannot be in extension as it can't be tested if so (can only test funcs in extensions that return native Swift types, not custom structs like City)
     internal func parseCities() -> [City] {
@@ -91,16 +91,16 @@ internal class CityFileParser: NSObject {
                 do {
                     let parsedValues = try self.parseCitiesValues(values, admin1Mapping: admin1Mapping)
                     
-                    let location = City(cityNameEnglish : parsedValues.cityNameEnglish,
-                        timeZoneEnglish: parsedValues.timeZoneEnglish,
-                        countryCode: parsedValues.countryCode,
-                        countryNameEnglish: parsedValues.countryNameEnglish,
-                        admin1Code: parsedValues.admin1Code,
-                        admin1NameEnglish: parsedValues.admin1NameEnglish,
-                        admin2Code: parsedValues.admin2Code,
-                        population: parsedValues.population,
-                        latitude: parsedValues.latitude,
-                        longitude: parsedValues.longitude)
+                    let location = City(cityNamePreferred : parsedValues.cityNamePreferred,
+                                        timeZone: parsedValues.timeZone,
+                                        countryCode: parsedValues.countryCode,
+                                        countryNamePreferred: parsedValues.countryNamePreferred,
+                                        admin1Code: parsedValues.admin1Code,
+                                        admin1NamePreferred: parsedValues.admin1NamePreferred,
+                                        admin2Code: parsedValues.admin2Code,
+                                        population: parsedValues.population,
+                                        latitude: parsedValues.latitude,
+                                        longitude: parsedValues.longitude)
                     locations.append(location)
                 } catch let error {
                     print("Caught error: \(error) for line: \(line)")
@@ -123,7 +123,7 @@ extension CityFileParser {
     var kCitiesTimeZoneIndex : Int { return 17 }
     
     func parseCitiesValues(_ values : [String], admin1Mapping : [String : [String : String]]) throws
-        -> (cityNameEnglish : String, timeZoneEnglish : String, countryCode : String, countryNameEnglish : String, admin1Code : String?, admin1NameEnglish : String?, admin2Code : String?, population : Int, latitude : CLLocationDegrees, longitude : CLLocationDegrees) {
+        -> (cityNamePreferred : String, timeZone : String, countryCode : String, countryNamePreferred : String, admin1Code : String?, admin1NamePreferred : String?, admin2Code : String?, population : Int, latitude : CLLocationDegrees, longitude : CLLocationDegrees) {
             
             guard values.count == kCitiesNumberOfFields else {
                 throw CityFileParserError.citiesLineUnexpectedNumberOfFields
@@ -141,8 +141,8 @@ extension CityFileParser {
                 let longitude = CLLocationDegrees(longitudeString) else {
                     throw CityFileParserError.citiesLineMissingRequiredFields
             }
-
-            let countryNameEnglish = try fetchCountryNameEnglish(forCountryCode: countryCode)
+            
+            let countryNamePreferred = try fetchCountryNamePreferred(forCountryCode: countryCode)
             
             // Optional fields
             let admin1Code = values[kCitiesAdmin1CodeIndex].nonEmpty
@@ -159,26 +159,26 @@ extension CityFileParser {
             } else {
                 print("Warning: No admin1Code for city : \(cityName) [\(countryCode)]")
             }
-
+            
             if admin2Code == nil {
                 print("Warning: No admin2Code for city : \(cityName) [\(countryCode)]")
             }
             
-            return (cityName, timeZone, countryCode, countryNameEnglish, admin1Code, admin1Name, admin2Code, population, latitude, longitude)
+            return (cityName, timeZone, countryCode, countryNamePreferred, admin1Code, admin1Name, admin2Code, population, latitude, longitude)
     }
     
-    func fetchCountryNameEnglish(forCountryCode countryCode : String) throws -> String {
+    func fetchCountryNamePreferred(forCountryCode countryCode : String) throws -> String {
         let countryIdentifier = Locale.identifier(fromComponents: [NSLocale.Key.countryCode.rawValue : countryCode])
         let englishLocale = Locale(identifier: "en_GB")
-        guard let countryNameEnglish = (englishLocale as NSLocale).displayName(forKey: NSLocale.Key.identifier, value: countryIdentifier) else {
+        guard let countryNamePreferred = (englishLocale as NSLocale).displayName(forKey: NSLocale.Key.identifier, value: countryIdentifier) else {
             throw CityFileParserError.citiesLineCountryCodeNotRecognised
         }
-        return countryNameEnglish
+        return countryNamePreferred
     }
 }
 
 @objc extension CityFileParser {
-
+    
     internal func createAdmin1Mapping() -> [String : [String : String]] {
         return self.createAdmin1Mapping(fromContents: self.admin1FileContents)
     }
@@ -188,7 +188,7 @@ extension CityFileParser {
 extension CityFileParser {
     
     func createAdmin1Mapping(fromContents admin1FileContents : String?) -> [String : [String : String]] {
-    
+        
         var mapping = [String : [String : String]]()
         
         if let admin1Lines = admin1FileContents?.components(separatedBy: kLineSeparator) {
@@ -234,7 +234,7 @@ extension CityFileParser {
         if let countryCode = admin1Keys[kAdmin1KeysCountryCodeIndex].nonEmpty,
             let admin1Code = admin1Keys[kAdmin1KeysAdmin1CodeIndex].nonEmpty,
             let admin1Name = values[kAdmin1NameIndex].nonEmpty {
-                return (countryCode, admin1Code, admin1Name)
+            return (countryCode, admin1Code, admin1Name)
         } else {
             throw CityFileParserError.admin1LineEmptyFields
         }

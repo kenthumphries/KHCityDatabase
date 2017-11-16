@@ -33,16 +33,16 @@ class CityTests: XCTestCase {
         XCTAssertEqual(location.hashValue, other.hashValue)
     }
     
-    func testHash_differs_cityNameEnglish() {
+    func testHash_differs_cityNamePreferred() {
         let location = self.location()
-        let other = self.location(cityNameEnglish: "Wien")
+        let other = self.location(cityNamePreferred: "Wien")
         
         XCTAssertNotEqual(location.hashValue, other.hashValue)
     }
     
-    func testHash_differs_timeZoneEnglish() {
+    func testHash_differs_timeZone() {
         let location = self.location()
-        let other = self.location(timeZoneEnglish: "Wien/Europa")
+        let other = self.location(timeZone: "Wien/Europa")
         
         XCTAssertNotEqual(location.hashValue, other.hashValue)
     }
@@ -56,7 +56,7 @@ class CityTests: XCTestCase {
     
     func testHash_differs_countryName() {
         let location = self.location()
-        let other = self.location(countryNameEnglish: "Osterreich")
+        let other = self.location(countryNamePreferred: "Osterreich")
         
         XCTAssertNotEqual(location.hashValue, other.hashValue)
     }
@@ -70,18 +70,18 @@ class CityTests: XCTestCase {
     
     func testHash_differs_admin1Name() {
         let location = self.location()
-        let other = self.location(admin1NameEnglish: "Viennetta")
+        let other = self.location(admin1NamePreferred: "Viennetta")
         
         XCTAssertNotEqual(location.hashValue, other.hashValue)
     }
-
+    
     func testHash_differs_admin2Code() {
         let location = self.location()
         let other = self.location(admin2Code: "777")
         
         XCTAssertNotEqual(location.hashValue, other.hashValue)
     }
-
+    
     func testHash_differs_population() {
         let location = self.location()
         let other = self.location(population: 777)
@@ -95,14 +95,14 @@ class CityTests: XCTestCase {
         
         XCTAssertNotEqual(location.hashValue, other.hashValue)
     }
-
+    
     func testHash_differs_longitude() {
         let location = self.location()
         let other = self.location(latitude: 13.13)
         
         XCTAssertNotEqual(location.hashValue, other.hashValue)
     }
-
+    
     // MARK: func isEqualToCity(other : City?) -> Bool
     
     func testIsEqualToCity_same() {
@@ -111,21 +111,21 @@ class CityTests: XCTestCase {
         
         XCTAssertEqual(location, other)
     }
-
-    func testIsEqual_differs_cityNameEnglish() {
+    
+    func testIsEqual_differs_cityNamePreferred() {
         let location = self.location()
-        let other = self.location(cityNameEnglish: "Wien")
+        let other = self.location(cityNamePreferred: "Wien")
         
         XCTAssertNotEqual(location, other)
     }
-
-    func testIsEqual_differs_timeZoneEnglish() {
+    
+    func testIsEqual_differs_timeZone() {
         let location = self.location()
-        let other = self.location(timeZoneEnglish: "Wien/Europa")
+        let other = self.location(timeZone: "Wien/Europa")
         
         XCTAssertNotEqual(location, other)
     }
-
+    
     func testIsEqual_differs_countryCode() {
         let location = self.location()
         let other = self.location(countryCode: "AU")
@@ -135,25 +135,25 @@ class CityTests: XCTestCase {
     
     func testIsEqual_differs_countryName() {
         let location = self.location()
-        let other = self.location(countryNameEnglish: "Osterreich")
+        let other = self.location(countryNamePreferred: "Osterreich")
         
         XCTAssertNotEqual(location, other)
     }
-
+    
     func testIsEqual_differs_admin1Code() {
         let location = self.location()
         let other = self.location(admin1Code: "666")
         
         XCTAssertNotEqual(location, other)
     }
-
+    
     func testIsEqual_differs_admin1Name() {
         let location = self.location()
-        let other = self.location(admin1NameEnglish: "Viennetta")
+        let other = self.location(admin1NamePreferred: "Viennetta")
         
         XCTAssertNotEqual(location, other)
     }
-
+    
     func testIsEqual_differs_admin2Code() {
         let location = self.location()
         let other = self.location(admin2Code: "777")
@@ -167,42 +167,42 @@ class CityTests: XCTestCase {
         
         XCTAssertNotEqual(location, other)
     }
-
+    
     func testIsEqual_differs_latitude() {
         let location = self.location()
         let other = self.location(latitude: 12.12)
         
         XCTAssertNotEqual(location, other)
     }
-
+    
     func testIsEqual_differs_longitude() {
         let location = self.location()
         let other = self.location(longitude: 12.12)
         
         XCTAssertNotEqual(location, other)
     }
-
+    
     // MARK: - Utility methods
     
-    func location(cityNameEnglish : String? = "Vienna",
-        timeZoneEnglish : String? = "Vienna/Europe",
-        countryCode : String? = "AT",
-        countryNameEnglish : String? = "Austria",
-        admin1Code : String? = "09",
-        admin1NameEnglish : String? = "Viennese",
-        admin2Code : String? = "123",
-        population : Int? = 1500000,
-        latitude : CLLocationDegrees? = 48.20,
-        longitude : CLLocationDegrees? = 16.37) -> City {
-        return City(cityNameEnglish: cityNameEnglish!,
-            timeZoneEnglish: timeZoneEnglish!,
-            countryCode: countryCode!,
-            countryNameEnglish: countryNameEnglish!,
-            admin1Code: admin1Code!,
-            admin1NameEnglish: admin1NameEnglish!,
-            admin2Code: admin2Code!,
-            population: population!,
-            latitude: latitude!,
-            longitude: longitude!)
+    func location(cityNamePreferred : String? = "Vienna",
+                  timeZone : String? = "Vienna/Europe",
+                  countryCode : String? = "AT",
+                  countryNamePreferred : String? = "Austria",
+                  admin1Code : String? = "09",
+                  admin1NamePreferred : String? = "Viennese",
+                  admin2Code : String? = "123",
+                  population : Int? = 1500000,
+                  latitude : CLLocationDegrees? = 48.20,
+                  longitude : CLLocationDegrees? = 16.37) -> City {
+        return City(cityNamePreferred: cityNamePreferred!,
+                    timeZone: timeZone!,
+                    countryCode: countryCode!,
+                    countryNamePreferred: countryNamePreferred!,
+                    admin1Code: admin1Code!,
+                    admin1NamePreferred: admin1NamePreferred!,
+                    admin2Code: admin2Code!,
+                    population: population!,
+                    latitude: latitude!,
+                    longitude: longitude!)
     }
 }

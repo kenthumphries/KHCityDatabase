@@ -12,12 +12,12 @@ import RealmSwift
 
 open class City : Object {
     
-    @objc open dynamic var cityNameEnglish : String = ""
-    @objc open dynamic var timeZoneEnglish : String = ""
+    @objc open dynamic var cityNamePreferred : String = ""
+    @objc open dynamic var timeZone : String = ""
     @objc open dynamic var countryCode : String = ""
-    @objc open dynamic var countryNameEnglish : String = ""
+    @objc open dynamic var countryNamePreferred : String = ""
     @objc open dynamic var admin1Code  : String?
-    @objc open dynamic var admin1NameEnglish : String?
+    @objc open dynamic var admin1NamePreferred : String?
     @objc open dynamic var admin2Code : String?
     @objc open dynamic var population : Int = 0
     @objc open dynamic var latitude : CLLocationDegrees = 0.0
@@ -27,38 +27,38 @@ open class City : Object {
         return CLLocation(latitude: latitude, longitude: longitude)
     }
     
-    public convenience init(cityNameEnglish: String,
-        timeZoneEnglish: String,
-        countryCode: String,
-        countryNameEnglish: String,
-        admin1Code: String?,
-        admin1NameEnglish: String?,
-        admin2Code: String?,
-        population: Int,
-        latitude: CLLocationDegrees,
-        longitude: CLLocationDegrees) {
-            
-            self.init()
-
-            self.cityNameEnglish = cityNameEnglish
-            self.timeZoneEnglish = timeZoneEnglish
-            self.countryCode = countryCode
-            self.countryNameEnglish = countryNameEnglish
-            self.admin1Code = admin1Code
-            self.admin1NameEnglish = admin1NameEnglish
-            self.admin2Code = admin2Code
-            self.population = population
-            self.latitude = latitude
-            self.longitude = longitude
+    public convenience init(cityNamePreferred: String,
+                            timeZone: String,
+                            countryCode: String,
+                            countryNamePreferred: String,
+                            admin1Code: String?,
+                            admin1NamePreferred: String?,
+                            admin2Code: String?,
+                            population: Int,
+                            latitude: CLLocationDegrees,
+                            longitude: CLLocationDegrees) {
+        
+        self.init()
+        
+        self.cityNamePreferred = cityNamePreferred
+        self.timeZone = timeZone
+        self.countryCode = countryCode
+        self.countryNamePreferred = countryNamePreferred
+        self.admin1Code = admin1Code
+        self.admin1NamePreferred = admin1NamePreferred
+        self.admin2Code = admin2Code
+        self.population = population
+        self.latitude = latitude
+        self.longitude = longitude
     }
     
     override open var hash : Int {
-        var hash = self.cityNameEnglish.hash
-        hash ^= self.timeZoneEnglish.hash
+        var hash = self.cityNamePreferred.hash
+        hash ^= self.timeZone.hash
         hash ^= self.countryCode.hash
-        hash ^= self.countryNameEnglish.hash
+        hash ^= self.countryNamePreferred.hash
         hash ^= nonEmptyHash(self.admin1Code) // Optional - handle empty case
-        hash ^= nonEmptyHash(self.admin1NameEnglish) // Optional - handle empty case
+        hash ^= nonEmptyHash(self.admin1NamePreferred) // Optional - handle empty case
         hash ^= nonEmptyHash(self.admin2Code) // Optional - handle empty case
         hash ^= self.population.hashValue
         hash ^= self.latitude.hashValue
@@ -79,10 +79,10 @@ open class City : Object {
             // Break quickly in case other Location is nil, or wrong type
             return false
         }
-
+        
         return self.isEqualToLocation(other)
     }
-
+    
     func isEqualToLocation(_ other : City?) -> Bool {
         
         guard let other = other else {
@@ -95,12 +95,12 @@ open class City : Object {
             return false
         }
         
-        var isEqual = self.cityNameEnglish == other.cityNameEnglish
-        isEqual = isEqual && self.timeZoneEnglish == other.timeZoneEnglish
+        var isEqual = self.cityNamePreferred == other.cityNamePreferred
+        isEqual = isEqual && self.timeZone == other.timeZone
         isEqual = isEqual && self.countryCode == other.countryCode
-        isEqual = isEqual && self.countryNameEnglish == other.countryNameEnglish
+        isEqual = isEqual && self.countryNamePreferred == other.countryNamePreferred
         isEqual = isEqual && self.admin1Code == other.admin1Code
-        isEqual = isEqual && self.admin1NameEnglish == other.admin1NameEnglish
+        isEqual = isEqual && self.admin1NamePreferred == other.admin1NamePreferred
         isEqual = isEqual && self.admin2Code == other.admin2Code
         isEqual = isEqual && self.population == other.population
         isEqual = isEqual && self.latitude == other.latitude
@@ -109,6 +109,6 @@ open class City : Object {
     }
     
     override open var description: String {
-        return "\(cityNameEnglish), \(String(describing: admin1NameEnglish)), \(countryCode) (\(population))"
+        return "\(cityNamePreferred), \(String(describing: admin1NamePreferred)), \(countryCode) (\(population))"
     }
 }
