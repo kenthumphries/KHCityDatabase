@@ -64,10 +64,14 @@ class BoundingBoxInteractor: NSObject {
     }
     
     func boundingBox(forLocationIdentifier locationIdentifier: String, in realm: Realm) -> BoundingBox {
-        if let existing = realm.object(ofType: BoundingBox.self, forPrimaryKey: locationIdentifier) {
+        let boundingBoxes = realm.objects(BoundingBox.self)
+        let identifierPredicate = NSPredicate(format: "%K == %@", "locationIdentifier", locationIdentifier)
+        if let existing = boundingBoxes.filter(identifierPredicate).first {
             return existing
         }
         
-        return BoundingBox(locationIdentifier: locationIdentifier)
+        let new = BoundingBox(locationIdentifier: locationIdentifier)
+        realm.add(new)
+        return new
     }
 }
