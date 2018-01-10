@@ -44,8 +44,8 @@
 		373ABBA91C5EB15100D14122 /* cities5000.txt in Resources */ = {isa = PBXBuildFile; fileRef = 37397A351C5EA72C00EA5BCE /* cities5000.txt */; };
 		373ABBAA1C5EB15100D14122 /* geonames-readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 37397A361C5EA72C00EA5BCE /* geonames-readme.txt */; };
 		37549E3C20064F47002D1ADD /* BoundingBoxInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37549E3B20064F47002D1ADD /* BoundingBoxInteractorTests.swift */; };
-		37549E3F20068B94002D1ADD /* KHCityDatabase-compacted.realm in Resources */ = {isa = PBXBuildFile; fileRef = 37549E3E20068B94002D1ADD /* KHCityDatabase-compacted.realm */; };
 		37549E4020068C75002D1ADD /* BoundingBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D2D8AC2005889C00880013 /* BoundingBox.swift */; };
+		37549E45200694A3002D1ADD /* KHCityDatabase-compacted.realm in Resources */ = {isa = PBXBuildFile; fileRef = 37549E44200694A3002D1ADD /* KHCityDatabase-compacted.realm */; };
 		37D2AE1D1EA75474007DA44F /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D2AE1B1EA75474007DA44F /* Realm.framework */; };
 		37D2AE1E1EA75474007DA44F /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 37D2AE1B1EA75474007DA44F /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		37D2AE1F1EA75474007DA44F /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D2AE1C1EA75474007DA44F /* RealmSwift.framework */; };
@@ -105,7 +105,7 @@
 		373ABBA11C5EAF2500D14122 /* binary.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = binary.txt; sourceTree = "<group>"; };
 		373ABBA21C5EAF2500D14122 /* CityFileParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityFileParserTests.swift; sourceTree = "<group>"; };
 		37549E3B20064F47002D1ADD /* BoundingBoxInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoundingBoxInteractorTests.swift; sourceTree = "<group>"; };
-		37549E3E20068B94002D1ADD /* KHCityDatabase-compacted.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KHCityDatabase-compacted.realm"; sourceTree = "<group>"; };
+		37549E44200694A3002D1ADD /* KHCityDatabase-compacted.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KHCityDatabase-compacted.realm"; sourceTree = "<group>"; };
 		37D2AE1B1EA75474007DA44F /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
 		37D2AE1C1EA75474007DA44F /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
 		37D2AE221EA754A8007DA44F /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
@@ -284,12 +284,12 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		37549E3D20068B94002D1ADD /* 2018-01-10_18-53-30-t0100 */ = {
+		37549E43200694A3002D1ADD /* 2018-01-10_19-35-27-t0100 */ = {
 			isa = PBXGroup;
 			children = (
-				37549E3E20068B94002D1ADD /* KHCityDatabase-compacted.realm */,
+				37549E44200694A3002D1ADD /* KHCityDatabase-compacted.realm */,
 			);
-			path = "2018-01-10_18-53-30-t0100";
+			path = "2018-01-10_19-35-27-t0100";
 			sourceTree = "<group>";
 		};
 		37D2AE211EA754A7007DA44F /* Frameworks */ = {
@@ -302,7 +302,7 @@
 		37F72EF31FBE261400FF6669 /* CreatedDatabase */ = {
 			isa = PBXGroup;
 			children = (
-				37549E3D20068B94002D1ADD /* 2018-01-10_18-53-30-t0100 */,
+				37549E43200694A3002D1ADD /* 2018-01-10_19-35-27-t0100 */,
 			);
 			path = CreatedDatabase;
 			sourceTree = "<group>";
@@ -430,7 +430,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				37549E3F20068B94002D1ADD /* KHCityDatabase-compacted.realm in Resources */,
+				37549E45200694A3002D1ADD /* KHCityDatabase-compacted.realm in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
