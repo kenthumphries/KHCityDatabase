@@ -12,7 +12,7 @@ import RealmSwift
 open class BoundingBox: Object {
     
     @objc open dynamic var locationIdentifier : String = ""
-    let contained = List<City>()
+    open let contained = List<City>()
     
     public convenience init(locationIdentifier: String) {
         self.init()
