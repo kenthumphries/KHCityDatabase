@@ -121,4 +121,9 @@ open class City : Object {
     override open var description: String {
         return "\(cityNamePreferred), \(String(describing: admin1NamePreferred)), \(countryCode) (\(population))"
     }
+    
+    open var locationIdentifier: String {
+        return BoundingBox.locationIdentifier(latitude: latitude, longitude: longitude)
+    }
+    
 }

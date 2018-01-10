@@ -99,8 +99,7 @@ class KHCityRealmCreator {
         try realm.write {
             let interactor = BoundingBoxInteractor()
             for location in locations {
-                let identifier = interactor.locationIdentifier(for: location)
-                let boundingBox = interactor.boundingBox(forLocationIdentifier: identifier, in: realm)
+                let boundingBox = interactor.boundingBox(forLocationIdentifier: location.locationIdentifier, in: realm)
                 boundingBox.contained.append(location)
             }
         }
