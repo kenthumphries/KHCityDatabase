@@ -46,7 +46,7 @@ class ViewController: NSViewController {
         do {
             let databaseURL = try KHCityRealmCreator().generatePopulatedRealmDatabase()
             
-            self.resultTextField.stringValue = self.resultTextField.stringValue + databaseURL.absoluteString
+            self.resultTextField.stringValue = "Database Path: " + databaseURL.absoluteString
             
             self.databaseURL = databaseURL
             showInFinderButton.isHidden = false
