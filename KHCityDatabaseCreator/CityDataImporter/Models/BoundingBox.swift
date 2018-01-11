@@ -63,11 +63,14 @@ open class BoundingBox: Object {
         }
     }
     
+    /// Width of bounding box in degrees of latitude/longitude
+    open static let width = 0.5
+    
     fileprivate static func roundedMinutes(degrees: CLLocationDegrees) -> String {
         let roundedDegrees = Int(degrees.rounded(.towardZero))
         let minutes = degrees - Double(roundedDegrees)
         var roundedMinutes = "00"
-        if  minutes >= 0.5 || minutes <= -0.5 {
+        if  minutes >= width || minutes <= -width {
             roundedMinutes = "50"
         }
         return roundedMinutes
