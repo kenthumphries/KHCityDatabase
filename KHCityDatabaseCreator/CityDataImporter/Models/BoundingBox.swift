@@ -51,7 +51,10 @@ open class BoundingBox: Object {
     fileprivate static var formatter: NumberFormatter {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
-        formatter.format = "000.00"
+        formatter.minimumIntegerDigits = 3
+        formatter.maximumIntegerDigits = 3
+        formatter.minimumFractionDigits = 2
+        formatter.maximumFractionDigits = 2
         formatter.positivePrefix = "+"
         return formatter
     }
