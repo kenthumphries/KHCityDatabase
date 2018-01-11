@@ -123,7 +123,8 @@ open class City : Object {
     }
     
     open var locationIdentifier: String {
-        return BoundingBox.locationIdentifier(latitude: latitude, longitude: longitude)
+        let location = CLLocationCoordinate2DMake(latitude, longitude)
+        return BoundingBox.locationIdentifier(for: location)
     }
     
 }

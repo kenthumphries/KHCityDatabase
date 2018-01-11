@@ -22,57 +22,74 @@ open class BoundingBox: Object {
     
     /// Returns a 13 character locationIdentifier for the coordinate given.
     ///
+    /// The locationIdentifier first rounds the coordinate down to southWest corner of nearest BoundingBox.
+    ///
+    /// For example, when BoundingBox.width = 0.5:
+    /// - (+0.25, +0.75) rounds back to (+0.00, +0.50)
+    /// - (+3.00, +4.99) rounds back to (+3.00, +4.50)
+    /// - (-3.23, -0.25) rounds back to (-3.50, -0.50)
+    ///
+    /// A string is then constructed from this rounded coordinate
+    ///
     /// - Parameters:
-    ///   - latitude: Latitude to be encoded
-    ///   - longitude: Longitude to be encoded
-    /// - Returns: Identifier is of format "SAAABB_TCCCDD" where:
-    ///    - S = positive or negative latitude (ie east or west)
+    ///   - location: coordinate to be rounded and encoded
+    /// - Returns: Identifier is of format "SAAA.BB_TCCC.DD" where:
+    ///    - S   = positive (+90 = north) or negative (-90 = south) latitude (
     ///    - AAA = latitude degrees (padded to 3 digits)
-    ///    - BB  = latitude minutes (padded to 2 digits and rounded to nearest 0.50)
+    ///    - BB  = latitude minutes (padded to 2 digits, rounded to nearest BoundingBox.width)
+    ///    - T   = positive (+180 = east) or negative (-180 = west) longitude
     ///    - CCC = longitude degrees (padded to 3 digits)
-    ///    - DD  = longitude minutes (padded to 2 digits and rounded to nearest 0.50)
-    open static func locationIdentifier(latitude: CLLocationDegrees, longitude: CLLocationDegrees) -> String {
-        let latitudeDegrees = paddedAndRoundedDegrees(degrees: latitude)
-        let latitudeMinutes = roundedMinutes(degrees: latitude)
+    ///    - DD  = longitude minutes (padded to 2 digits, rounded to nearest BoundingBox.width)
+    open static func locationIdentifier(for location: CLLocationCoordinate2D) -> String {
+        let latitudeDegrees = paddedAndRoundedDegrees(degrees: location.latitude)
         
-        let longitudeDegrees = paddedAndRoundedDegrees(degrees: longitude)
-        let longitudeMinutes = roundedMinutes(degrees: longitude)
+        let longitudeDegrees = paddedAndRoundedDegrees(degrees: location.longitude)
         
-        return "\(latitudeDegrees).\(latitudeMinutes)_\(longitudeDegrees).\(longitudeMinutes)"
+        return "\(latitudeDegrees)_\(longitudeDegrees)"
+    }
+
+    fileprivate static var formatter: NumberFormatter {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.format = "000.00"
+        formatter.positivePrefix = "+"
+        return formatter
     }
     
-    fileprivate static func paddedAndRoundedDegrees(degrees: CLLocationDegrees) -> String {
-        let roundedDegrees = Int(degrees.rounded(.towardZero))
-        if roundedDegrees >= 0 {
-            if roundedDegrees < 10 {
-                return "+00\(roundedDegrees)"
-            } else if roundedDegrees < 100 {
-                return "+0\(roundedDegrees)"
-            } else {
-                return "+\(roundedDegrees)"
-            }
-        } else {
-            let unsignedRoundedDegrees = roundedDegrees.magnitude
-            if unsignedRoundedDegrees < 10 {
-                return "-00\(unsignedRoundedDegrees)"
-            } else if unsignedRoundedDegrees < 100 {
-                return "-0\(unsignedRoundedDegrees)"
-            } else {
-                return "-\(unsignedRoundedDegrees)"
-            }
+    /// Returns a valid coordinate from a 13 character locationIdentifier
+    ///
+    /// - Parameter locationIdentifier: 13 character locationIdentifier
+    /// - Returns: Coordinate of locationIdentifier
+    open static func location(forLocationIdentifier locationIdentifier: String) -> CLLocationCoordinate2D {
+        let components = locationIdentifier.split(separator: "_")
+        
+        if let latitudeString = components.first,
+            let longitudeString = components.last,
+            let latitude = formatter.number(from: "\(latitudeString)"),
+            let longitude = formatter.number(from: "\(longitudeString)") {
+            return CLLocationCoordinate2DMake(latitude.doubleValue, longitude.doubleValue)
         }
+        
+        return kCLLocationCoordinate2DInvalid
     }
     
     /// Width of bounding box in degrees of latitude/longitude
     open static let width = 0.5
     
-    fileprivate static func roundedMinutes(degrees: CLLocationDegrees) -> String {
-        let roundedDegrees = Int(degrees.rounded(.towardZero))
-        let minutes = degrees - Double(roundedDegrees)
-        var roundedMinutes = "00"
-        if  minutes >= width || minutes <= -width {
-            roundedMinutes = "50"
+    fileprivate static func paddedAndRoundedDegrees(degrees: CLLocationDegrees) -> String {
+        let widths = degrees / width
+        let roundedWidths = widths.rounded(.down)
+        let roundedDegrees = roundedWidths * width
+        
+        guard var string = formatter.string(from: NSNumber(value: roundedDegrees)) else {
+            return ""
         }
-        return roundedMinutes
+        
+        // Fix zero which isn't shown as positive by formatter
+        if string == "000.00" {
+            string = "+000.00"
+        }
+        
+        return string
     }
 }
