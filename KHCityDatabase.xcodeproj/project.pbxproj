@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		371AFD7E206BBE4A00F5131D /* KHCityDatabase-compacted.realm in Resources */ = {isa = PBXBuildFile; fileRef = 371AFD7D206BBE4900F5131D /* KHCityDatabase-compacted.realm */; };
 		37397A0E1C5EA69000EA5BCE /* KHCityDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = 37397A0D1C5EA69000EA5BCE /* KHCityDatabase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37397A1C1C5EA6F100EA5BCE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37397A1B1C5EA6F100EA5BCE /* AppDelegate.swift */; };
 		37397A1E1C5EA6F100EA5BCE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37397A1D1C5EA6F100EA5BCE /* ViewController.swift */; };
@@ -49,7 +50,6 @@
 		37D2AE201EA75474007DA44F /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 37D2AE1C1EA75474007DA44F /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		37D2AE241EA754A8007DA44F /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D2AE221EA754A8007DA44F /* Realm.framework */; };
 		37D2AE251EA754A8007DA44F /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D2AE231EA754A8007DA44F /* RealmSwift.framework */; };
-		37F72F051FBE261400FF6669 /* KHCityDatabase-compacted.realm in Resources */ = {isa = PBXBuildFile; fileRef = 37F72EF71FBE261400FF6669 /* KHCityDatabase-compacted.realm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +78,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		371AFD7D206BBE4900F5131D /* KHCityDatabase-compacted.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KHCityDatabase-compacted.realm"; sourceTree = "<group>"; };
 		37397A0A1C5EA69000EA5BCE /* KHCityDatabase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KHCityDatabase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		37397A0D1C5EA69000EA5BCE /* KHCityDatabase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KHCityDatabase.h; sourceTree = "<group>"; };
 		37397A0F1C5EA69000EA5BCE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -104,7 +105,6 @@
 		37D2AE1C1EA75474007DA44F /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
 		37D2AE221EA754A8007DA44F /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
 		37D2AE231EA754A8007DA44F /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
-		37F72EF71FBE261400FF6669 /* KHCityDatabase-compacted.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KHCityDatabase-compacted.realm"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +136,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		371AFD7C206BBE4900F5131D /* 2018-03-28_23-11-28-t1100 */ = {
+			isa = PBXGroup;
+			children = (
+				371AFD7D206BBE4900F5131D /* KHCityDatabase-compacted.realm */,
+			);
+			path = "2018-03-28_23-11-28-t1100";
+			sourceTree = "<group>";
+		};
 		37397A001C5EA69000EA5BCE = {
 			isa = PBXGroup;
 			children = (
@@ -284,17 +292,9 @@
 		37F72EF31FBE261400FF6669 /* CreatedDatabase */ = {
 			isa = PBXGroup;
 			children = (
-				37F72EF61FBE261400FF6669 /* 2017-11-16_20-50-30-t0100 */,
+				371AFD7C206BBE4900F5131D /* 2018-03-28_23-11-28-t1100 */,
 			);
 			path = CreatedDatabase;
-			sourceTree = "<group>";
-		};
-		37F72EF61FBE261400FF6669 /* 2017-11-16_20-50-30-t0100 */ = {
-			isa = PBXGroup;
-			children = (
-				37F72EF71FBE261400FF6669 /* KHCityDatabase-compacted.realm */,
-			);
-			path = "2017-11-16_20-50-30-t0100";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -420,7 +420,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				37F72F051FBE261400FF6669 /* KHCityDatabase-compacted.realm in Resources */,
+				371AFD7E206BBE4A00F5131D /* KHCityDatabase-compacted.realm in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
