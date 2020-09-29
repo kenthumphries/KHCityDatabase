@@ -1,0 +1,1384 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.3 (swiftlang-1200.0.29.2 clang-1200.0.30.1)
+// swift-module-flags: -target x86_64-apple-macos10.9 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name RealmSwift
+import Combine
+import Foundation
+import Realm.Private
+import Realm
+import Swift
+public typealias PropertyType = Realm.RLMPropertyType
+public typealias NotificationToken = Realm.RLMNotificationToken
+public protocol ObjectKeyIdentifiable : RealmSwift.Object, Swift.Identifiable {
+  var id: Swift.UInt64 { get }
+}
+@available(*, deprecated, renamed: "ObjectKeyIdentifiable")
+public typealias ObjectKeyIdentifable = RealmSwift.ObjectKeyIdentifiable
+extension ObjectKeyIdentifiable {
+  public var id: Swift.UInt64 {
+    get
+  }
+}
+@available(OSX 10.15, watchOS 6.0, iOS 13.0, iOSApplicationExtension 13.0, OSXApplicationExtension 10.15, tvOS 13.0, *)
+public protocol RealmSubscribable {
+  func _observe<S>(on queue: Dispatch.DispatchQueue?, _ subscriber: S) -> RealmSwift.NotificationToken where Self == S.Input, S : Combine.Subscriber, S.Failure == Swift.Error
+  func _observe<S>(_ subscriber: S) -> RealmSwift.NotificationToken where S : Combine.Subscriber, S.Failure == Swift.Never, S.Input == Swift.Void
+}
+@available(OSX 10.15, watchOS 6.0, iOS 13.0, iOSApplicationExtension 13.0, OSXApplicationExtension 10.15, tvOS 13.0, *)
+extension Publisher {
+  public func freeze<T>() -> Combine.Publishers.Map<Self, T> where T : RealmSwift.ThreadConfined, T == Self.Output
+  public func freeze<T>() -> Combine.Publishers.Map<Self, RealmSwift.ObjectChange<T>> where T : RealmSwift.Object, Self.Output == RealmSwift.ObjectChange<T>
+  public func freeze<T>() -> Combine.Publishers.Map<Self, RealmSwift.RealmCollectionChange<T>> where T : RealmSwift.RealmCollection, Self.Output == RealmSwift.RealmCollectionChange<T>
+}
+@available(OSX 10.15, watchOS 6.0, iOS 13.0, iOSApplicationExtension 13.0, OSXApplicationExtension 10.15, tvOS 13.0, *)
+extension Publisher where Self.Output : RealmSwift.ThreadConfined {
+  public func threadSafeReference() -> RealmSwift.Publishers.MakeThreadSafe<Self>
+}
+@available(OSX 10.15, watchOS 6.0, iOS 13.0, iOSApplicationExtension 13.0, OSXApplicationExtension 10.15, tvOS 13.0, *)
+extension Publisher {
+  public func threadSafeReference<T>() -> RealmSwift.Publishers.MakeThreadSafeObjectChangeset<Self, T> where T : RealmSwift.Object, Self.Output == RealmSwift.ObjectChange<T>
+  public func threadSafeReference<T>() -> RealmSwift.Publishers.MakeThreadSafeCollectionChangeset<Self, T> where T : RealmSwift.RealmCollection, Self.Output == RealmSwift.RealmCollectionChange<T>
+}
+@available(OSX 10.15, watchOS 6.0, iOS 13.0, iOSApplicationExtension 13.0, OSXApplicationExtension 10.15, tvOS 13.0, *)
+extension RealmCollection where Self : RealmSwift.RealmSubscribable {
+  public var objectWillChange: RealmSwift.Publishers.WillChange<Self> {
+    get
+  }
+  @available(*, deprecated, renamed: "collectionPublisher")
+  public var publisher: RealmSwift.Publishers.Value<Self> {
+    get
+  }
+  public var collectionPublisher: RealmSwift.Publishers.Value<Self> {
+    get
+  }
+  public var changesetPublisher: RealmSwift.Publishers.CollectionChangeset<Self> {
+    get
+  }
+}
+@available(OSX 10.15, watchOS 6.0, iOS 13.0, iOSApplicationExtension 13.0, OSXApplicationExtension 10.15, tvOS 13.0, *)
+public func valuePublisher<T>(_ object: T) -> RealmSwift.Publishers.Value<T> where T : RealmSwift.Object
+@available(OSX 10.15, watchOS 6.0, iOS 13.0, iOSApplicationExtension 13.0, OSXApplicationExtension 10.15, tvOS 13.0, *)
+public func valuePublisher<T>(_ collection: T) -> RealmSwift.Publishers.Value<T> where T : RealmSwift.RealmCollection, T : RealmSwift.RealmSubscribable
+@available(OSX 10.15, watchOS 6.0, iOS 13.0, iOSApplicationExtension 13.0, OSXApplicationExtension 10.15, tvOS 13.0, *)
+public func changesetPublisher<T>(_ object: T) -> RealmSwift.Publishers.ObjectChangeset<T> where T : RealmSwift.Object
+@available(OSX 10.15, watchOS 6.0, iOS 13.0, iOSApplicationExtension 13.0, OSXApplicationExtension 10.15, tvOS 13.0, *)
+public func changesetPublisher<T>(_ collection: T) -> RealmSwift.Publishers.CollectionChangeset<T> where T : RealmSwift.RealmCollection
+@available(OSX 10.15, watchOS 6.0, iOS 13.0, iOSApplicationExtension 13.0, OSXApplicationExtension 10.15, tvOS 13.0, *)
+extension Realm {
+  public var objectWillChange: RealmSwift.Publishers.RealmWillChange {
+    get
+  }
+}
+@available(OSX 10.15, watchOS 6.0, iOS 13.0, iOSApplicationExtension 13.0, OSXApplicationExtension 10.15, tvOS 13.0, *)
+extension Object : Combine.ObservableObject {
+  public var objectWillChange: RealmSwift.Publishers.WillChange<RealmSwift.Object> {
+    get
+  }
+  public typealias ObjectWillChangePublisher = RealmSwift.Publishers.WillChange<RealmSwift.Object>
+}
+@available(OSX 10.15, watchOS 6.0, iOS 13.0, iOSApplicationExtension 13.0, OSXApplicationExtension 10.15, tvOS 13.0, *)
+extension Object : RealmSwift.RealmSubscribable {
+  public func _observe<S>(on queue: Dispatch.DispatchQueue?, _ subscriber: S) -> RealmSwift.NotificationToken where S : Combine.Subscriber, S.Failure == Swift.Error, S.Input : RealmSwift.Object
+  public func _observe<S>(_ subscriber: S) -> RealmSwift.NotificationToken where S : Combine.Subscriber, S.Failure == Swift.Never, S.Input == Swift.Void
+}
+@available(OSX 10.15, watchOS 6.0, iOS 13.0, iOSApplicationExtension 13.0, OSXApplicationExtension 10.15, tvOS 13.0, *)
+extension List : Combine.ObservableObject, RealmSwift.RealmSubscribable {
+  final public var objectWillChange: RealmSwift.Publishers.WillChange<RealmSwift.List<Element>> {
+    get
+  }
+  public typealias ObjectWillChangePublisher = RealmSwift.Publishers.WillChange<RealmSwift.List<Element>>
+}
+@available(OSX 10.15, watchOS 6.0, iOS 13.0, iOSApplicationExtension 13.0, OSXApplicationExtension 10.15, tvOS 13.0, *)
+extension LinkingObjects : RealmSwift.RealmSubscribable {
+  public var objectWillChange: RealmSwift.Publishers.WillChange<RealmSwift.LinkingObjects<Element>> {
+    get
+  }
+}
+@available(OSX 10.15, watchOS 6.0, iOS 13.0, iOSApplicationExtension 13.0, OSXApplicationExtension 10.15, tvOS 13.0, *)
+extension Results : RealmSwift.RealmSubscribable {
+  public var objectWillChange: RealmSwift.Publishers.WillChange<RealmSwift.Results<Element>> {
+    get
+  }
+}
+@available(OSX 10.15, watchOS 6.0, iOS 13.0, iOSApplicationExtension 13.0, OSXApplicationExtension 10.15, tvOS 13.0, *)
+extension RealmCollection {
+  public func _observe<S>(on queue: Dispatch.DispatchQueue? = nil, _ subscriber: S) -> RealmSwift.NotificationToken where Self == S.Input, S : Combine.Subscriber, S.Failure == Swift.Error
+  public func _observe<S>(_ subscriber: S) -> RealmSwift.NotificationToken where S : Combine.Subscriber, S.Failure == Swift.Never, S.Input == Swift.Void
+}
+@available(OSX 10.15, watchOS 6.0, iOS 13.0, iOSApplicationExtension 13.0, OSXApplicationExtension 10.15, tvOS 13.0, *)
+extension AnyRealmCollection : RealmSwift.RealmSubscribable {
+}
+@available(OSX 10.15, watchOS 6.0, iOS 13.0, iOSApplicationExtension 13.0, OSXApplicationExtension 10.15, tvOS 13.0, *)
+public struct ObservationSubscription : Combine.Subscription {
+  public var combineIdentifier: Combine.CombineIdentifier {
+    get
+  }
+  public func request(_ demand: Combine.Subscribers.Demand)
+  public func cancel()
+}
+@available(OSX 10.15, watchOS 6.0, iOS 13.0, iOSApplicationExtension 13.0, OSXApplicationExtension 10.15, tvOS 13.0, *)
+public enum Publishers {
+  public struct RealmWillChange : Combine.Publisher {
+    public typealias Failure = Swift.Never
+    public typealias Output = Swift.Void
+    public func receive<S>(subscriber: S) where S : Combine.Subscriber, S.Failure == Swift.Never, S.Input == RealmSwift.Publishers.RealmWillChange.Output
+  }
+  public struct WillChange<Collection> : Combine.Publisher where Collection : RealmSwift.RealmSubscribable, Collection : RealmSwift.ThreadConfined {
+    public typealias Failure = Swift.Never
+    public typealias Output = Swift.Void
+    public func receive<S>(subscriber: S) where S : Combine.Subscriber, S.Failure == Swift.Never, S.Input == RealmSwift.Publishers.WillChange<Collection>.Output
+  }
+  public struct Value<Subscribable> : Combine.Publisher where Subscribable : RealmSwift.RealmSubscribable, Subscribable : RealmSwift.ThreadConfined {
+    public typealias Failure = Swift.Error
+    public typealias Output = Subscribable
+    public func receive<S>(subscriber: S) where Subscribable == S.Input, S : Combine.Subscriber, S.Failure == RealmSwift.Publishers.Value<Subscribable>.Failure
+    public func subscribe<S>(on scheduler: S) -> RealmSwift.Publishers.Value<Subscribable> where S : Combine.Scheduler
+    public func receive<S>(on scheduler: S) -> RealmSwift.Publishers.Handover<RealmSwift.Publishers.Value<Subscribable>, S> where S : Combine.Scheduler
+  }
+  public struct Handover<Upstream, S> : Combine.Publisher where Upstream : Combine.Publisher, S : Combine.Scheduler, Upstream.Output : RealmSwift.ThreadConfined {
+    public typealias Failure = Upstream.Failure
+    public typealias Output = Upstream.Output
+    public func receive<Sub>(subscriber: Sub) where Sub : Combine.Subscriber, Upstream.Failure == Sub.Failure, Upstream.Output == Sub.Input
+  }
+  public struct MakeThreadSafe<Upstream> : Combine.Publisher where Upstream : Combine.Publisher, Upstream.Output : RealmSwift.ThreadConfined {
+    public typealias Failure = Upstream.Failure
+    public typealias Output = Upstream.Output
+    public func receive<S>(subscriber: S) where S : Combine.Subscriber, Upstream.Failure == S.Failure, Upstream.Output == S.Input
+    public func receive<S>(on scheduler: S) -> RealmSwift.Publishers.DeferredHandover<Upstream, S> where S : Combine.Scheduler
+  }
+  public struct DeferredHandover<Upstream, S> : Combine.Publisher where Upstream : Combine.Publisher, S : Combine.Scheduler, Upstream.Output : RealmSwift.ThreadConfined {
+    public typealias Failure = Upstream.Failure
+    public typealias Output = Upstream.Output
+    public func receive<Sub>(subscriber: Sub) where Sub : Combine.Subscriber, Upstream.Failure == Sub.Failure, Upstream.Output == Sub.Input
+  }
+  public struct ObjectChangeset<T> : Combine.Publisher where T : RealmSwift.Object {
+    public typealias Output = RealmSwift.ObjectChange<T>
+    public typealias Failure = Swift.Never
+    public func receive<S>(subscriber: S) where S : Combine.Subscriber, S.Failure == Swift.Never, S.Input == RealmSwift.Publishers.ObjectChangeset<T>.Output
+    public func subscribe<S>(on scheduler: S) -> RealmSwift.Publishers.ObjectChangeset<T> where S : Combine.Scheduler
+    public func receive<S>(on scheduler: S) -> RealmSwift.Publishers.DeferredHandoverObjectChangeset<RealmSwift.Publishers.ObjectChangeset<T>, T, S> where S : Combine.Scheduler
+  }
+  public struct MakeThreadSafeObjectChangeset<Upstream, T> : Combine.Publisher where Upstream : Combine.Publisher, T : RealmSwift.Object, Upstream.Output == RealmSwift.ObjectChange<T> {
+    public typealias Failure = Upstream.Failure
+    public typealias Output = Upstream.Output
+    public func receive<S>(subscriber: S) where S : Combine.Subscriber, Upstream.Failure == S.Failure, S.Input == RealmSwift.ObjectChange<T>
+    public func receive<S>(on scheduler: S) -> RealmSwift.Publishers.DeferredHandoverObjectChangeset<Upstream, T, S> where S : Combine.Scheduler
+  }
+  public struct DeferredHandoverObjectChangeset<Upstream, T, S> : Combine.Publisher where Upstream : Combine.Publisher, T : RealmSwift.Object, S : Combine.Scheduler, Upstream.Output == RealmSwift.ObjectChange<T> {
+    public typealias Failure = Upstream.Failure
+    public typealias Output = Upstream.Output
+    public func receive<Sub>(subscriber: Sub) where Sub : Combine.Subscriber, Upstream.Failure == Sub.Failure, Sub.Input == RealmSwift.ObjectChange<T>
+  }
+  public struct CollectionChangeset<Collection> : Combine.Publisher where Collection : RealmSwift.RealmCollection {
+    public typealias Output = RealmSwift.RealmCollectionChange<Collection>
+    public typealias Failure = Swift.Never
+    public func receive<S>(subscriber: S) where S : Combine.Subscriber, S.Failure == Swift.Never, S.Input == RealmSwift.Publishers.CollectionChangeset<Collection>.Output
+    public func subscribe<S>(on scheduler: S) -> RealmSwift.Publishers.CollectionChangeset<Collection> where S : Combine.Scheduler
+    public func receive<S>(on scheduler: S) -> RealmSwift.Publishers.DeferredHandoverCollectionChangeset<RealmSwift.Publishers.CollectionChangeset<Collection>, Collection, S> where S : Combine.Scheduler
+  }
+  public struct MakeThreadSafeCollectionChangeset<Upstream, T> : Combine.Publisher where Upstream : Combine.Publisher, T : RealmSwift.RealmCollection, Upstream.Output == RealmSwift.RealmCollectionChange<T> {
+    public typealias Failure = Upstream.Failure
+    public typealias Output = Upstream.Output
+    public func receive<S>(subscriber: S) where S : Combine.Subscriber, Upstream.Failure == S.Failure, S.Input == RealmSwift.RealmCollectionChange<T>
+    public func receive<S>(on scheduler: S) -> RealmSwift.Publishers.DeferredHandoverCollectionChangeset<Upstream, T, S> where S : Combine.Scheduler
+  }
+  public struct DeferredHandoverCollectionChangeset<Upstream, T, S> : Combine.Publisher where Upstream : Combine.Publisher, T : RealmSwift.RealmCollection, S : Combine.Scheduler, Upstream.Output == RealmSwift.RealmCollectionChange<T> {
+    public typealias Failure = Upstream.Failure
+    public typealias Output = Upstream.Output
+    public func receive<Sub>(subscriber: Sub) where Sub : Combine.Subscriber, Upstream.Failure == Sub.Failure, Sub.Input == RealmSwift.RealmCollectionChange<T>
+  }
+}
+extension Realm {
+  public struct Error {
+    public typealias Code = Realm.RLMError.Code
+    public static let fail: RealmSwift.Realm.Error.Code
+    public static let fileAccess: RealmSwift.Realm.Error.Code
+    public static let filePermissionDenied: RealmSwift.Realm.Error.Code
+    public static let fileExists: RealmSwift.Realm.Error.Code
+    public static let fileNotFound: RealmSwift.Realm.Error.Code
+    public static let incompatibleLockFile: RealmSwift.Realm.Error.Code
+    public static let fileFormatUpgradeRequired: RealmSwift.Realm.Error.Code
+    public static let addressSpaceExhausted: RealmSwift.Realm.Error.Code
+    public static let schemaMismatch: RealmSwift.Realm.Error.Code
+    public var code: RealmSwift.Realm.Error.Code {
+      get
+    }
+    public let _nsError: Foundation.NSError
+    public init(_nsError error: Foundation.NSError)
+    public var backupConfiguration: RealmSwift.Realm.Configuration? {
+      get
+    }
+  }
+}
+extension Realm.Error : Foundation._BridgedStoredNSError {
+  public static let _nsErrorDomain: Swift.String
+  public static let errorDomain: Swift.String
+}
+extension Realm.Error : Swift.Equatable {
+}
+public func == (lhs: Swift.Error, rhs: Swift.Error) -> Swift.Bool
+public func ~= (lhs: RealmSwift.Realm.Error, rhs: Swift.Error) -> Swift.Bool
+public struct LinkingObjects<Element> where Element : RealmSwift.Object {
+  public typealias ElementType = Element
+  public var realm: RealmSwift.Realm? {
+    get
+  }
+  public var isInvalidated: Swift.Bool {
+    get
+  }
+  public var count: Swift.Int {
+    get
+  }
+  public init(fromType _: Element.Type, property propertyName: Swift.String)
+  public var description: Swift.String {
+    get
+  }
+  public func index(of object: Element) -> Swift.Int?
+  public func index(matching predicate: Foundation.NSPredicate) -> Swift.Int?
+  public subscript(index: Swift.Int) -> Element {
+    get
+  }
+  public var first: Element? {
+    get
+  }
+  public var last: Element? {
+    get
+  }
+  public func value(forKey key: Swift.String) -> Any?
+  public func value(forKeyPath keyPath: Swift.String) -> Any?
+  public func setValue(_ value: Any?, forKey key: Swift.String)
+  public func filter(_ predicate: Foundation.NSPredicate) -> RealmSwift.Results<Element>
+  public func sorted(byKeyPath keyPath: Swift.String, ascending: Swift.Bool = true) -> RealmSwift.Results<Element>
+  public func sorted<S>(by sortDescriptors: S) -> RealmSwift.Results<Element> where S : Swift.Sequence, S.Element == RealmSwift.SortDescriptor
+  public func min<T>(ofProperty property: Swift.String) -> T? where T : RealmSwift.MinMaxType
+  public func max<T>(ofProperty property: Swift.String) -> T? where T : RealmSwift.MinMaxType
+  public func sum<T>(ofProperty property: Swift.String) -> T where T : RealmSwift.AddableType
+  public func average<T>(ofProperty property: Swift.String) -> T? where T : RealmSwift.AddableType
+  public func observe(on queue: Dispatch.DispatchQueue? = nil, _ block: @escaping (RealmSwift.RealmCollectionChange<RealmSwift.LinkingObjects<Element>>) -> Swift.Void) -> RealmSwift.NotificationToken
+  public var isFrozen: Swift.Bool {
+    get
+  }
+  public func freeze() -> RealmSwift.LinkingObjects<Element>
+}
+extension LinkingObjects : RealmSwift.RealmCollection {
+  public func makeIterator() -> RealmSwift.RLMIterator<Element>
+  public func _asNSFastEnumerator() -> Any
+  public var startIndex: Swift.Int {
+    get
+  }
+  public var endIndex: Swift.Int {
+    get
+  }
+  public func index(after: Swift.Int) -> Swift.Int
+  public func index(before: Swift.Int) -> Swift.Int
+  public func _observe(_ queue: Dispatch.DispatchQueue?, _ block: @escaping (RealmSwift.RealmCollectionChange<RealmSwift.AnyRealmCollection<Element>>) -> Swift.Void) -> RealmSwift.NotificationToken
+  public typealias Index = Swift.Int
+  public typealias Iterator = RealmSwift.RLMIterator<Element>
+  public typealias SubSequence = Swift.Slice<RealmSwift.LinkingObjects<Element>>
+  public typealias Indices = Swift.Range<Swift.Int>
+  public typealias Elements = RealmSwift.LinkingObjects<Element>
+}
+@objc @_inheritsConvenienceInitializers public class ListBase : Realm.RLMListBase {
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+  public var count: Swift.Int {
+    get
+  }
+  @objc deinit
+  @objc override dynamic public init()
+  @objc override dynamic public init(array: Realm.RLMArray<AnyObject>)
+}
+@_hasMissingDesignatedInitializers final public class List<Element> : RealmSwift.ListBase where Element : RealmSwift.RealmCollectionValue {
+  final public var realm: RealmSwift.Realm? {
+    get
+  }
+  final public var isInvalidated: Swift.Bool {
+    get
+  }
+  @objc override dynamic public init()
+  final public func index(of object: Element) -> Swift.Int?
+  final public func index(matching predicate: Foundation.NSPredicate) -> Swift.Int?
+  final public subscript(position: Swift.Int) -> Element {
+    get
+    set
+  }
+  final public var first: Element? {
+    get
+  }
+  final public var last: Element? {
+    get
+  }
+  @nonobjc final public func value(forKey key: Swift.String) -> [Swift.AnyObject]
+  @nonobjc final public func value(forKeyPath keyPath: Swift.String) -> [Swift.AnyObject]
+  @objc override final public func setValue(_ value: Any?, forKey key: Swift.String)
+  final public func filter(_ predicate: Foundation.NSPredicate) -> RealmSwift.Results<Element>
+  final public func sorted(byKeyPath keyPath: Swift.String, ascending: Swift.Bool = true) -> RealmSwift.Results<Element>
+  final public func sorted<S>(by sortDescriptors: S) -> RealmSwift.Results<Element> where S : Swift.Sequence, S.Element == RealmSwift.SortDescriptor
+  final public func min<T>(ofProperty property: Swift.String) -> T? where T : RealmSwift.MinMaxType
+  final public func max<T>(ofProperty property: Swift.String) -> T? where T : RealmSwift.MinMaxType
+  final public func sum<T>(ofProperty property: Swift.String) -> T where T : RealmSwift.AddableType
+  final public func average(ofProperty property: Swift.String) -> Swift.Double?
+  final public func append(_ object: Element)
+  final public func append<S>(objectsIn objects: S) where Element == S.Element, S : Swift.Sequence
+  final public func insert(_ object: Element, at index: Swift.Int)
+  final public func remove(at index: Swift.Int)
+  final public func removeAll()
+  final public func replace(index: Swift.Int, object: Element)
+  final public func move(from: Swift.Int, to: Swift.Int)
+  final public func swapAt(_ index1: Swift.Int, _ index2: Swift.Int)
+  final public func observe(on queue: Dispatch.DispatchQueue? = nil, _ block: @escaping (RealmSwift.RealmCollectionChange<RealmSwift.List<Element>>) -> Swift.Void) -> RealmSwift.NotificationToken
+  final public var isFrozen: Swift.Bool {
+    get
+  }
+  final public func freeze() -> RealmSwift.List<Element>
+  @objc deinit
+  @objc override dynamic public init(array: Realm.RLMArray<AnyObject>)
+}
+extension List where Element : RealmSwift.MinMaxType {
+  final public func min() -> Element?
+  final public func max() -> Element?
+}
+extension List where Element : RealmSwift.AddableType {
+  final public func sum() -> Element
+  final public func average() -> Swift.Double?
+}
+extension List : RealmSwift.RealmCollection {
+  public typealias ElementType = Element
+  final public func makeIterator() -> RealmSwift.RLMIterator<Element>
+  final public func _asNSFastEnumerator() -> Any
+  final public func replaceSubrange<C, R>(_ subrange: R, with newElements: C) where Element == C.Element, C : Swift.Collection, R : Swift.RangeExpression, R.Bound == Swift.Int
+  final public var startIndex: Swift.Int {
+    get
+  }
+  final public var endIndex: Swift.Int {
+    get
+  }
+  final public func index(after i: Swift.Int) -> Swift.Int
+  final public func index(before i: Swift.Int) -> Swift.Int
+  final public func _observe(_ queue: Dispatch.DispatchQueue?, _ block: @escaping (RealmSwift.RealmCollectionChange<RealmSwift.AnyRealmCollection<Element>>) -> Swift.Void) -> RealmSwift.NotificationToken
+  public typealias Index = Swift.Int
+  public typealias Iterator = RealmSwift.RLMIterator<Element>
+  public typealias Indices = Swift.Range<Swift.Int>
+  public typealias Elements = RealmSwift.List<Element>
+}
+extension List : Swift.MutableCollection {
+  public typealias SubSequence = Swift.Slice<RealmSwift.List<Element>>
+  final public subscript(bounds: Swift.Range<Swift.Int>) -> RealmSwift.List<Element>.SubSequence {
+    get
+    set
+  }
+  final public func removeFirst(_ number: Swift.Int = 1)
+  final public func removeLast(_ number: Swift.Int = 1)
+  final public func insert<C>(contentsOf newElements: C, at i: Swift.Int) where Element == C.Element, C : Swift.Collection
+  final public func removeSubrange<R>(_ boundsExpression: R) where R : Swift.RangeExpression, R.Bound == Swift.Int
+  final public func remove(atOffsets offsets: Foundation.IndexSet)
+  final public func move(fromOffsets offsets: Foundation.IndexSet, toOffset destination: Swift.Int)
+}
+extension List : Swift.Decodable where Element : Swift.Decodable {
+  convenience public init(from decoder: Swift.Decoder) throws
+}
+extension List : Swift.Encodable where Element : Swift.Encodable {
+  final public func encode(to encoder: Swift.Encoder) throws
+}
+public typealias MigrationBlock = (RealmSwift.Migration, Swift.UInt64) -> Swift.Void
+public typealias MigrationObject = RealmSwift.DynamicObject
+public typealias MigrationObjectEnumerateBlock = (RealmSwift.MigrationObject?, RealmSwift.MigrationObject?) -> Swift.Void
+public func schemaVersionAtURL(_ fileURL: Foundation.URL, encryptionKey: Foundation.Data? = nil) throws -> Swift.UInt64
+extension Realm {
+  public static func performMigration(for configuration: RealmSwift.Realm.Configuration = Realm.Configuration.defaultConfiguration) throws
+}
+public struct Migration {
+  public var oldSchema: RealmSwift.Schema {
+    get
+  }
+  public var newSchema: RealmSwift.Schema {
+    get
+  }
+  public func enumerateObjects(ofType typeName: Swift.String, _ block: (RealmSwift.MigrationObject?, RealmSwift.MigrationObject?) -> Swift.Void)
+  @discardableResult
+  public func create(_ typeName: Swift.String, value: Any = [:]) -> RealmSwift.MigrationObject
+  public func delete(_ object: RealmSwift.MigrationObject)
+  @discardableResult
+  public func deleteData(forType typeName: Swift.String) -> Swift.Bool
+  public func renameProperty(onType typeName: Swift.String, from oldName: Swift.String, to newName: Swift.String)
+}
+@_inheritsConvenienceInitializers @objc(RealmSwiftObject) open class Object : Realm.RLMObjectBase, RealmSwift.RealmCollectionValue {
+  public static func _rlmArray() -> Realm.RLMArray<Swift.AnyObject>
+  @objc override required dynamic public init()
+  convenience public init(value: Any)
+  public var realm: RealmSwift.Realm? {
+    get
+  }
+  public var objectSchema: RealmSwift.ObjectSchema {
+    get
+  }
+  @objc dynamic override open var isInvalidated: Swift.Bool {
+    @objc get
+  }
+  @objc override dynamic open var description: Swift.String {
+    @objc get
+  }
+  @objc override final public class func _getProperties(withInstance instance: Any) -> [Realm.RLMProperty]
+  @objc open class func primaryKey() -> Swift.String?
+  @objc open class func ignoredProperties() -> [Swift.String]
+  @objc open class func indexedProperties() -> [Swift.String]
+  @objc open subscript(key: Swift.String) -> Any? {
+    @objc get
+    @objc set(value)
+  }
+  public func observe<T>(on queue: Dispatch.DispatchQueue? = nil, _ block: @escaping (RealmSwift.ObjectChange<T>) -> Swift.Void) -> RealmSwift.NotificationToken where T : RealmSwift.Object
+  public func dynamicList(_ propertyName: Swift.String) -> RealmSwift.List<RealmSwift.DynamicObject>
+  public func isSameObject(as object: RealmSwift.Object?) -> Swift.Bool
+  @objc deinit
+}
+extension Object : RealmSwift.ThreadConfined {
+  public var isFrozen: Swift.Bool {
+    get
+  }
+  public func freeze() -> Self
+}
+public struct PropertyChange {
+  public let name: Swift.String
+  public let oldValue: Any?
+  public let newValue: Any?
+}
+public enum ObjectChange<T> where T : RealmSwift.Object {
+  case error(_: Foundation.NSError)
+  case change(T, [RealmSwift.PropertyChange])
+  case deleted
+}
+@objc @_inheritsConvenienceInitializers final public class DynamicObject : RealmSwift.Object {
+  @objc override final public subscript(key: Swift.String) -> Any? {
+    @objc get
+    @objc set(value)
+  }
+  override final public func dynamicList(_ propertyName: Swift.String) -> RealmSwift.List<RealmSwift.DynamicObject>
+  @objc override final public func value(forUndefinedKey key: Swift.String) -> Any?
+  @objc override final public func setValue(_ value: Any?, forUndefinedKey key: Swift.String)
+  @objc override final public class func shouldIncludeInDefaultSchema() -> Swift.Bool
+  @objc deinit
+  @objc required dynamic public init()
+}
+public protocol RealmEnum : RealmSwift.RealmOptionalType, RealmSwift._ManagedPropertyType {
+  static func _rlmToRawValue(_ value: Any) -> Any
+  static func _rlmFromRawValue(_ value: Any) -> Any
+}
+extension RealmEnum where Self : Swift.RawRepresentable, Self.RawValue : RealmSwift._ManagedPropertyType {
+  public static func _rlmToRawValue(_ value: Any) -> Any
+  public static func _rlmFromRawValue(_ value: Any) -> Any
+  public static func _rlmProperty(_ prop: Realm.RLMProperty)
+}
+public protocol _ManagedPropertyType {
+  func _rlmProperty(_ prop: Realm.RLMProperty)
+  static func _rlmProperty(_ prop: Realm.RLMProperty)
+  static func _rlmRequireObjc() -> Swift.Bool
+}
+extension _ManagedPropertyType {
+  public func _rlmProperty(_ prop: Realm.RLMProperty)
+  public static func _rlmRequireObjc() -> Swift.Bool
+}
+extension Int : RealmSwift._ManagedPropertyType {
+  public static func _rlmProperty(_ prop: Realm.RLMProperty)
+}
+extension Int8 : RealmSwift._ManagedPropertyType {
+  public static func _rlmProperty(_ prop: Realm.RLMProperty)
+}
+extension Int16 : RealmSwift._ManagedPropertyType {
+  public static func _rlmProperty(_ prop: Realm.RLMProperty)
+}
+extension Int32 : RealmSwift._ManagedPropertyType {
+  public static func _rlmProperty(_ prop: Realm.RLMProperty)
+}
+extension Int64 : RealmSwift._ManagedPropertyType {
+  public static func _rlmProperty(_ prop: Realm.RLMProperty)
+}
+extension Float : RealmSwift._ManagedPropertyType {
+  public static func _rlmProperty(_ prop: Realm.RLMProperty)
+}
+extension Double : RealmSwift._ManagedPropertyType {
+  public static func _rlmProperty(_ prop: Realm.RLMProperty)
+}
+extension Bool : RealmSwift._ManagedPropertyType {
+  public static func _rlmProperty(_ prop: Realm.RLMProperty)
+}
+extension String : RealmSwift._ManagedPropertyType {
+  public static func _rlmProperty(_ prop: Realm.RLMProperty)
+}
+extension NSString : RealmSwift._ManagedPropertyType {
+  public static func _rlmProperty(_ prop: Realm.RLMProperty)
+}
+extension Data : RealmSwift._ManagedPropertyType {
+  public static func _rlmProperty(_ prop: Realm.RLMProperty)
+}
+extension NSData : RealmSwift._ManagedPropertyType {
+  public static func _rlmProperty(_ prop: Realm.RLMProperty)
+}
+extension Date : RealmSwift._ManagedPropertyType {
+  public static func _rlmProperty(_ prop: Realm.RLMProperty)
+}
+extension NSDate : RealmSwift._ManagedPropertyType {
+  public static func _rlmProperty(_ prop: Realm.RLMProperty)
+}
+extension Object : RealmSwift._ManagedPropertyType {
+  public static func _rlmProperty(_ prop: Realm.RLMProperty)
+}
+extension List : RealmSwift._ManagedPropertyType where Element : RealmSwift._ManagedPropertyType {
+  public static func _rlmProperty(_ prop: Realm.RLMProperty)
+  public static func _rlmRequireObjc() -> Swift.Bool
+}
+extension LinkingObjects : RealmSwift._ManagedPropertyType {
+  public static func _rlmProperty(_ prop: Realm.RLMProperty)
+  public func _rlmProperty(_ prop: Realm.RLMProperty)
+  public static func _rlmRequireObjc() -> Swift.Bool
+}
+extension Optional : RealmSwift._ManagedPropertyType where Wrapped : RealmSwift._ManagedPropertyType {
+  public static func _rlmProperty(_ prop: Realm.RLMProperty)
+}
+extension RealmOptional : RealmSwift._ManagedPropertyType where Value : RealmSwift._ManagedPropertyType {
+  public static func _rlmProperty(_ prop: Realm.RLMProperty)
+  public static func _rlmRequireObjc() -> Swift.Bool
+}
+extension ObjectiveCSupport {
+  public static func convert(object: RealmSwift.SyncCredentials) -> Realm.RLMSyncCredentials
+  public static func convert(object: Realm.RLMSyncCredentials) -> RealmSwift.SyncCredentials
+  public static func convert(object: RealmSwift.SyncConfiguration) -> Realm.RLMSyncConfiguration
+  public static func convert(object: Realm.RLMSyncConfiguration) -> RealmSwift.SyncConfiguration
+  public static func convert(object: Realm.RLMSyncSubscription) -> RealmSwift.SyncSubscription
+}
+public struct ObjectiveCSupport {
+  public static func convert<T>(object: RealmSwift.Results<T>) -> Realm.RLMResults<Swift.AnyObject> where T : RealmSwift.RealmCollectionValue
+  public static func convert(object: Realm.RLMResults<Swift.AnyObject>) -> RealmSwift.Results<RealmSwift.Object>
+  public static func convert<T>(object: RealmSwift.List<T>) -> Realm.RLMArray<Swift.AnyObject> where T : RealmSwift.RealmCollectionValue
+  public static func convert(object: Realm.RLMArray<Swift.AnyObject>) -> RealmSwift.List<RealmSwift.Object>
+  public static func convert<T>(object: RealmSwift.LinkingObjects<T>) -> Realm.RLMResults<Swift.AnyObject> where T : RealmSwift.Object
+  public static func convert(object: Realm.RLMLinkingObjects<Realm.RLMObject>) -> RealmSwift.Results<RealmSwift.Object>
+  public static func convert(object: RealmSwift.Realm) -> Realm.RLMRealm
+  public static func convert(object: Realm.RLMRealm) -> RealmSwift.Realm
+  public static func convert(object: RealmSwift.Migration) -> Realm.RLMMigration
+  public static func convert(object: Realm.RLMMigration) -> RealmSwift.Migration
+  public static func convert(object: RealmSwift.ObjectSchema) -> Realm.RLMObjectSchema
+  public static func convert(object: Realm.RLMObjectSchema) -> RealmSwift.ObjectSchema
+  public static func convert(object: RealmSwift.Property) -> Realm.RLMProperty
+  public static func convert(object: Realm.RLMProperty) -> RealmSwift.Property
+  public static func convert(object: RealmSwift.Realm.Configuration) -> Realm.RLMRealmConfiguration
+  public static func convert(object: Realm.RLMRealmConfiguration) -> RealmSwift.Realm.Configuration
+  public static func convert(object: RealmSwift.Schema) -> Realm.RLMSchema
+  public static func convert(object: Realm.RLMSchema) -> RealmSwift.Schema
+  public static func convert(object: RealmSwift.SortDescriptor) -> Realm.RLMSortDescriptor
+  public static func convert(object: Realm.RLMSortDescriptor) -> RealmSwift.SortDescriptor
+  public static func convert(object: @escaping Realm.RLMShouldCompactOnLaunchBlock) -> (Swift.Int, Swift.Int) -> Swift.Bool
+  public static func convert(object: @escaping (Swift.Int, Swift.Int) -> Swift.Bool) -> Realm.RLMShouldCompactOnLaunchBlock
+}
+public struct ObjectSchema : Swift.CustomStringConvertible {
+  public var properties: [RealmSwift.Property] {
+    get
+  }
+  public var className: Swift.String {
+    get
+  }
+  public var objectClass: Swift.AnyClass {
+    get
+  }
+  public var primaryKeyProperty: RealmSwift.Property? {
+    get
+  }
+  public var description: Swift.String {
+    get
+  }
+  public subscript(propertyName: Swift.String) -> RealmSwift.Property? {
+    get
+  }
+}
+extension ObjectSchema : Swift.Equatable {
+  public static func == (lhs: RealmSwift.ObjectSchema, rhs: RealmSwift.ObjectSchema) -> Swift.Bool
+}
+public protocol RealmOptionalType {
+}
+extension RealmOptionalType {
+  public static func className() -> Swift.String
+}
+extension Int : RealmSwift.RealmOptionalType {
+}
+extension Int8 : RealmSwift.RealmOptionalType {
+}
+extension Int16 : RealmSwift.RealmOptionalType {
+}
+extension Int32 : RealmSwift.RealmOptionalType {
+}
+extension Int64 : RealmSwift.RealmOptionalType {
+}
+extension Float : RealmSwift.RealmOptionalType {
+}
+extension Double : RealmSwift.RealmOptionalType {
+}
+extension Bool : RealmSwift.RealmOptionalType {
+}
+final public class RealmOptional<Value> : Realm.RLMOptionalBase where Value : RealmSwift.RealmOptionalType {
+  final public var value: Value? {
+    get
+    set
+  }
+  public init(_ value: Value? = nil)
+  @objc deinit
+  @objc override dynamic public init()
+}
+extension RealmOptional : Swift.Codable where Value : Swift.Decodable, Value : Swift.Encodable {
+  convenience public init(from decoder: Swift.Decoder) throws
+  final public func encode(to encoder: Swift.Encoder) throws
+}
+public struct Property : Swift.CustomStringConvertible {
+  public var name: Swift.String {
+    get
+  }
+  public var type: RealmSwift.PropertyType {
+    get
+  }
+  public var isArray: Swift.Bool {
+    get
+  }
+  public var isIndexed: Swift.Bool {
+    get
+  }
+  public var isOptional: Swift.Bool {
+    get
+  }
+  public var objectClassName: Swift.String? {
+    get
+  }
+  public var description: Swift.String {
+    get
+  }
+}
+extension Property : Swift.Equatable {
+  public static func == (lhs: RealmSwift.Property, rhs: RealmSwift.Property) -> Swift.Bool
+}
+public struct Realm {
+  public var schema: RealmSwift.Schema {
+    get
+  }
+  public var configuration: RealmSwift.Realm.Configuration {
+    get
+  }
+  public var isEmpty: Swift.Bool {
+    get
+  }
+  public init(queue: Dispatch.DispatchQueue? = nil) throws
+  public init(configuration: RealmSwift.Realm.Configuration, queue: Dispatch.DispatchQueue? = nil) throws
+  public init(fileURL: Foundation.URL) throws
+  @discardableResult
+  public static func asyncOpen(configuration: RealmSwift.Realm.Configuration = .defaultConfiguration, callbackQueue: Dispatch.DispatchQueue = .main, callback: @escaping (RealmSwift.Realm?, Swift.Error?) -> Swift.Void) -> RealmSwift.Realm.AsyncOpenTask
+  public struct AsyncOpenTask {
+    public func cancel()
+    public func addProgressNotification(queue: Dispatch.DispatchQueue = .main, block: @escaping (RealmSwift.SyncSession.Progress) -> Swift.Void)
+  }
+  @discardableResult
+  public func write<Result>(withoutNotifying tokens: [RealmSwift.NotificationToken] = [], _ block: (() throws -> Result)) throws -> Result
+  public func beginWrite()
+  public func commitWrite(withoutNotifying tokens: [RealmSwift.NotificationToken] = []) throws
+  public func cancelWrite()
+  public var isInWriteTransaction: Swift.Bool {
+    get
+  }
+  public enum UpdatePolicy : Swift.Int {
+    case error
+    case modified
+    case all
+    public typealias RawValue = Swift.Int
+    public init?(rawValue: Swift.Int)
+    public var rawValue: Swift.Int {
+      get
+    }
+  }
+  @available(*, unavailable, message: "Pass .error, .modified or .all rather than a boolean. .error is equivalent to false and .all is equivalent to true.")
+  public func add(_ object: RealmSwift.Object, update: Swift.Bool)
+  public func add(_ object: RealmSwift.Object, update: RealmSwift.Realm.UpdatePolicy = .error)
+  @available(*, unavailable, message: "Pass .error, .modified or .all rather than a boolean. .error is equivalent to false and .all is equivalent to true.")
+  public func add<S>(_ objects: S, update: Swift.Bool) where S : Swift.Sequence, S.Element : RealmSwift.Object
+  public func add<S>(_ objects: S, update: RealmSwift.Realm.UpdatePolicy = .error) where S : Swift.Sequence, S.Element : RealmSwift.Object
+  @discardableResult
+  @available(*, unavailable, message: "Pass .error, .modified or .all rather than a boolean. .error is equivalent to false and .all is equivalent to true.")
+  public func create<T>(_ type: T.Type, value: Any = [:], update: Swift.Bool) -> T where T : RealmSwift.Object
+  @discardableResult
+  public func create<T>(_ type: T.Type, value: Any = [:], update: RealmSwift.Realm.UpdatePolicy = .error) -> T where T : RealmSwift.Object
+  @discardableResult
+  @available(*, unavailable, message: "Pass .error, .modified or .all rather than a boolean. .error is equivalent to false and .all is equivalent to true.")
+  public func dynamicCreate(_ typeName: Swift.String, value: Any = [:], update: Swift.Bool) -> RealmSwift.DynamicObject
+  @discardableResult
+  public func dynamicCreate(_ typeName: Swift.String, value: Any = [:], update: RealmSwift.Realm.UpdatePolicy = .error) -> RealmSwift.DynamicObject
+  public func delete(_ object: RealmSwift.Object)
+  public func delete<S>(_ objects: S) where S : Swift.Sequence, S.Element : RealmSwift.Object
+  public func delete<Element>(_ objects: RealmSwift.List<Element>) where Element : RealmSwift.Object
+  public func delete<Element>(_ objects: RealmSwift.Results<Element>) where Element : RealmSwift.Object
+  public func deleteAll()
+  public func objects<Element>(_ type: Element.Type) -> RealmSwift.Results<Element> where Element : RealmSwift.Object
+  public func dynamicObjects(_ typeName: Swift.String) -> RealmSwift.Results<RealmSwift.DynamicObject>
+  public func object<Element, KeyType>(ofType type: Element.Type, forPrimaryKey key: KeyType) -> Element? where Element : RealmSwift.Object
+  public func dynamicObject(ofType typeName: Swift.String, forPrimaryKey key: Any) -> RealmSwift.DynamicObject?
+  public func observe(_ block: @escaping RealmSwift.NotificationBlock) -> RealmSwift.NotificationToken
+  public var autorefresh: Swift.Bool {
+    get
+    nonmutating set
+  }
+  @discardableResult
+  public func refresh() -> Swift.Bool
+  public var isFrozen: Swift.Bool {
+    get
+  }
+  public func freeze() -> RealmSwift.Realm
+  public func freeze<T>(_ obj: T) -> T where T : RealmSwift.Object
+  public func freeze<Collection>(_ collection: Collection) -> Collection where Collection : RealmSwift.RealmCollection
+  public func invalidate()
+  public func writeCopy(toFile fileURL: Foundation.URL, encryptionKey: Foundation.Data? = nil) throws
+  public static func fileExists(for config: RealmSwift.Realm.Configuration) -> Swift.Bool
+  public static func deleteFiles(for config: RealmSwift.Realm.Configuration) throws -> Swift.Bool
+}
+extension Realm : Swift.Equatable {
+  public static func == (lhs: RealmSwift.Realm, rhs: RealmSwift.Realm) -> Swift.Bool
+}
+extension Realm {
+  public enum Notification : Swift.String {
+    case didChange
+    case refreshRequired
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+}
+public typealias NotificationBlock = (RealmSwift.Realm.Notification, RealmSwift.Realm) -> Swift.Void
+public struct RLMIterator<Element> : Swift.IteratorProtocol where Element : RealmSwift.RealmCollectionValue {
+  public mutating func next() -> Element?
+}
+public enum RealmCollectionChange<CollectionType> {
+  case initial(CollectionType)
+  case update(CollectionType, deletions: [Swift.Int], insertions: [Swift.Int], modifications: [Swift.Int])
+  case error(Swift.Error)
+}
+public protocol RealmCollectionValue : Swift.Equatable {
+  static func _rlmArray() -> Realm.RLMArray<Swift.AnyObject>
+  static func _nilValue() -> Self
+}
+extension RealmCollectionValue {
+  public static func _rlmArray() -> Realm.RLMArray<Swift.AnyObject>
+  public static func _nilValue() -> Self
+}
+extension Optional : RealmSwift.RealmCollectionValue where Wrapped : RealmSwift.RealmCollectionValue {
+  public static func _rlmArray() -> Realm.RLMArray<Swift.AnyObject>
+  public static func _nilValue() -> Swift.Optional<Wrapped>
+}
+extension Int : RealmSwift.RealmCollectionValue {
+}
+extension Int8 : RealmSwift.RealmCollectionValue {
+}
+extension Int16 : RealmSwift.RealmCollectionValue {
+}
+extension Int32 : RealmSwift.RealmCollectionValue {
+}
+extension Int64 : RealmSwift.RealmCollectionValue {
+}
+extension Float : RealmSwift.RealmCollectionValue {
+  public static func _rlmArray() -> Realm.RLMArray<Swift.AnyObject>
+}
+extension Double : RealmSwift.RealmCollectionValue {
+  public static func _rlmArray() -> Realm.RLMArray<Swift.AnyObject>
+}
+extension Bool : RealmSwift.RealmCollectionValue {
+  public static func _rlmArray() -> Realm.RLMArray<Swift.AnyObject>
+}
+extension String : RealmSwift.RealmCollectionValue {
+  public static func _rlmArray() -> Realm.RLMArray<Swift.AnyObject>
+}
+extension Date : RealmSwift.RealmCollectionValue {
+  public static func _rlmArray() -> Realm.RLMArray<Swift.AnyObject>
+}
+extension Data : RealmSwift.RealmCollectionValue {
+  public static func _rlmArray() -> Realm.RLMArray<Swift.AnyObject>
+}
+public protocol _RealmCollectionEnumerator {
+  func _asNSFastEnumerator() -> Any
+}
+public protocol RealmCollectionBase : RealmSwift.ThreadConfined, Swift.CustomStringConvertible, Swift.LazyCollectionProtocol, Swift.RandomAccessCollection where Self.Element : RealmSwift.RealmCollectionValue {
+  typealias ElementType = Self.Element
+}
+public protocol RealmCollection : RealmSwift.RealmCollectionBase, RealmSwift._RealmCollectionEnumerator {
+  var realm: RealmSwift.Realm? { get }
+  var isInvalidated: Swift.Bool { get }
+  var count: Swift.Int { get }
+  var description: Swift.String { get }
+  func index(of object: Self.Element) -> Swift.Int?
+  func index(matching predicate: Foundation.NSPredicate) -> Swift.Int?
+  func index(matching predicateFormat: Swift.String, _ args: Any...) -> Swift.Int?
+  func filter(_ predicateFormat: Swift.String, _ args: Any...) -> RealmSwift.Results<Self.Element>
+  func filter(_ predicate: Foundation.NSPredicate) -> RealmSwift.Results<Self.Element>
+  func sorted(byKeyPath keyPath: Swift.String, ascending: Swift.Bool) -> RealmSwift.Results<Self.Element>
+  func sorted<S>(by sortDescriptors: S) -> RealmSwift.Results<Self.Element> where S : Swift.Sequence, S.Element == RealmSwift.SortDescriptor
+  func min<T>(ofProperty property: Swift.String) -> T? where T : RealmSwift.MinMaxType
+  func max<T>(ofProperty property: Swift.String) -> T? where T : RealmSwift.MinMaxType
+  func sum<T>(ofProperty property: Swift.String) -> T where T : RealmSwift.AddableType
+  func average(ofProperty property: Swift.String) -> Swift.Double?
+  func value(forKey key: Swift.String) -> Any?
+  func value(forKeyPath keyPath: Swift.String) -> Any?
+  func setValue(_ value: Any?, forKey key: Swift.String)
+  func observe(on queue: Dispatch.DispatchQueue?, _ block: @escaping (RealmSwift.RealmCollectionChange<Self>) -> Swift.Void) -> RealmSwift.NotificationToken
+  func _observe(_ queue: Dispatch.DispatchQueue?, _ block: @escaping (RealmSwift.RealmCollectionChange<RealmSwift.AnyRealmCollection<Self.Element>>) -> Swift.Void) -> RealmSwift.NotificationToken
+  var isFrozen: Swift.Bool { get }
+  func freeze() -> Self
+}
+extension RealmCollection {
+  public func index(matching predicateFormat: Swift.String, _ args: Any...) -> Swift.Int?
+  public func filter(_ predicateFormat: Swift.String, _ args: Any...) -> RealmSwift.Results<Self.Element>
+}
+public protocol OptionalProtocol {
+  associatedtype Wrapped
+  func _rlmInferWrappedType() -> Self.Wrapped
+}
+extension Optional : RealmSwift.OptionalProtocol {
+  public func _rlmInferWrappedType() -> Wrapped
+}
+extension RealmCollection where Self.Element : RealmSwift.MinMaxType {
+  public func min() -> Self.Element?
+  public func max() -> Self.Element?
+}
+extension RealmCollection where Self.Element : RealmSwift.OptionalProtocol, Self.Element.Wrapped : RealmSwift.MinMaxType {
+  public func min() -> Self.Element.Wrapped?
+  public func max() -> Self.Element.Wrapped?
+}
+extension RealmCollection where Self.Element : RealmSwift.AddableType {
+  public func sum() -> Self.Element
+  public func average() -> Swift.Double?
+}
+extension RealmCollection where Self.Element : RealmSwift.OptionalProtocol, Self.Element.Wrapped : RealmSwift.AddableType {
+  public func sum() -> Self.Element.Wrapped
+  public func average() -> Swift.Double?
+}
+extension RealmCollection where Self.Element : Swift.Comparable {
+  public func sorted(ascending: Swift.Bool = true) -> RealmSwift.Results<Self.Element>
+}
+extension RealmCollection where Self.Element : RealmSwift.OptionalProtocol, Self.Element.Wrapped : Swift.Comparable {
+  public func sorted(ascending: Swift.Bool = true) -> RealmSwift.Results<Self.Element>
+}
+public struct AnyRealmCollection<Element> : RealmSwift.RealmCollection where Element : RealmSwift.RealmCollectionValue {
+  public typealias ElementType = Element
+  public func index(after i: Swift.Int) -> Swift.Int
+  public func index(before i: Swift.Int) -> Swift.Int
+  public init<C>(_ base: C) where Element == C.Element, C : RealmSwift.RealmCollection
+  public var realm: RealmSwift.Realm? {
+    get
+  }
+  public var isInvalidated: Swift.Bool {
+    get
+  }
+  public var count: Swift.Int {
+    get
+  }
+  public var description: Swift.String {
+    get
+  }
+  public func index(of object: Element) -> Swift.Int?
+  public func index(matching predicate: Foundation.NSPredicate) -> Swift.Int?
+  public func filter(_ predicate: Foundation.NSPredicate) -> RealmSwift.Results<Element>
+  public func sorted(byKeyPath keyPath: Swift.String, ascending: Swift.Bool) -> RealmSwift.Results<Element>
+  public func sorted<S>(by sortDescriptors: S) -> RealmSwift.Results<Element> where S : Swift.Sequence, S.Element == RealmSwift.SortDescriptor
+  public func min<T>(ofProperty property: Swift.String) -> T? where T : RealmSwift.MinMaxType
+  public func max<T>(ofProperty property: Swift.String) -> T? where T : RealmSwift.MinMaxType
+  public func sum<T>(ofProperty property: Swift.String) -> T where T : RealmSwift.AddableType
+  public func average(ofProperty property: Swift.String) -> Swift.Double?
+  public subscript(position: Swift.Int) -> Element {
+    get
+  }
+  public func makeIterator() -> RealmSwift.RLMIterator<Element>
+  public func _asNSFastEnumerator() -> Any
+  public var startIndex: Swift.Int {
+    get
+  }
+  public var endIndex: Swift.Int {
+    get
+  }
+  public func value(forKey key: Swift.String) -> Any?
+  public func value(forKeyPath keyPath: Swift.String) -> Any?
+  public func setValue(_ value: Any?, forKey key: Swift.String)
+  public func observe(on queue: Dispatch.DispatchQueue? = nil, _ block: @escaping (RealmSwift.RealmCollectionChange<RealmSwift.AnyRealmCollection<Element>>) -> Swift.Void) -> RealmSwift.NotificationToken
+  public func _observe(_ queue: Dispatch.DispatchQueue?, _ block: @escaping (RealmSwift.RealmCollectionChange<RealmSwift.AnyRealmCollection<Element>>) -> Swift.Void) -> RealmSwift.NotificationToken
+  public var isFrozen: Swift.Bool {
+    get
+  }
+  public func freeze() -> RealmSwift.AnyRealmCollection<Element>
+  public typealias Index = Swift.Int
+  public typealias Iterator = RealmSwift.RLMIterator<Element>
+  public typealias SubSequence = Swift.Slice<RealmSwift.AnyRealmCollection<Element>>
+  public typealias Indices = Swift.Range<Swift.Int>
+  public typealias Elements = RealmSwift.AnyRealmCollection<Element>
+}
+extension Realm {
+  public struct Configuration {
+    public static var defaultConfiguration: RealmSwift.Realm.Configuration {
+      get
+      set
+    }
+    public init(fileURL: Foundation.URL? = URL(fileURLWithPath: RLMRealmPathForFile("default.realm"), isDirectory: false), inMemoryIdentifier: Swift.String? = nil, syncConfiguration: RealmSwift.SyncConfiguration? = nil, encryptionKey: Foundation.Data? = nil, readOnly: Swift.Bool = false, schemaVersion: Swift.UInt64 = 0, migrationBlock: RealmSwift.MigrationBlock? = nil, deleteRealmIfMigrationNeeded: Swift.Bool = false, shouldCompactOnLaunch: ((Swift.Int, Swift.Int) -> Swift.Bool)? = nil, objectTypes: [RealmSwift.Object.Type]? = nil)
+    public var syncConfiguration: RealmSwift.SyncConfiguration? {
+      get
+      set
+    }
+    public var fileURL: Foundation.URL? {
+      get
+      set
+    }
+    public var inMemoryIdentifier: Swift.String? {
+      get
+      set
+    }
+    public var encryptionKey: Foundation.Data?
+    public var readOnly: Swift.Bool
+    public var schemaVersion: Swift.UInt64
+    public var migrationBlock: RealmSwift.MigrationBlock?
+    public var deleteRealmIfMigrationNeeded: Swift.Bool
+    public var shouldCompactOnLaunch: ((Swift.Int, Swift.Int) -> Swift.Bool)?
+    public var objectTypes: [RealmSwift.Object.Type]? {
+      get
+      set
+    }
+    public var maximumNumberOfActiveVersions: Swift.UInt?
+  }
+}
+extension Realm.Configuration : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+public protocol MinMaxType {
+}
+extension NSNumber : RealmSwift.MinMaxType {
+}
+extension Double : RealmSwift.MinMaxType {
+}
+extension Float : RealmSwift.MinMaxType {
+}
+extension Int : RealmSwift.MinMaxType {
+}
+extension Int8 : RealmSwift.MinMaxType {
+}
+extension Int16 : RealmSwift.MinMaxType {
+}
+extension Int32 : RealmSwift.MinMaxType {
+}
+extension Int64 : RealmSwift.MinMaxType {
+}
+extension Date : RealmSwift.MinMaxType {
+}
+extension NSDate : RealmSwift.MinMaxType {
+}
+public protocol AddableType {
+  init()
+}
+extension NSNumber : RealmSwift.AddableType {
+}
+extension Double : RealmSwift.AddableType {
+}
+extension Float : RealmSwift.AddableType {
+}
+extension Int : RealmSwift.AddableType {
+}
+extension Int8 : RealmSwift.AddableType {
+}
+extension Int16 : RealmSwift.AddableType {
+}
+extension Int32 : RealmSwift.AddableType {
+}
+extension Int64 : RealmSwift.AddableType {
+}
+public struct Results<Element> : Swift.Equatable where Element : RealmSwift.RealmCollectionValue {
+  public var description: Swift.String {
+    get
+  }
+  public typealias ElementType = Element
+  public var realm: RealmSwift.Realm? {
+    get
+  }
+  public var isInvalidated: Swift.Bool {
+    get
+  }
+  public var count: Swift.Int {
+    get
+  }
+  public func index(of object: Element) -> Swift.Int?
+  public func index(matching predicate: Foundation.NSPredicate) -> Swift.Int?
+  public subscript(position: Swift.Int) -> Element {
+    get
+  }
+  public var first: Element? {
+    get
+  }
+  public var last: Element? {
+    get
+  }
+  public func value(forKey key: Swift.String) -> Any?
+  public func value(forKeyPath keyPath: Swift.String) -> Any?
+  public func setValue(_ value: Any?, forKey key: Swift.String)
+  public func filter(_ predicate: Foundation.NSPredicate) -> RealmSwift.Results<Element>
+  public func sorted(byKeyPath keyPath: Swift.String, ascending: Swift.Bool = true) -> RealmSwift.Results<Element>
+  public func sorted<S>(by sortDescriptors: S) -> RealmSwift.Results<Element> where S : Swift.Sequence, S.Element == RealmSwift.SortDescriptor
+  public func distinct<S>(by keyPaths: S) -> RealmSwift.Results<Element> where S : Swift.Sequence, S.Element == Swift.String
+  public func min<T>(ofProperty property: Swift.String) -> T? where T : RealmSwift.MinMaxType
+  public func max<T>(ofProperty property: Swift.String) -> T? where T : RealmSwift.MinMaxType
+  public func sum<T>(ofProperty property: Swift.String) -> T where T : RealmSwift.AddableType
+  public func average<T>(ofProperty property: Swift.String) -> T? where T : RealmSwift.AddableType
+  public func observe(on queue: Dispatch.DispatchQueue? = nil, _ block: @escaping (RealmSwift.RealmCollectionChange<RealmSwift.Results<Element>>) -> Swift.Void) -> RealmSwift.NotificationToken
+  public var isFrozen: Swift.Bool {
+    get
+  }
+  public func freeze() -> RealmSwift.Results<Element>
+  public static func == (a: RealmSwift.Results<Element>, b: RealmSwift.Results<Element>) -> Swift.Bool
+}
+extension Results : RealmSwift.RealmCollection {
+  public func makeIterator() -> RealmSwift.RLMIterator<Element>
+  public func _asNSFastEnumerator() -> Any
+  public var startIndex: Swift.Int {
+    get
+  }
+  public var endIndex: Swift.Int {
+    get
+  }
+  public func index(after i: Swift.Int) -> Swift.Int
+  public func index(before i: Swift.Int) -> Swift.Int
+  public func _observe(_ queue: Dispatch.DispatchQueue?, _ block: @escaping (RealmSwift.RealmCollectionChange<RealmSwift.AnyRealmCollection<Element>>) -> Swift.Void) -> RealmSwift.NotificationToken
+  public typealias Index = Swift.Int
+  public typealias Iterator = RealmSwift.RLMIterator<Element>
+  public typealias SubSequence = Swift.Slice<RealmSwift.Results<Element>>
+  public typealias Indices = Swift.Range<Swift.Int>
+  public typealias Elements = RealmSwift.Results<Element>
+}
+extension Results : Swift.Encodable where Element : Swift.Encodable {
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct Schema : Swift.CustomStringConvertible {
+  public var objectSchema: [RealmSwift.ObjectSchema] {
+    get
+  }
+  public var description: Swift.String {
+    get
+  }
+  public subscript(className: Swift.String) -> RealmSwift.ObjectSchema? {
+    get
+  }
+}
+extension Schema : Swift.Equatable {
+  public static func == (lhs: RealmSwift.Schema, rhs: RealmSwift.Schema) -> Swift.Bool
+}
+public struct SortDescriptor {
+  public let keyPath: Swift.String
+  public let ascending: Swift.Bool
+  public init(keyPath: Swift.String, ascending: Swift.Bool = true)
+  public func reversed() -> RealmSwift.SortDescriptor
+}
+extension SortDescriptor : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension SortDescriptor : Swift.Equatable {
+  public static func == (lhs: RealmSwift.SortDescriptor, rhs: RealmSwift.SortDescriptor) -> Swift.Bool
+}
+extension SortDescriptor : Swift.ExpressibleByStringLiteral {
+  public typealias UnicodeScalarLiteralType = Swift.StringLiteralType
+  public typealias ExtendedGraphemeClusterLiteralType = Swift.StringLiteralType
+  public init(stringLiteral value: Swift.StringLiteralType)
+  public typealias StringLiteralType = Swift.StringLiteralType
+}
+public typealias SyncUser = Realm.RLMSyncUser
+public typealias SyncUserInfo = Realm.RLMSyncUserInfo
+public typealias SyncUserAccountInfo = Realm.RLMSyncUserAccountInfo
+public typealias SyncManager = Realm.RLMSyncManager
+extension RLMSyncManager {
+  public static var shared: RealmSwift.SyncManager {
+    get
+  }
+}
+public typealias SyncTimeoutOptions = Realm.RLMSyncTimeoutOptions
+public typealias SyncSession = Realm.RLMSyncSession
+public typealias ErrorReportingBlock = Realm.RLMSyncErrorReportingBlock
+public typealias UserCompletionBlock = Realm.RLMUserCompletionBlock
+public typealias SyncError = Realm.RLMSyncError
+extension RLMSyncError {
+  public typealias ActionToken = Realm.RLMSyncErrorActionToken
+  public func clientResetInfo() -> (Swift.String, RealmSwift.SyncError.ActionToken)?
+  public func deleteRealmUserInfo() -> RealmSwift.SyncError.ActionToken?
+}
+public typealias SyncAuthError = Realm.RLMSyncAuthError
+public typealias SyncLogLevel = Realm.RLMSyncLogLevel
+public typealias Provider = Realm.RLMIdentityProvider
+public enum ServerValidationPolicy {
+  case none
+  case system
+  case pinCertificate(path: Foundation.URL)
+}
+public struct SyncConfiguration {
+  public let user: RealmSwift.SyncUser
+  public let realmURL: Foundation.URL
+  public let serverValidationPolicy: RealmSwift.ServerValidationPolicy
+  @available(*, unavailable, message: "Use serverValidationPolicy instead")
+  public var enableSSLValidation: Swift.Bool {
+    get
+  }
+  @available(*, unavailable, message: "Use fullSynchronization instead")
+  public var isPartial: Swift.Bool {
+    get
+  }
+  public let fullSynchronization: Swift.Bool
+  public let urlPrefix: Swift.String?
+  public let cancelAsyncOpenOnNonFatalErrors: Swift.Bool
+  @available(*, unavailable, message: "Use SyncUser.configuration() instead")
+  public init(user: RealmSwift.SyncUser, realmURL: Foundation.URL, enableSSLValidation: Swift.Bool = true, isPartial: Swift.Bool = false, urlPrefix: Swift.String? = nil)
+  @available(*, unavailable, message: "Use SyncUser.configuration() instead")
+  public static func automatic() -> RealmSwift.Realm.Configuration
+  @available(*, unavailable, message: "Use SyncUser.configuration() instead")
+  public static func automatic(user: RealmSwift.SyncUser) -> RealmSwift.Realm.Configuration
+}
+public struct SyncCredentials {
+  public typealias Token = Swift.String
+  public init(customToken token: RealmSwift.SyncCredentials.Token, provider: RealmSwift.Provider, userInfo: [Swift.String : Any] = [:])
+  public static func facebook(token: RealmSwift.SyncCredentials.Token) -> RealmSwift.SyncCredentials
+  public static func google(token: RealmSwift.SyncCredentials.Token) -> RealmSwift.SyncCredentials
+  public static func cloudKit(token: RealmSwift.SyncCredentials.Token) -> RealmSwift.SyncCredentials
+  public static func usernamePassword(username: Swift.String, password: Swift.String, register: Swift.Bool = false) -> RealmSwift.SyncCredentials
+  public static func accessToken(_ accessToken: Swift.String, identity: Swift.String) -> RealmSwift.SyncCredentials
+  public static func jwt(_ token: RealmSwift.SyncCredentials.Token) -> RealmSwift.SyncCredentials
+  @available(*, deprecated, message: "Use usernamePassword instead.")
+  public static func nickname(_ nickname: Swift.String, isAdmin: Swift.Bool = false) -> RealmSwift.SyncCredentials
+  public static func anonymous() -> RealmSwift.SyncCredentials
+  public static func customRefreshToken(_ token: Swift.String, identity: Swift.String, isAdmin: Swift.Bool = false) -> RealmSwift.SyncCredentials
+}
+extension RLMSyncUser {
+  public static func logIn(with credentials: RealmSwift.SyncCredentials, server authServerURL: Foundation.URL, timeout: Foundation.TimeInterval = 30, callbackQueue queue: Dispatch.DispatchQueue = DispatchQueue.main, onCompletion completion: @escaping RealmSwift.UserCompletionBlock)
+  public static var all: [Swift.String : RealmSwift.SyncUser] {
+    get
+  }
+  public static var current: RealmSwift.SyncUser? {
+    get
+  }
+  @nonobjc public var errorHandler: ((RealmSwift.SyncUser, RealmSwift.SyncAuthError) -> Swift.Void)? {
+    get
+    set
+  }
+  public func createOfferForRealm(at url: Foundation.URL, accessLevel: RealmSwift.SyncAccessLevel, expiration: Foundation.Date? = nil, callback: @escaping (Swift.String?, Swift.Error?) -> Swift.Void)
+  public func configuration(realmURL: Foundation.URL? = nil, fullSynchronization: Swift.Bool = false, enableSSLValidation: Swift.Bool, urlPrefix: Swift.String? = nil) -> RealmSwift.Realm.Configuration
+  public func configuration(realmURL: Foundation.URL? = nil, fullSynchronization: Swift.Bool = false, serverValidationPolicy: RealmSwift.ServerValidationPolicy = .system, urlPrefix: Swift.String? = nil, cancelAsyncOpenOnNonFatalErrors: Swift.Bool = false) -> RealmSwift.Realm.Configuration
+}
+public typealias SyncPermission = Realm.RLMSyncPermission
+public typealias SyncAccessLevel = Realm.RLMSyncAccessLevel
+extension RLMSyncSession {
+  public typealias State = Realm.RLMSyncSessionState
+  public typealias ConnectionState = Realm.RLMSyncConnectionState
+  public enum ProgressDirection {
+    case upload
+    case download
+    public static func == (a: Realm.RLMSyncSession.ProgressDirection, b: Realm.RLMSyncSession.ProgressDirection) -> Swift.Bool
+    public var hashValue: Swift.Int {
+      get
+    }
+    public func hash(into hasher: inout Swift.Hasher)
+  }
+  public enum ProgressMode {
+    case reportIndefinitely
+    case forCurrentlyOutstandingWork
+    public static func == (a: Realm.RLMSyncSession.ProgressMode, b: Realm.RLMSyncSession.ProgressMode) -> Swift.Bool
+    public var hashValue: Swift.Int {
+      get
+    }
+    public func hash(into hasher: inout Swift.Hasher)
+  }
+  public typealias ProgressNotificationToken = Realm.RLMProgressNotificationToken
+  public struct Progress {
+    public let transferredBytes: Swift.Int
+    public let transferrableBytes: Swift.Int
+    public var fractionTransferred: Swift.Double {
+      get
+    }
+    public var isTransferComplete: Swift.Bool {
+      get
+    }
+  }
+  public func addProgressNotification(for direction: Realm.RLMSyncSession.ProgressDirection, mode: Realm.RLMSyncSession.ProgressMode, block: @escaping (Realm.RLMSyncSession.Progress) -> Swift.Void) -> Realm.RLMSyncSession.ProgressNotificationToken?
+}
+extension Realm {
+  @available(*, unavailable, message: "Use Results.subscribe()")
+  public func subscribe<T>(to objects: T.Type, where: Swift.String, completion: @escaping (RealmSwift.Results<T>?, Swift.Error?) -> Swift.Void) where T : RealmSwift.Object
+  public var syncSession: RealmSwift.SyncSession? {
+    get
+  }
+}
+extension RLMSyncPermission : RealmSwift.RealmCollectionValue {
+}
+public typealias SyncPermissionResults = [RealmSwift.SyncPermission]
+public enum SyncSubscriptionState : Swift.Equatable {
+  case creating
+  case pending
+  case complete
+  case invalidated
+  case error(Swift.Error)
+  public static func == (lhs: RealmSwift.SyncSubscriptionState, rhs: RealmSwift.SyncSubscriptionState) -> Swift.Bool
+}
+public struct SyncSubscription : RealmSwift.RealmCollectionValue {
+  public var name: Swift.String? {
+    get
+  }
+  public var state: RealmSwift.SyncSubscriptionState {
+    get
+  }
+  public var query: Swift.String? {
+    get
+  }
+  public var createdAt: Foundation.Date? {
+    get
+  }
+  public var updatedAt: Foundation.Date? {
+    get
+  }
+  public var expiresAt: Foundation.Date? {
+    get
+  }
+  public var timeToLive: Foundation.TimeInterval? {
+    get
+  }
+  public static func == (lhs: RealmSwift.SyncSubscription, rhs: RealmSwift.SyncSubscription) -> Swift.Bool
+  public func observe(_ keyPath: Swift.KeyPath<RealmSwift.SyncSubscription, RealmSwift.SyncSubscriptionState>, options: Foundation.NSKeyValueObservingOptions = [], _ block: @escaping (RealmSwift.SyncSubscriptionState) -> Swift.Void) -> RealmSwift.NotificationToken
+  public func unsubscribe()
+}
+extension Results {
+  public func subscribe(named subscriptionName: Swift.String? = nil, limit: Swift.Int? = nil, update: Swift.Bool = false, timeToLive: Foundation.TimeInterval? = nil, includingLinkingObjects: [Swift.String] = []) -> RealmSwift.SyncSubscription
+}
+@_inheritsConvenienceInitializers @objc(RealmSwiftPermission) public class Permission : RealmSwift.Object {
+  @objc dynamic public var role: RealmSwift.PermissionRole?
+  @objc dynamic public var canRead: Swift.Bool
+  @objc dynamic public var canUpdate: Swift.Bool
+  @objc dynamic public var canDelete: Swift.Bool
+  @objc dynamic public var canSetPermissions: Swift.Bool
+  @objc dynamic public var canQuery: Swift.Bool
+  @objc dynamic public var canCreate: Swift.Bool
+  @objc dynamic public var canModifySchema: Swift.Bool
+  @objc override dynamic public class func _realmObjectName() -> Swift.String
+  @objc deinit
+  @objc required dynamic public init()
+}
+@_inheritsConvenienceInitializers @objc(RealmSwiftPermissionRole) public class PermissionRole : RealmSwift.Object {
+  @objc dynamic public var name: Swift.String
+  final public let users: RealmSwift.List<RealmSwift.PermissionUser>
+  @objc override dynamic public class func _realmObjectName() -> Swift.String
+  @objc override public class func primaryKey() -> Swift.String
+  @objc override dynamic public class func _realmColumnNames() -> [Swift.String : Swift.String]
+  @objc deinit
+  @objc required dynamic public init()
+}
+@_inheritsConvenienceInitializers @objc(RealmSwiftPermissionUser) public class PermissionUser : RealmSwift.Object {
+  @objc dynamic public var identity: Swift.String
+  @objc dynamic public var role: RealmSwift.PermissionRole?
+  final public let roles: RealmSwift.LinkingObjects<RealmSwift.PermissionRole>
+  @objc override dynamic public class func _realmObjectName() -> Swift.String
+  @objc override public class func primaryKey() -> Swift.String
+  @objc override dynamic public class func _realmColumnNames() -> [Swift.String : Swift.String]
+  @objc deinit
+  @objc required dynamic public init()
+}
+@_inheritsConvenienceInitializers @objc(RealmSwiftRealmPermission) public class RealmPermission : RealmSwift.Object {
+  final public let permissions: RealmSwift.List<RealmSwift.Permission>
+  @objc override dynamic public class func _realmObjectName() -> Swift.String
+  @objc override public class func primaryKey() -> Swift.String
+  @objc deinit
+  @objc required dynamic public init()
+}
+@_inheritsConvenienceInitializers @objc(RealmSwiftClassPermission) public class ClassPermission : RealmSwift.Object {
+  @objc dynamic public var name: Swift.String
+  final public let permissions: RealmSwift.List<RealmSwift.Permission>
+  @objc override dynamic public class func _realmObjectName() -> Swift.String
+  @objc override public class func primaryKey() -> Swift.String
+  @objc deinit
+  @objc required dynamic public init()
+}
+public struct RealmPrivileges : Swift.OptionSet, Swift.CustomDebugStringConvertible {
+  public let rawValue: Swift.UInt8
+  public init(rawValue: Swift.UInt8)
+  public var debugDescription: Swift.String {
+    get
+  }
+  public static let read: RealmSwift.RealmPrivileges
+  public static let update: RealmSwift.RealmPrivileges
+  public static let setPermissions: RealmSwift.RealmPrivileges
+  public static let modifySchema: RealmSwift.RealmPrivileges
+  public typealias RawValue = Swift.UInt8
+  public typealias Element = RealmSwift.RealmPrivileges
+  public typealias ArrayLiteralElement = RealmSwift.RealmPrivileges
+}
+public struct ClassPrivileges : Swift.OptionSet, Swift.CustomDebugStringConvertible {
+  public let rawValue: Swift.UInt8
+  public init(rawValue: Swift.UInt8)
+  public var debugDescription: Swift.String {
+    get
+  }
+  public static let read: RealmSwift.ClassPrivileges
+  public static let create: RealmSwift.ClassPrivileges
+  public static let update: RealmSwift.ClassPrivileges
+  public static let subscribe: RealmSwift.ClassPrivileges
+  public static let setPermissions: RealmSwift.ClassPrivileges
+  public typealias RawValue = Swift.UInt8
+  public typealias Element = RealmSwift.ClassPrivileges
+  public typealias ArrayLiteralElement = RealmSwift.ClassPrivileges
+}
+public struct ObjectPrivileges : Swift.OptionSet, Swift.CustomDebugStringConvertible {
+  public let rawValue: Swift.UInt8
+  public init(rawValue: Swift.UInt8)
+  public var debugDescription: Swift.String {
+    get
+  }
+  public static let read: RealmSwift.ObjectPrivileges
+  public static let update: RealmSwift.ObjectPrivileges
+  public static let delete: RealmSwift.ObjectPrivileges
+  public static let setPermissions: RealmSwift.ObjectPrivileges
+  public typealias RawValue = Swift.UInt8
+  public typealias Element = RealmSwift.ObjectPrivileges
+  public typealias ArrayLiteralElement = RealmSwift.ObjectPrivileges
+}
+extension Realm {
+  public func getPrivileges() -> RealmSwift.RealmPrivileges
+  public func getPrivileges(_ object: RealmSwift.Object) -> RealmSwift.ObjectPrivileges
+  public func getPrivileges<T>(_ cls: T.Type) -> RealmSwift.ClassPrivileges where T : RealmSwift.Object
+  public func getPrivileges(forClassNamed className: Swift.String) -> RealmSwift.ClassPrivileges
+  public func permissions<T>(forType cls: T.Type) -> RealmSwift.List<RealmSwift.Permission> where T : RealmSwift.Object
+  public func permissions(forClassNamed className: Swift.String) -> RealmSwift.List<RealmSwift.Permission>
+  public var permissions: RealmSwift.List<RealmSwift.Permission> {
+    get
+  }
+  public func subscriptions() -> RealmSwift.Results<RealmSwift.SyncSubscription>
+  public func subscription(named: Swift.String) -> RealmSwift.SyncSubscription?
+}
+extension List where Element == RealmSwift.Permission {
+  final public func findOrCreate(forRoleNamed roleName: Swift.String) -> RealmSwift.Permission
+  final public func findOrCreate(forRole role: RealmSwift.PermissionRole) -> RealmSwift.Permission
+}
+public protocol ThreadConfined {
+  var realm: RealmSwift.Realm? { get }
+  var isInvalidated: Swift.Bool { get }
+  var isFrozen: Swift.Bool { get }
+  func freeze() -> Self
+}
+public struct ThreadSafeReference<Confined> where Confined : RealmSwift.ThreadConfined {
+  public var isInvalidated: Swift.Bool {
+    get
+  }
+  public init(to threadConfined: Confined)
+}
+extension Realm {
+  public func resolve<Confined>(_ reference: RealmSwift.ThreadSafeReference<Confined>) -> Confined? where Confined : RealmSwift.ThreadConfined
+}
+public func dynamicBridgeCast<T>(fromObjectiveC x: Any) -> T
+public func dynamicBridgeCast<T>(fromSwift x: T) -> Any
+extension RealmSwift.Realm.UpdatePolicy : Swift.Equatable {}
+extension RealmSwift.Realm.UpdatePolicy : Swift.Hashable {}
+extension RealmSwift.Realm.UpdatePolicy : Swift.RawRepresentable {}
+extension RealmSwift.Realm.Notification : Swift.Equatable {}
+extension RealmSwift.Realm.Notification : Swift.Hashable {}
+extension RealmSwift.Realm.Notification : Swift.RawRepresentable {}
+extension Realm.RLMSyncSession.ProgressDirection : Swift.Equatable {}
+extension Realm.RLMSyncSession.ProgressDirection : Swift.Hashable {}
+extension Realm.RLMSyncSession.ProgressMode : Swift.Equatable {}
+extension Realm.RLMSyncSession.ProgressMode : Swift.Hashable {}

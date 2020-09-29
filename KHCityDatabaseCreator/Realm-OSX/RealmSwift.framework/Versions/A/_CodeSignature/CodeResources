@@ -6,7 +6,7 @@
 	<dict>
 		<key>Resources/Info.plist</key>
 		<data>
-		ZIqVFXiTfwkpLwQZAHicfO2ko/I=
+		nJkNx02YUBwWI1OHyEjkC8AVzM0=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -26,22 +26,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			Bo8aQeT5sbpi9Ita405ZnWx9qrg=
+			Kcgz/a82AbgqDuZvDDobwk74Yg0=
 			</data>
 			<key>hash2</key>
 			<data>
-			CUfahZmjRLNB+vjc4fJipYxddZg/73aZTU58a8oZZfU=
+			LtiCAeJfE9WMnLuogVDoEFAVPIcGpc4YxQdMc9mVZKM=
 			</data>
 		</dict>
 		<key>Modules/RealmSwift.swiftmodule/Project/x86_64.swiftsourceinfo</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			Bo8aQeT5sbpi9Ita405ZnWx9qrg=
+			Kcgz/a82AbgqDuZvDDobwk74Yg0=
 			</data>
 			<key>hash2</key>
 			<data>
-			CUfahZmjRLNB+vjc4fJipYxddZg/73aZTU58a8oZZfU=
+			LtiCAeJfE9WMnLuogVDoEFAVPIcGpc4YxQdMc9mVZKM=
 			</data>
 		</dict>
 		<key>Modules/RealmSwift.swiftmodule/x86_64-apple-macos.swiftdoc</key>
@@ -55,15 +55,26 @@
 			rjlkp9GT3hA+7R0f+g1VUJ19er/upowmKFwgNaiTfDc=
 			</data>
 		</dict>
+		<key>Modules/RealmSwift.swiftmodule/x86_64-apple-macos.swiftinterface</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			bNMmwW2Qa3hutmqamgpTIcmHjPM=
+			</data>
+			<key>hash2</key>
+			<data>
+			CxITeethZUgUzFDPAGLHItI/wFLfXnYBPdApKvbLGiA=
+			</data>
+		</dict>
 		<key>Modules/RealmSwift.swiftmodule/x86_64-apple-macos.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			qJsYBRUJ6Cdn5PJyg0HE3T8R47k=
+			sm9Ka7QFqUuPvrhhrt+9ZmGXL4I=
 			</data>
 			<key>hash2</key>
 			<data>
-			2F66tgDYdcM0rL1Kuf89PmSy2NwIR0ZOjb/wN+7W7cE=
+			Udo33jfV9mqCSwWz/5Esqv9rdImtwtYx8Cxp0Bf3Z9o=
 			</data>
 		</dict>
 		<key>Modules/RealmSwift.swiftmodule/x86_64.swiftdoc</key>
@@ -77,15 +88,26 @@
 			rjlkp9GT3hA+7R0f+g1VUJ19er/upowmKFwgNaiTfDc=
 			</data>
 		</dict>
+		<key>Modules/RealmSwift.swiftmodule/x86_64.swiftinterface</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			bNMmwW2Qa3hutmqamgpTIcmHjPM=
+			</data>
+			<key>hash2</key>
+			<data>
+			CxITeethZUgUzFDPAGLHItI/wFLfXnYBPdApKvbLGiA=
+			</data>
+		</dict>
 		<key>Modules/RealmSwift.swiftmodule/x86_64.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			qJsYBRUJ6Cdn5PJyg0HE3T8R47k=
+			sm9Ka7QFqUuPvrhhrt+9ZmGXL4I=
 			</data>
 			<key>hash2</key>
 			<data>
-			2F66tgDYdcM0rL1Kuf89PmSy2NwIR0ZOjb/wN+7W7cE=
+			Udo33jfV9mqCSwWz/5Esqv9rdImtwtYx8Cxp0Bf3Z9o=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -103,11 +125,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			ZIqVFXiTfwkpLwQZAHicfO2ko/I=
+			nJkNx02YUBwWI1OHyEjkC8AVzM0=
 			</data>
 			<key>hash2</key>
 			<data>
-			KCQxPf2cBhTGaQEoi7+j9yv6gCFqvjD93tXr+brm1ms=
+			zGm0e3htA2tMiryMM4agw1tAO05taYtXft0iCp0XcTY=
 			</data>
 		</dict>
 	</dict>

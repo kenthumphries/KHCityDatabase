@@ -6,11 +6,11 @@
 	<dict>
 		<key>Resources/CHANGELOG.md</key>
 		<data>
-		Sqerb41vGlcxcBbZrQNh5il7sho=
+		yp9kHUC+TZFkynBlV9Q4JJOJpXM=
 		</data>
 		<key>Resources/Info.plist</key>
 		<data>
-		PAIkOuXwmgvZelYuJdVLYFEZhfQ=
+		MLqe+OibQsA1YS7pafnOZwyF4bM=
 		</data>
 		<key>Resources/LICENSE</key>
 		<data>
@@ -518,6 +518,17 @@
 			UhHYOlQrFbwNDQs7eT90f4TxSOKanJWARXfEh/9428w=
 			</data>
 		</dict>
+		<key>PrivateHeaders/RLMSyncPermissionResults.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			uhzLz80nseWFkZxtoJhzXUMLPDs=
+			</data>
+			<key>hash2</key>
+			<data>
+			UzFt4QQahFIMpq6FASbILHKVbyxQV25AL0MLZAFCY08=
+			</data>
+		</dict>
 		<key>PrivateHeaders/RLMSyncUtil_Private.h</key>
 		<dict>
 			<key>hash</key>
@@ -533,22 +544,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			Sqerb41vGlcxcBbZrQNh5il7sho=
+			yp9kHUC+TZFkynBlV9Q4JJOJpXM=
 			</data>
 			<key>hash2</key>
 			<data>
-			6eTdjCQEWn/8fcY76jtGem221dWXv5dJqtxWf/mD5Lw=
+			Ojkyom3z3n0WDOe5movvUhp+7WYdBwIztU3St3gaMeQ=
 			</data>
 		</dict>
 		<key>Resources/Info.plist</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			PAIkOuXwmgvZelYuJdVLYFEZhfQ=
+			MLqe+OibQsA1YS7pafnOZwyF4bM=
 			</data>
 			<key>hash2</key>
 			<data>
-			NXRVwXrY4ojQP1EonJ7p4IDqC/h3UynklkFZtOl6O3s=
+			rw1ZdZCpcllraopdzIuVkqB+ExvxpaZnHxkkj/1kMaw=
 			</data>
 		</dict>
 		<key>Resources/LICENSE</key>
