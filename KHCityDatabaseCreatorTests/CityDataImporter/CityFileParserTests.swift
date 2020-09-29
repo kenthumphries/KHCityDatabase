@@ -648,7 +648,7 @@ class CityFileParserTests: XCTestCase {
         
         var isEqual = false
         
-        let equalKeys = Array(lhs.keys) == Array(rhs.keys)
+        let equalKeys = Array(lhs.keys.sorted()) == Array(rhs.keys.sorted())
         
         if equalKeys {
             var allKeysAreEqual = true
