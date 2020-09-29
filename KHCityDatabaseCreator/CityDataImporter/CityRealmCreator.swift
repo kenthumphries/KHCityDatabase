@@ -67,7 +67,7 @@ class KHCityRealmCreator {
         let directoryURL = baseURL.appendingPathComponent(timestamp)
         
         do {
-            try _ = FileManager().createDirectory(at: directoryURL, withIntermediateDirectories: true)
+            try FileManager().createDirectory(at: directoryURL, withIntermediateDirectories: true)
         }
         catch {
             throw CityRealmCreatorError.invalidFileURL
