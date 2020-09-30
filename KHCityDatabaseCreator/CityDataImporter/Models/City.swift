@@ -24,7 +24,12 @@ open class City : Object {
     @objc open dynamic var population : Int = 0
     @objc open dynamic var latitude : CLLocationDegrees = 0.0
     @objc open dynamic var longitude : CLLocationDegrees = 0.0
+    @objc open dynamic var uniqueDescription: String?
     
+    override public static func primaryKey() -> String? {
+      return "uniqueDescription"
+    }
+
     open var position : CLLocation {
         return CLLocation(latitude: latitude, longitude: longitude)
     }
@@ -56,6 +61,7 @@ open class City : Object {
         self.population = population
         self.latitude = latitude
         self.longitude = longitude
+        self.uniqueDescription = "\(cityNameASCII)-\(admin1Code ?? "?")-\(countryCode)"
     }
     
     override open var hash : Int {

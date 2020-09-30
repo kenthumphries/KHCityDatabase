@@ -29,6 +29,7 @@ class KHCityRealmCreator {
         
         // Create the new Realm using the config
         config.fileURL = fileURL
+        config.objectTypes = [City.self]
         let realm = try populateNewRealm(config, citiesFileName: citiesFileName, admin1FileName: admin1FileName)
         
         
@@ -92,7 +93,7 @@ class KHCityRealmCreator {
         
         try realm.write({ () -> Void in
             for location in locations {
-                realm.add(location)
+                realm.add(location, update: .all)
             }
         })
         
