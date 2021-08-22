@@ -52,3 +52,6 @@ Carthage/Build
 fastlane/report.xml
 fastlane/screenshots
 .DS_Store
+env.txt
+devices.txt
+XCFramework
