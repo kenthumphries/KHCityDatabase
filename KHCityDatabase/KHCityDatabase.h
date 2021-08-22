@@ -2,11 +2,11 @@
 //  KHCityDatabase.h
 //  KHCityDatabase
 //
-//  Created by Kent Humphries on 31/01/2016.
-//  Copyright © 2016 KentHumphries. All rights reserved.
+//  Created by Kent Humphries on 22/8/21.
+//  Copyright © 2021 KentHumphries. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 //! Project version number for KHCityDatabase.
 FOUNDATION_EXPORT double KHCityDatabaseVersionNumber;
