@@ -41,7 +41,10 @@
 		373ABBA81C5EB15100D14122 /* cities1000.txt in Resources */ = {isa = PBXBuildFile; fileRef = 37397A341C5EA72C00EA5BCE /* cities1000.txt */; };
 		373ABBA91C5EB15100D14122 /* cities5000.txt in Resources */ = {isa = PBXBuildFile; fileRef = 37397A351C5EA72C00EA5BCE /* cities5000.txt */; };
 		373ABBAA1C5EB15100D14122 /* geonames-readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 37397A361C5EA72C00EA5BCE /* geonames-readme.txt */; };
+		37550E5B26D26EF10096CD7E /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 37550E5A26D26EF10096CD7E /* Realm */; };
+		37550E5D26D26EF50096CD7E /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 37550E5C26D26EF50096CD7E /* RealmSwift */; };
 		378FB8EE26D246850025EA30 /* KHCityDatabase-compacted.realm in Resources */ = {isa = PBXBuildFile; fileRef = 378FB8E426D246850025EA30 /* KHCityDatabase-compacted.realm */; };
+		378FB8FD26D24EE60025EA30 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37397A2C1C5EA72C00EA5BCE /* City.swift */; };
 		3791312C26D23C37005AAF62 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 3791312B26D23C37005AAF62 /* Realm */; };
 		3791312E26D23C37005AAF62 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3791312D26D23C37005AAF62 /* RealmSwift */; };
 		3791313B26D24481005AAF62 /* KHCityDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = 3791313926D24481005AAF62 /* KHCityDatabase.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -104,6 +107,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37550E5D26D26EF50096CD7E /* RealmSwift in Frameworks */,
+				37550E5B26D26EF10096CD7E /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,6 +323,10 @@
 			dependencies = (
 			);
 			name = KHCityDatabase;
+			packageProductDependencies = (
+				37550E5A26D26EF10096CD7E /* Realm */,
+				37550E5C26D26EF50096CD7E /* RealmSwift */,
+			);
 			productName = KHCityDatabase;
 			productReference = 3791313726D24481005AAF62 /* KHCityDatabase.framework */;
 			productType = "com.apple.product-type.framework";
@@ -457,6 +466,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				378FB8FD26D24EE60025EA30 /* City.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -831,6 +841,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		37550E5A26D26EF10096CD7E /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3791312A26D23C37005AAF62 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = Realm;
+		};
+		37550E5C26D26EF50096CD7E /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3791312A26D23C37005AAF62 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = RealmSwift;
+		};
 		3791312B26D23C37005AAF62 /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 3791312A26D23C37005AAF62 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
