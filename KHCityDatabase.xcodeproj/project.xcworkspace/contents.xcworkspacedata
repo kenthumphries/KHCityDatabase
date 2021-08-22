@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:KHCityDatabase.xcodeproj">
+      location = "self:">
    </FileRef>
 </Workspace>
