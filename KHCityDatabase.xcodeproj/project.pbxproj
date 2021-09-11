@@ -42,11 +42,11 @@
 		3791313B26D24481005AAF62 /* KHCityDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = 3791313926D24481005AAF62 /* KHCityDatabase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37A0289F26EC8CAB00FB68B4 /* CityDatabase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 37A0289D26EC8CAB00FB68B4 /* CityDatabase.xcdatamodeld */; };
 		37A028E826EC977200FB68B4 /* CityCoreDataCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A028E726EC977200FB68B4 /* CityCoreDataCreator.swift */; };
-		37DE681926ECA4F800E2F2D4 /* CityDatabase.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 37DE681626ECA4F800E2F2D4 /* CityDatabase.sqlite */; };
-		37DE681A26ECA4F800E2F2D4 /* CityDatabase.sqlite-wal in Resources */ = {isa = PBXBuildFile; fileRef = 37DE681726ECA4F800E2F2D4 /* CityDatabase.sqlite-wal */; };
-		37DE681B26ECA4F800E2F2D4 /* CityDatabase.sqlite-shm in Resources */ = {isa = PBXBuildFile; fileRef = 37DE681826ECA4F800E2F2D4 /* CityDatabase.sqlite-shm */; };
 		37DE681C26ECA50800E2F2D4 /* CityDatabase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 37A0289D26EC8CAB00FB68B4 /* CityDatabase.xcdatamodeld */; };
 		37DE681E26ECA68B00E2F2D4 /* KHCityDatabaseFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DE681D26ECA68B00E2F2D4 /* KHCityDatabaseFetcher.swift */; };
+		37DE682426ECB1B800E2F2D4 /* CityDatabase.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 37DE682126ECB1B800E2F2D4 /* CityDatabase.sqlite */; };
+		37DE682526ECB1B800E2F2D4 /* CityDatabase.sqlite-wal in Resources */ = {isa = PBXBuildFile; fileRef = 37DE682226ECB1B800E2F2D4 /* CityDatabase.sqlite-wal */; };
+		37DE682626ECB1B800E2F2D4 /* CityDatabase.sqlite-shm in Resources */ = {isa = PBXBuildFile; fileRef = 37DE682326ECB1B800E2F2D4 /* CityDatabase.sqlite-shm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,10 +84,10 @@
 		3791313A26D24481005AAF62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		37A0289E26EC8CAB00FB68B4 /* CityDatabase.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CityDatabase.xcdatamodel; sourceTree = "<group>"; };
 		37A028E726EC977200FB68B4 /* CityCoreDataCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityCoreDataCreator.swift; sourceTree = "<group>"; };
-		37DE681626ECA4F800E2F2D4 /* CityDatabase.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = CityDatabase.sqlite; sourceTree = "<group>"; };
-		37DE681726ECA4F800E2F2D4 /* CityDatabase.sqlite-wal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "CityDatabase.sqlite-wal"; sourceTree = "<group>"; };
-		37DE681826ECA4F800E2F2D4 /* CityDatabase.sqlite-shm */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CityDatabase.sqlite-shm"; sourceTree = "<group>"; };
 		37DE681D26ECA68B00E2F2D4 /* KHCityDatabaseFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KHCityDatabaseFetcher.swift; sourceTree = "<group>"; };
+		37DE682126ECB1B800E2F2D4 /* CityDatabase.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = CityDatabase.sqlite; sourceTree = "<group>"; };
+		37DE682226ECB1B800E2F2D4 /* CityDatabase.sqlite-wal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "CityDatabase.sqlite-wal"; sourceTree = "<group>"; };
+		37DE682326ECB1B800E2F2D4 /* CityDatabase.sqlite-shm */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CityDatabase.sqlite-shm"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,7 +228,7 @@
 		378FB8D326D246850025EA30 /* CreatedDatabase */ = {
 			isa = PBXGroup;
 			children = (
-				37DE681526ECA4F800E2F2D4 /* 2021-09-11_18-48-24-t1000 */,
+				37DE682026ECB1B800E2F2D4 /* 2021-09-11_19-42-24-t1000 */,
 			);
 			path = CreatedDatabase;
 			sourceTree = "<group>";
@@ -251,14 +251,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		37DE681526ECA4F800E2F2D4 /* 2021-09-11_18-48-24-t1000 */ = {
+		37DE682026ECB1B800E2F2D4 /* 2021-09-11_19-42-24-t1000 */ = {
 			isa = PBXGroup;
 			children = (
-				37DE681626ECA4F800E2F2D4 /* CityDatabase.sqlite */,
-				37DE681726ECA4F800E2F2D4 /* CityDatabase.sqlite-wal */,
-				37DE681826ECA4F800E2F2D4 /* CityDatabase.sqlite-shm */,
+				37DE682126ECB1B800E2F2D4 /* CityDatabase.sqlite */,
+				37DE682226ECB1B800E2F2D4 /* CityDatabase.sqlite-wal */,
+				37DE682326ECB1B800E2F2D4 /* CityDatabase.sqlite-shm */,
 			);
-			path = "2021-09-11_18-48-24-t1000";
+			path = "2021-09-11_19-42-24-t1000";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -419,9 +419,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				37DE681926ECA4F800E2F2D4 /* CityDatabase.sqlite in Resources */,
-				37DE681B26ECA4F800E2F2D4 /* CityDatabase.sqlite-shm in Resources */,
-				37DE681A26ECA4F800E2F2D4 /* CityDatabase.sqlite-wal in Resources */,
+				37DE682526ECB1B800E2F2D4 /* CityDatabase.sqlite-wal in Resources */,
+				37DE682426ECB1B800E2F2D4 /* CityDatabase.sqlite in Resources */,
+				37DE682626ECB1B800E2F2D4 /* CityDatabase.sqlite-shm in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

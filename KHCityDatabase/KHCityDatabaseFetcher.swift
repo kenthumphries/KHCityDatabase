@@ -9,9 +9,9 @@
 import Foundation
 import CoreData
 
-class KHCityDatabaseFetcher {
+public class KHCityDatabaseFetcher {
     
-    lazy var persistentContainer: NSPersistentContainer = {
+    public lazy var persistentContainer: NSPersistentContainer = {
         let modelName = "CityDatabase"
         guard let modelDir = Bundle(for: type(of: self)).url(forResource: modelName, withExtension: "momd") else { fatalError() }
         guard let mom = NSManagedObjectModel(contentsOf: modelDir) else { fatalError() }
@@ -25,7 +25,7 @@ class KHCityDatabaseFetcher {
         return container
     }()
     
-    func cities() throws -> [City] {
+    public func cities() throws -> [City] {
         let fetchRequest: NSFetchRequest<City> = City.fetchRequest()
         return try persistentContainer.viewContext.fetch(fetchRequest)
     }
