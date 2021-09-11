@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreLocation
+import CoreData
 
 public enum CityFileParserError : Error {
     case citiesFileNameNotFound
@@ -75,11 +76,11 @@ internal class CityFileParser: NSObject {
     
     // MARK: - parseCities
     // Cannot be in extension as it can't be tested if so (can only test funcs in extensions that return native Swift types, not custom structs like City)
-    internal func parseCities() -> [City] {
-        return self.parseCities(fromContents: self.citiesFileContents)
+    internal func parseCities(context: NSManagedObjectContext) -> [City] {
+        return self.parseCities(fromContents: self.citiesFileContents, context: context)
     }
     
-    func parseCities(fromContents citiesFileContents : String?) -> [City] {
+    func parseCities(fromContents citiesFileContents : String?, context: NSManagedObjectContext) -> [City] {
         let admin1Mapping = self.createAdmin1Mapping()
         
         var locations = [City]()
@@ -91,18 +92,32 @@ internal class CityFileParser: NSObject {
                 do {
                     let parsedValues = try self.parseCitiesValues(values, admin1Mapping: admin1Mapping)
                     
-                    let location = City(cityNamePreferred : parsedValues.cityNamePreferred,
-                                        cityNameASCII: parsedValues.cityNameASCII,
-                                        cityNameAlternates: parsedValues.cityNameAlternates,
-                                        timeZone: parsedValues.timeZone,
-                                        countryCode: parsedValues.countryCode,
-                                        countryNamePreferred: parsedValues.countryNamePreferred,
-                                        admin1Code: parsedValues.admin1Code,
-                                        admin1NamePreferred: parsedValues.admin1NamePreferred,
-                                        admin2Code: parsedValues.admin2Code,
-                                        population: parsedValues.population,
-                                        latitude: parsedValues.latitude,
-                                        longitude: parsedValues.longitude)
+                    let location = City(context: context)
+                    location.cityNamePreferred = parsedValues.cityNamePreferred
+                    location.cityNameASCII = parsedValues.cityNameASCII
+                    location.cityNameAlternates = parsedValues.cityNameAlternates
+                    location.timeZone = parsedValues.timeZone
+                    location.countryCode = parsedValues.countryCode
+                    location.countryNamePreferred = parsedValues.countryNamePreferred
+                    location.admin1Code = parsedValues.admin1Code
+                    location.admin1NamePreferred = parsedValues.admin1NamePreferred
+                    location.admin2Code = parsedValues.admin2Code
+                    location.population = parsedValues.population
+                    location.latitude = parsedValues.latitude
+                    location.longitude = parsedValues.longitude
+
+//                    let location = City(cityNamePreferred : parsedValues.cityNamePreferred,
+//                                        cityNameASCII: parsedValues.cityNameASCII,
+//                                        cityNameAlternates: parsedValues.cityNameAlternates,
+//                                        timeZone: parsedValues.timeZone,
+//                                        countryCode: parsedValues.countryCode,
+//                                        countryNamePreferred: parsedValues.countryNamePreferred,
+//                                        admin1Code: parsedValues.admin1Code,
+//                                        admin1NamePreferred: parsedValues.admin1NamePreferred,
+//                                        admin2Code: parsedValues.admin2Code,
+//                                        population: parsedValues.population,
+//                                        latitude: parsedValues.latitude,
+//                                        longitude: parsedValues.longitude)
                     locations.append(location)
                 } catch let error {
                     print("Caught error: \(error) for line: \(line)")
@@ -127,7 +142,7 @@ extension CityFileParser {
     var kCitiesTimeZoneIndex : Int { return 17 }
     
     func parseCitiesValues(_ values : [String], admin1Mapping : [String : [String : String]]) throws
-        -> (cityNamePreferred : String, cityNameASCII: String, cityNameAlternates: String?, timeZone : String, countryCode : String, countryNamePreferred : String, admin1Code : String?, admin1NamePreferred : String?, admin2Code : String?, population : Int, latitude : CLLocationDegrees, longitude : CLLocationDegrees) {
+        -> (cityNamePreferred : String, cityNameASCII: String, cityNameAlternates: String?, timeZone : String, countryCode : String, countryNamePreferred : String, admin1Code : String?, admin1NamePreferred : String?, admin2Code : String?, population : Int64, latitude : CLLocationDegrees, longitude : CLLocationDegrees) {
             
             guard values.count == kCitiesNumberOfFields else {
                 throw CityFileParserError.citiesLineUnexpectedNumberOfFields
@@ -139,7 +154,7 @@ extension CityFileParser {
                 let cityName = values[kCitiesCityIndex].nonEmpty,
                 let cityNameASCII = values[kCitiesCityASCIIIndex].nonEmpty,
                 let populationString = values[kCitiesPopulationIndex].nonEmpty,
-                let population = Int(populationString),
+                let population = Int64(populationString),
                 let latitudeString = values[kCitiesLatitudeIndex].nonEmpty,
                 let latitude = CLLocationDegrees(latitudeString),
                 let longitudeString = values[kCitiesLongitudeIndex].nonEmpty,

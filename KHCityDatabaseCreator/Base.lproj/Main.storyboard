@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1108" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <deployment version="101100" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11201"/>
+        <deployment version="101202" identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -651,11 +652,14 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+                        <connections>
+                            <outlet property="delegate" destination="B8D-0N-5wS" id="Y7j-ik-X2V"/>
+                        </connections>
                     </window>
                     <connections>
                         <segue destination="XfG-lQ-9wD" kind="relationship" relationship="window.shadowedContentViewController" id="cq2-FE-JQM"/>
@@ -674,7 +678,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PiI-MD-rVS">
-                                <rect key="frame" x="14" y="222" width="157" height="32"/>
+                                <rect key="frame" x="13" y="223" width="151" height="32"/>
                                 <buttonCell key="cell" type="push" title="Generate Database" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="QB0-9N-ROv">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -684,7 +688,7 @@
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="b6n-YY-RSi">
-                                <rect key="frame" x="18" y="204" width="444" height="17"/>
+                                <rect key="frame" x="18" y="206" width="444" height="16"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Database Path: " id="VAW-8j-ePn">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -692,7 +696,7 @@
                                 </textFieldCell>
                             </textField>
                             <button hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KLd-72-Kfh">
-                                <rect key="frame" x="14" y="168" width="137" height="32"/>
+                                <rect key="frame" x="13" y="171" width="131" height="32"/>
                                 <buttonCell key="cell" type="push" title="Reveal In Finder" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="eNM-c3-o0k">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -704,11 +708,13 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="b6n-YY-RSi" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="1BE-Qk-xgu"/>
+                            <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="KLd-72-Kfh" secondAttribute="trailing" constant="343" id="6qR-Im-f9L"/>
                             <constraint firstItem="PiI-MD-rVS" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="A1d-ps-Rfp"/>
                             <constraint firstItem="b6n-YY-RSi" firstAttribute="top" secondItem="PiI-MD-rVS" secondAttribute="bottom" constant="8" id="HBG-95-3to"/>
                             <constraint firstItem="KLd-72-Kfh" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="V6M-0g-Mcj"/>
                             <constraint firstItem="KLd-72-Kfh" firstAttribute="top" secondItem="b6n-YY-RSi" secondAttribute="bottom" constant="8" id="VB8-Yf-LHw"/>
                             <constraint firstAttribute="trailing" secondItem="b6n-YY-RSi" secondAttribute="trailing" constant="20" id="cE4-Jg-0gL"/>
+                            <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="PiI-MD-rVS" secondAttribute="trailing" constant="323" id="kS4-WO-Gfz"/>
                             <constraint firstItem="PiI-MD-rVS" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="n6O-1K-eYO"/>
                         </constraints>
                     </view>
