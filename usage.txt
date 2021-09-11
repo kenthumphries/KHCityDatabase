@@ -1,8 +1,8 @@
 1) Launch project
-4) Run KHCityDatabaseCreator
+2) Run KHCityDatabaseCreator
    Note output: this shows which cities/countries can NOT be imported
-5) Copy generated KHCityDatabase-compacted.realm and it's enclosing timestamped directory into KHCityDatabase/CreatedDatabase
-6) Ensure that only the most recent KHCityDatabase/<timestamp>/KHCityDatabase-compacted.realm is added to the Xcode target KHCityDatabase
-7) Run KHCityDatabaseFramework (target is irrelevant - it just runs a script)
+3) Copy generated CityDatabase.sqlite* (3 files) into a timestamped directory into KHCityDatabase/CreatedDatabase
+4) Ensure that only the most recent KHCityDatabase/<timestamp>/CityDatabase.sqlite* is added to the Xcode target KHCityDatabase
+5) Run KHCityDatabaseFramework (target is irrelevant - it just runs a script)
    This updates the xcframework at XCFramework/xcframeworks/KHCityDatabase.xcframework
-8) Commit everything if you haven't already
+6) Commit everything if you haven't already
