@@ -11,6 +11,10 @@ import CoreData
 
 public class KHCityDatabaseFetcher {
     
+    public init() {
+        
+    }
+    
     public lazy var persistentContainer: NSPersistentContainer = {
         let modelName = "CityDatabase"
         guard let modelDir = Bundle(for: type(of: self)).url(forResource: modelName, withExtension: "momd") else { fatalError() }
@@ -25,8 +29,9 @@ public class KHCityDatabaseFetcher {
         return container
     }()
     
-    public func cities() throws -> [City] {
+    public func cities(predicate: NSPredicate?) throws -> [City] {
         let fetchRequest: NSFetchRequest<City> = City.fetchRequest()
+        fetchRequest.predicate = predicate
         return try persistentContainer.viewContext.fetch(fetchRequest)
     }
 }
