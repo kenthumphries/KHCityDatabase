@@ -19,8 +19,12 @@ public class KHCityDatabaseFetcher {
         let modelName = "CityDatabase"
         guard let modelDir = Bundle(for: type(of: self)).url(forResource: modelName, withExtension: "momd") else { fatalError() }
         guard let mom = NSManagedObjectModel(contentsOf: modelDir) else { fatalError() }
-
+        
         let container = NSPersistentContainer(name: modelName, managedObjectModel: mom)
+        guard let bundledURL = Bundle(for: type(of: self)).url(forResource: modelName, withExtension: "sqlite") else { fatalError() }
+
+        container.persistentStoreDescriptions = [NSPersistentStoreDescription(url: bundledURL)]
+        
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")

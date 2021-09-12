@@ -13,7 +13,7 @@ import Combine
 class CityViewViewModel: ObservableObject {
     @Published var cities: [City] = [] {
         willSet {
-            print("Updating cities to: \(newValue)")
+            print("Updating cities to: \(newValue.count)")
         }
     }
     
