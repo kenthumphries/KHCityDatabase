@@ -47,6 +47,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
+        
+        // Delete the existing database so a new one can be created
+        let currentStore = container.persistentStoreCoordinator.persistentStores.last!
+        let currentStoreURL = currentStore.url!
+        print("Removing DB at:", currentStoreURL)
+        container.viewContext.reset()
+        do {
+            try container.persistentStoreCoordinator.destroyPersistentStore(at: currentStoreURL, ofType: NSSQLiteStoreType)
+            try container.persistentStoreCoordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: currentStoreURL)
+        } catch {
+            print(error)
+        }
         return container
     }()
     
