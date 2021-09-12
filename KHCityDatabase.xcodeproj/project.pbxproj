@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -51,6 +51,15 @@
 		37DE683F26EDCD1600E2F2D4 /* City+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DE683C26EDCD1600E2F2D4 /* City+CoreDataClass.swift */; };
 		37DE684026EDCD1600E2F2D4 /* City+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DE683D26EDCD1600E2F2D4 /* City+CoreDataProperties.swift */; };
 		37DE684126EDCD1600E2F2D4 /* City+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DE683D26EDCD1600E2F2D4 /* City+CoreDataProperties.swift */; };
+		37DE688026EDE86F00E2F2D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DE687F26EDE86F00E2F2D4 /* AppDelegate.swift */; };
+		37DE688226EDE86F00E2F2D4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DE688126EDE86F00E2F2D4 /* SceneDelegate.swift */; };
+		37DE688426EDE86F00E2F2D4 /* CityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DE688326EDE86F00E2F2D4 /* CityView.swift */; };
+		37DE688626EDE87200E2F2D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37DE688526EDE87200E2F2D4 /* Assets.xcassets */; };
+		37DE688926EDE87200E2F2D4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37DE688826EDE87200E2F2D4 /* Preview Assets.xcassets */; };
+		37DE688C26EDE87200E2F2D4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37DE688A26EDE87200E2F2D4 /* LaunchScreen.storyboard */; };
+		37DE689226EDE88300E2F2D4 /* KHCityDatabase.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37DE689126EDE88300E2F2D4 /* KHCityDatabase.xcframework */; };
+		37DE689426EDEAAB00E2F2D4 /* CityStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DE689326EDEAAB00E2F2D4 /* CityStorage.swift */; };
+		37DE689626EDED3800E2F2D4 /* CityViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DE689526EDED3800E2F2D4 /* CityViewViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +103,17 @@
 		37DE683726ED9ED000E2F2D4 /* CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CoreDataHelpers.swift; path = KHCityDatabaseCreatorTests/CoreDataHelpers.swift; sourceTree = SOURCE_ROOT; };
 		37DE683C26EDCD1600E2F2D4 /* City+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "City+CoreDataClass.swift"; sourceTree = "<group>"; };
 		37DE683D26EDCD1600E2F2D4 /* City+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "City+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		37DE687D26EDE86F00E2F2D4 /* KHCityViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KHCityViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		37DE687F26EDE86F00E2F2D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		37DE688126EDE86F00E2F2D4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		37DE688326EDE86F00E2F2D4 /* CityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityView.swift; sourceTree = "<group>"; };
+		37DE688526EDE87200E2F2D4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		37DE688826EDE87200E2F2D4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		37DE688B26EDE87200E2F2D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		37DE688D26EDE87200E2F2D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		37DE689126EDE88300E2F2D4 /* KHCityDatabase.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = KHCityDatabase.xcframework; path = XCFramework/xcframeworks/KHCityDatabase.xcframework; sourceTree = "<group>"; };
+		37DE689326EDEAAB00E2F2D4 /* CityStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityStorage.swift; sourceTree = "<group>"; };
+		37DE689526EDED3800E2F2D4 /* CityViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityViewViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +138,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		37DE687A26EDE86F00E2F2D4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				37DE689226EDE88300E2F2D4 /* KHCityDatabase.xcframework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -127,6 +155,7 @@
 				37397A1A1C5EA6F100EA5BCE /* KHCityDatabaseCreator */,
 				373ABB941C5EAEBE00D14122 /* KHCityDatabaseCreatorTests */,
 				3791313826D24481005AAF62 /* KHCityDatabase */,
+				37DE687E26EDE86F00E2F2D4 /* KHCityViewer */,
 				37397A0B1C5EA69000EA5BCE /* Products */,
 				37D2AE211EA754A7007DA44F /* Frameworks */,
 			);
@@ -138,6 +167,7 @@
 				37397A191C5EA6F100EA5BCE /* KHCityDatabaseCreator.app */,
 				373ABB931C5EAEBE00D14122 /* KHCityDatabaseCreatorTests.xctest */,
 				3791313726D24481005AAF62 /* KHCityDatabase.framework */,
+				37DE687D26EDE86F00E2F2D4 /* KHCityViewer.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -247,6 +277,7 @@
 		37D2AE211EA754A7007DA44F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				37DE689126EDE88300E2F2D4 /* KHCityDatabase.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -259,6 +290,30 @@
 				37DE682326ECB1B800E2F2D4 /* CityDatabase.sqlite-shm */,
 			);
 			path = "2021-09-11_19-42-24-t1000";
+			sourceTree = "<group>";
+		};
+		37DE687E26EDE86F00E2F2D4 /* KHCityViewer */ = {
+			isa = PBXGroup;
+			children = (
+				37DE687F26EDE86F00E2F2D4 /* AppDelegate.swift */,
+				37DE688126EDE86F00E2F2D4 /* SceneDelegate.swift */,
+				37DE688326EDE86F00E2F2D4 /* CityView.swift */,
+				37DE689326EDEAAB00E2F2D4 /* CityStorage.swift */,
+				37DE689526EDED3800E2F2D4 /* CityViewViewModel.swift */,
+				37DE688526EDE87200E2F2D4 /* Assets.xcassets */,
+				37DE688A26EDE87200E2F2D4 /* LaunchScreen.storyboard */,
+				37DE688D26EDE87200E2F2D4 /* Info.plist */,
+				37DE688726EDE87200E2F2D4 /* Preview Content */,
+			);
+			path = KHCityViewer;
+			sourceTree = "<group>";
+		};
+		37DE688726EDE87200E2F2D4 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				37DE688826EDE87200E2F2D4 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -332,13 +387,30 @@
 			productReference = 3791313726D24481005AAF62 /* KHCityDatabase.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		37DE687C26EDE86F00E2F2D4 /* KHCityViewer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 37DE689026EDE87200E2F2D4 /* Build configuration list for PBXNativeTarget "KHCityViewer" */;
+			buildPhases = (
+				37DE687926EDE86F00E2F2D4 /* Sources */,
+				37DE687A26EDE86F00E2F2D4 /* Frameworks */,
+				37DE687B26EDE86F00E2F2D4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KHCityViewer;
+			productName = KHCityViewer;
+			productReference = 37DE687D26EDE86F00E2F2D4 /* KHCityViewer.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		37397A011C5EA69000EA5BCE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0720;
+				LastSwiftUpdateCheck = 1250;
 				LastUpgradeCheck = 1250;
 				ORGANIZATIONNAME = KentHumphries;
 				TargetAttributes = {
@@ -362,6 +434,9 @@
 						LastSwiftMigration = 1250;
 						ProvisioningStyle = Automatic;
 					};
+					37DE687C26EDE86F00E2F2D4 = {
+						CreatedOnToolsVersion = 12.5;
+					};
 				};
 			};
 			buildConfigurationList = 37397A041C5EA69000EA5BCE /* Build configuration list for PBXProject "KHCityDatabase" */;
@@ -383,6 +458,7 @@
 				373ABB921C5EAEBE00D14122 /* KHCityDatabaseCreatorTests */,
 				3791313626D24481005AAF62 /* KHCityDatabase */,
 				378FB8F026D248C80025EA30 /* KHCityDatabaseFramework */,
+				37DE687C26EDE86F00E2F2D4 /* KHCityViewer */,
 			);
 		};
 /* End PBXProject section */
@@ -422,6 +498,16 @@
 				37DE682526ECB1B800E2F2D4 /* CityDatabase.sqlite-wal in Resources */,
 				37DE682426ECB1B800E2F2D4 /* CityDatabase.sqlite in Resources */,
 				37DE682626ECB1B800E2F2D4 /* CityDatabase.sqlite-shm in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		37DE687B26EDE86F00E2F2D4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				37DE688C26EDE87200E2F2D4 /* LaunchScreen.storyboard in Resources */,
+				37DE688926EDE87200E2F2D4 /* Preview Assets.xcassets in Resources */,
+				37DE688626EDE87200E2F2D4 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -482,6 +568,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		37DE687926EDE86F00E2F2D4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				37DE688026EDE86F00E2F2D4 /* AppDelegate.swift in Sources */,
+				37DE689626EDED3800E2F2D4 /* CityViewViewModel.swift in Sources */,
+				37DE688226EDE86F00E2F2D4 /* SceneDelegate.swift in Sources */,
+				37DE689426EDEAAB00E2F2D4 /* CityStorage.swift in Sources */,
+				37DE688426EDE86F00E2F2D4 /* CityView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -499,6 +597,14 @@
 				37397A221C5EA6F100EA5BCE /* Base */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		37DE688A26EDE87200E2F2D4 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				37DE688B26EDE87200E2F2D4 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -612,7 +718,8 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -627,7 +734,10 @@
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = KHCityDatabaseCreator/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.KentHumphries.KHCityDatabaseCreator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -644,7 +754,10 @@
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = KHCityDatabaseCreator/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.KentHumphries.KHCityDatabaseCreator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -661,7 +774,11 @@
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = KHCityDatabaseCreatorTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.KentHumphries.KHCityDatabaseCreatorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -679,7 +796,11 @@
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = KHCityDatabaseCreatorTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.KentHumphries.KHCityDatabaseCreatorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -730,7 +851,11 @@
 				INFOPLIST_FILE = KHCityDatabase/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.humpbot.KHCityDatabase;
@@ -765,11 +890,77 @@
 				INFOPLIST_FILE = KHCityDatabase/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.humpbot.KHCityDatabase;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		37DE688E26EDE87200E2F2D4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"KHCityViewer/Preview Content\"";
+				DEVELOPMENT_TEAM = 9E9ZCJ2ZSH;
+				ENABLE_PREVIEWS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = KHCityViewer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.humpbot.KHCityViewer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		37DE688F26EDE87200E2F2D4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"KHCityViewer/Preview Content\"";
+				DEVELOPMENT_TEAM = 9E9ZCJ2ZSH;
+				ENABLE_PREVIEWS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = KHCityViewer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.humpbot.KHCityViewer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -819,6 +1010,15 @@
 			buildConfigurations = (
 				3791313D26D24481005AAF62 /* Debug */,
 				3791313E26D24481005AAF62 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		37DE689026EDE87200E2F2D4 /* Build configuration list for PBXNativeTarget "KHCityViewer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				37DE688E26EDE87200E2F2D4 /* Debug */,
+				37DE688F26EDE87200E2F2D4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

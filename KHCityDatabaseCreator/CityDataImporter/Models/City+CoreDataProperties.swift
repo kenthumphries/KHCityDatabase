@@ -14,7 +14,9 @@ import CoreData
 extension City {
 
     @nonobjc public class func createFetchRequest() -> NSFetchRequest<City> {
-        return NSFetchRequest<City>(entityName: "City")
+        let request = NSFetchRequest<City>(entityName: "City")
+        request.sortDescriptors = [NSSortDescriptor(keyPath: \City.cityNamePreferred, ascending: true)]
+        return request
     }
 
     @NSManaged public var admin1Code: String?
