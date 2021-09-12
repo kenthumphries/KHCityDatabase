@@ -30,7 +30,7 @@ public class KHCityDatabaseFetcher {
     }()
     
     public func cities(predicate: NSPredicate?) throws -> [City] {
-        let fetchRequest: NSFetchRequest<City> = City.fetchRequest()
+        let fetchRequest: NSFetchRequest<City> = City.createFetchRequest()
         fetchRequest.predicate = predicate
         return try persistentContainer.viewContext.fetch(fetchRequest)
     }

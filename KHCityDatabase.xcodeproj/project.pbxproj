@@ -31,7 +31,6 @@
 		37397A3D1C5EA72C00EA5BCE /* cities1000.txt in Resources */ = {isa = PBXBuildFile; fileRef = 37397A341C5EA72C00EA5BCE /* cities1000.txt */; };
 		37397A3E1C5EA72C00EA5BCE /* cities5000.txt in Resources */ = {isa = PBXBuildFile; fileRef = 37397A351C5EA72C00EA5BCE /* cities5000.txt */; };
 		37397A3F1C5EA72C00EA5BCE /* geonames-readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 37397A361C5EA72C00EA5BCE /* geonames-readme.txt */; };
-		373ABBA31C5EAF2500D14122 /* CityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373ABB9F1C5EAF2500D14122 /* CityTests.swift */; };
 		373ABBA41C5EAF2500D14122 /* binary.txt in Resources */ = {isa = PBXBuildFile; fileRef = 373ABBA11C5EAF2500D14122 /* binary.txt */; };
 		373ABBA51C5EAF2500D14122 /* CityFileParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373ABBA21C5EAF2500D14122 /* CityFileParserTests.swift */; };
 		373ABBA61C5EB15100D14122 /* admin1CodesASCII.txt in Resources */ = {isa = PBXBuildFile; fileRef = 37397A321C5EA72C00EA5BCE /* admin1CodesASCII.txt */; };
@@ -47,6 +46,11 @@
 		37DE682426ECB1B800E2F2D4 /* CityDatabase.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 37DE682126ECB1B800E2F2D4 /* CityDatabase.sqlite */; };
 		37DE682526ECB1B800E2F2D4 /* CityDatabase.sqlite-wal in Resources */ = {isa = PBXBuildFile; fileRef = 37DE682226ECB1B800E2F2D4 /* CityDatabase.sqlite-wal */; };
 		37DE682626ECB1B800E2F2D4 /* CityDatabase.sqlite-shm in Resources */ = {isa = PBXBuildFile; fileRef = 37DE682326ECB1B800E2F2D4 /* CityDatabase.sqlite-shm */; };
+		37DE683826ED9ED000E2F2D4 /* CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DE683726ED9ED000E2F2D4 /* CoreDataHelpers.swift */; };
+		37DE683E26EDCD1600E2F2D4 /* City+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DE683C26EDCD1600E2F2D4 /* City+CoreDataClass.swift */; };
+		37DE683F26EDCD1600E2F2D4 /* City+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DE683C26EDCD1600E2F2D4 /* City+CoreDataClass.swift */; };
+		37DE684026EDCD1600E2F2D4 /* City+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DE683D26EDCD1600E2F2D4 /* City+CoreDataProperties.swift */; };
+		37DE684126EDCD1600E2F2D4 /* City+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DE683D26EDCD1600E2F2D4 /* City+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,7 +80,6 @@
 		37397A361C5EA72C00EA5BCE /* geonames-readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "geonames-readme.txt"; sourceTree = "<group>"; };
 		373ABB931C5EAEBE00D14122 /* KHCityDatabaseCreatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KHCityDatabaseCreatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		373ABB971C5EAEBE00D14122 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		373ABB9F1C5EAF2500D14122 /* CityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityTests.swift; sourceTree = "<group>"; };
 		373ABBA11C5EAF2500D14122 /* binary.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = binary.txt; sourceTree = "<group>"; };
 		373ABBA21C5EAF2500D14122 /* CityFileParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityFileParserTests.swift; sourceTree = "<group>"; };
 		3791313726D24481005AAF62 /* KHCityDatabase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KHCityDatabase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,6 +91,9 @@
 		37DE682126ECB1B800E2F2D4 /* CityDatabase.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = CityDatabase.sqlite; sourceTree = "<group>"; };
 		37DE682226ECB1B800E2F2D4 /* CityDatabase.sqlite-wal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "CityDatabase.sqlite-wal"; sourceTree = "<group>"; };
 		37DE682326ECB1B800E2F2D4 /* CityDatabase.sqlite-shm */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CityDatabase.sqlite-shm"; sourceTree = "<group>"; };
+		37DE683726ED9ED000E2F2D4 /* CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CoreDataHelpers.swift; path = KHCityDatabaseCreatorTests/CoreDataHelpers.swift; sourceTree = SOURCE_ROOT; };
+		37DE683C26EDCD1600E2F2D4 /* City+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "City+CoreDataClass.swift"; sourceTree = "<group>"; };
+		37DE683D26EDCD1600E2F2D4 /* City+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "City+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +170,8 @@
 		37397A2B1C5EA72C00EA5BCE /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				37DE683C26EDCD1600E2F2D4 /* City+CoreDataClass.swift */,
+				37DE683D26EDCD1600E2F2D4 /* City+CoreDataProperties.swift */,
 				37397A2C1C5EA72C00EA5BCE /* City.swift */,
 				37A0289D26EC8CAB00FB68B4 /* CityDatabase.xcdatamodeld */,
 			);
@@ -193,6 +201,7 @@
 		373ABB941C5EAEBE00D14122 /* KHCityDatabaseCreatorTests */ = {
 			isa = PBXGroup;
 			children = (
+				37DE683726ED9ED000E2F2D4 /* CoreDataHelpers.swift */,
 				373ABB9D1C5EAF2500D14122 /* CityDataImporter */,
 				373ABB971C5EAEBE00D14122 /* Info.plist */,
 			);
@@ -202,19 +211,10 @@
 		373ABB9D1C5EAF2500D14122 /* CityDataImporter */ = {
 			isa = PBXGroup;
 			children = (
-				373ABB9E1C5EAF2500D14122 /* Models */,
 				373ABBA01C5EAF2500D14122 /* Resources */,
 				373ABBA21C5EAF2500D14122 /* CityFileParserTests.swift */,
 			);
 			path = CityDataImporter;
-			sourceTree = "<group>";
-		};
-		373ABB9E1C5EAF2500D14122 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				373ABB9F1C5EAF2500D14122 /* CityTests.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		373ABBA01C5EAF2500D14122 /* Resources */ = {
@@ -452,7 +452,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37DE683E26EDCD1600E2F2D4 /* City+CoreDataClass.swift in Sources */,
 				37397A1E1C5EA6F100EA5BCE /* ViewController.swift in Sources */,
+				37DE684026EDCD1600E2F2D4 /* City+CoreDataProperties.swift in Sources */,
 				37397A371C5EA72C00EA5BCE /* CityFileParser.swift in Sources */,
 				37A028E826EC977200FB68B4 /* CityCoreDataCreator.swift in Sources */,
 				37A0289F26EC8CAB00FB68B4 /* CityDatabase.xcdatamodeld in Sources */,
@@ -464,7 +466,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				373ABBA31C5EAF2500D14122 /* CityTests.swift in Sources */,
+				37DE683826ED9ED000E2F2D4 /* CoreDataHelpers.swift in Sources */,
 				373ABBA51C5EAF2500D14122 /* CityFileParserTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -473,6 +475,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37DE684126EDCD1600E2F2D4 /* City+CoreDataProperties.swift in Sources */,
+				37DE683F26EDCD1600E2F2D4 /* City+CoreDataClass.swift in Sources */,
 				37DE681E26ECA68B00E2F2D4 /* KHCityDatabaseFetcher.swift in Sources */,
 				37DE681C26ECA50800E2F2D4 /* CityDatabase.xcdatamodeld in Sources */,
 			);
@@ -550,6 +554,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -604,6 +609,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -656,7 +662,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = KHCityDatabaseCreatorTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.KentHumphries.KHCityDatabaseCreatorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -674,7 +680,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = KHCityDatabaseCreatorTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.KentHumphries.KHCityDatabaseCreatorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;

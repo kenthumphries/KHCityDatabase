@@ -7,20 +7,20 @@
 //
 
 import XCTest
-@testable import KHCityDatabaseCreator
 import CoreLocation
+@testable import KHCityDatabaseCreator
 
 class CityFileParserStub : CityFileParser {
     
     var stubCitiesFileContents : String?
     var stubAdmin1FileContents : String?
     
-    override func parseCities() -> [City] {
+    override func parseCities(context: NSManagedObjectContext) -> [City] {
         
         if let fileContents = self.stubCitiesFileContents {
-            return self.parseCities(fromContents: fileContents)
+            return self.parseCities(fromContents: fileContents, context: context)
         } else {
-            return self.parseCities(fromContents: self.citiesFileContents)
+            return self.parseCities(fromContents: self.citiesFileContents, context: context)
         }
     }
     
@@ -43,10 +43,13 @@ class CityFileParserTests: XCTestCase {
     
     var testBundle : Bundle?
     
+    var context : NSManagedObjectContext!
+
     override func setUp() {
         super.setUp()
         
         testBundle = Bundle(for: type(of: self))
+        context = setUpInMemoryManagedObjectContext()
     }
     
     // MARK: - Setup Tests
@@ -538,16 +541,16 @@ class CityFileParserTests: XCTestCase {
         let contents = ""
         let parser = stubCityFileParser(citiesFileContents: contents)
         
-        let cities = parser.parseCities()
+        let cities = parser.parseCities(context: context)
         XCTAssertEqual(cities.count, 0)
     }
     
     func testParseCities_singleLine() {
         
         let parser = stubCityFileParser(citiesFileContents: citiesLineMelbourne)
-        let cities = parser.parseCities()
+        let cities = parser.parseCities(context: context)
         
-        XCTAssertEqual([cityMelbourne], cities)
+        XCTAssertEqual([cityMelbourne], cities: cities)
     }
     
     func testParseCities_fiveLines() {
@@ -557,13 +560,9 @@ class CityFileParserTests: XCTestCase {
         let expectedCities = [cityMelbourne, cityHobart, cityBrisbane, cityGlasgow, cityCardiff]
         
         let parser = stubCityFileParser(citiesFileContents: contents)
-        let cities = parser.parseCities()
+        let cities = parser.parseCities(context: context)
         XCTAssertEqual(cities.count, 5)
-        XCTAssertEqual(expectedCities[0], cities[0])
-        XCTAssertEqual(expectedCities[1], cities[1])
-        XCTAssertEqual(expectedCities[2], cities[2])
-        XCTAssertEqual(expectedCities[3], cities[3])
-        XCTAssertEqual(expectedCities[4], cities[4])
+        XCTAssertEqual(expectedCities, cities: cities)
     }
     
     func testParseCities_invalidLine() {
@@ -574,12 +573,9 @@ class CityFileParserTests: XCTestCase {
         let expectedCities = [cityMelbourne, cityHobart, cityBrisbane, cityCardiff]
         
         let parser = stubCityFileParser(citiesFileContents: contents)
-        let cities = parser.parseCities()
+        let cities = parser.parseCities(context: context)
         XCTAssertEqual(cities.count, 4)
-        XCTAssertEqual(expectedCities[0], cities[0])
-        XCTAssertEqual(expectedCities[1], cities[1])
-        XCTAssertEqual(expectedCities[2], cities[2])
-        XCTAssertEqual(expectedCities[3], cities[3])
+        XCTAssertEqual(expectedCities, cities: cities)
     }
     
     // MARK: - Utilties
@@ -593,7 +589,7 @@ class CityFileParserTests: XCTestCase {
     }
     
     var cityMelbourne : City {
-        return City(cityNamePreferred: "Melbourne", cityNameASCII: "Melbun", cityNameAlternates: "Melbone, Melborn, Melba", timeZone: "Australia/Melbourne", countryCode: "AU", countryNamePreferred: "Australia", admin1Code: "07", admin1NamePreferred: "Victoria", admin2Code: "24600", population: 123456, latitude: 37.81, longitude: 144.96)
+        return createCity(context: context, cityNamePreferred: "Melbourne", cityNameASCII: "Melbun", cityNameAlternates: "Melbone, Melborn, Melba", timeZone: "Australia/Melbourne", countryCode: "AU", countryNamePreferred: "Australia", admin1Code: "07", admin1NamePreferred: "Victoria", admin2Code: "24600", population: 123456, latitude: 37.81, longitude: 144.96)
     }
     
     var citiesLineHobart : String {
@@ -601,7 +597,7 @@ class CityFileParserTests: XCTestCase {
     }
     
     var cityHobart : City {
-        return City(cityNamePreferred: "Hobart", cityNameASCII: "Hobbiton", cityNameAlternates: "Hobrat, Hoborat", timeZone: "Australia/Hobart", countryCode: "AU", countryNamePreferred: "Australia", admin1Code: "06", admin1NamePreferred: "Tasmania", admin2Code: "12345", population: 30000, latitude: 37.81, longitude: 140.96)
+        return createCity(context: context, cityNamePreferred: "Hobart", cityNameASCII: "Hobbiton", cityNameAlternates: "Hobrat, Hoborat", timeZone: "Australia/Hobart", countryCode: "AU", countryNamePreferred: "Australia", admin1Code: "06", admin1NamePreferred: "Tasmania", admin2Code: "12345", population: 30000, latitude: 37.81, longitude: 140.96)
     }
     
     var citiesLineBrisbane : String {
@@ -609,7 +605,7 @@ class CityFileParserTests: XCTestCase {
     }
     
     var cityBrisbane : City {
-        return City(cityNamePreferred: "Brisbane", cityNameASCII: "Brisvegas", cityNameAlternates: "Brisbun, Brisbandanna", timeZone: "Australia/Brisbane", countryCode: "AU", countryNamePreferred: "Australia", admin1Code: "04", admin1NamePreferred: "Queensland", admin2Code: "23456", population: 300000, latitude: 37.81, longitude: 148.96)
+        return createCity(context: context, cityNamePreferred: "Brisbane", cityNameASCII: "Brisvegas", cityNameAlternates: "Brisbun, Brisbandanna", timeZone: "Australia/Brisbane", countryCode: "AU", countryNamePreferred: "Australia", admin1Code: "04", admin1NamePreferred: "Queensland", admin2Code: "23456", population: 300000, latitude: 37.81, longitude: 148.96)
         
     }
     
@@ -618,7 +614,7 @@ class CityFileParserTests: XCTestCase {
     }
     
     var cityGlasgow : City {
-        return City(cityNamePreferred: "Glasgow", cityNameASCII: "Glasgw", cityNameAlternates: "Glasglow, Glassblow", timeZone: "Europe/London", countryCode: "GB", countryNamePreferred: "United Kingdom", admin1Code: "SCT", admin1NamePreferred: "Scotland", admin2Code: "34567", population: 2000000, latitude: 55.85, longitude: 4.26)
+        return createCity(context: context, cityNamePreferred: "Glasgow", cityNameASCII: "Glasgw", cityNameAlternates: "Glasglow, Glassblow", timeZone: "Europe/London", countryCode: "GB", countryNamePreferred: "United Kingdom", admin1Code: "SCT", admin1NamePreferred: "Scotland", admin2Code: "34567", population: 2000000, latitude: 55.85, longitude: 4.26)
     }
     
     var citiesLineCardiff : String {
@@ -626,7 +622,7 @@ class CityFileParserTests: XCTestCase {
     }
     
     var cityCardiff : City {
-        return City(cityNamePreferred: "Cardiff", cityNameASCII: "Cardf", cityNameAlternates: "Cardriff, Cradfish", timeZone: "Europe/London", countryCode: "GB", countryNamePreferred: "United Kingdom", admin1Code: "WLS", admin1NamePreferred: "Wales", admin2Code: "45678", population: 10000, latitude: 55.85, longitude: 6.26)
+        return createCity(context: context, cityNamePreferred: "Cardiff", cityNameASCII: "Cardf", cityNameAlternates: "Cardriff, Cradfish", timeZone: "Europe/London", countryCode: "GB", countryNamePreferred: "United Kingdom", admin1Code: "WLS", admin1NamePreferred: "Wales", admin2Code: "45678", population: 10000, latitude: 55.85, longitude: 6.26)
     }
     
     func citiesLineValues(
