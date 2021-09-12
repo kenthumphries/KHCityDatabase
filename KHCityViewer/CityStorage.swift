@@ -28,6 +28,7 @@ class CityStorage: NSObject, ObservableObject {
         
         do {
             try cityFetchController.performFetch()
+            print("cityFetchController fetched \(cityFetchController.fetchedObjects?.count) objects")
             cities.value = cityFetchController.fetchedObjects ?? []
         } catch  {
             print("Error: Could not fetch objects")
