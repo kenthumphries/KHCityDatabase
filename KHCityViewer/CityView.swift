@@ -14,6 +14,11 @@ struct CityView: View {
     var body: some View {
         Text("Found \(viewModel.cities.count) cities")
             .padding()
+        List() {
+            ForEach(viewModel.cities, id: \.self) {city in
+                Text("\(city.cityNamePreferred), \(city.admin1Code ?? "-"), \(city.countryCode)")
+            }
+        }
     }
 }
 
